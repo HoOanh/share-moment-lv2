@@ -1768,7 +1768,6 @@
                             <img id="myImg" src="">
                             <input type='file' name="img" />
                         </div>
-
                     </div>
 
                 </div>
