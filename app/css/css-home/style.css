@@ -49,7 +49,7 @@ html {
   scroll-behavior: smooth;
 }
 
-img{
+img {
   object-fit: cover;
 }
 
@@ -10166,30 +10166,36 @@ html.dark,
   overflow-y: scroll;
 }
 
-.add-img {
+.add-img,
+.add-video {
   margin-left: -15%;
   padding: 10px;
   border: 1px solid #eaeaea;
   border-radius: 5px;
 }
 
-.add-img img {
+.add-img img,
+.add-video video {
   position: relative;
   width: 100%;
   object-fit: cover;
   border-radius: 5px;
 }
 
-.add-img input {
+.add-img input,
+.add-video input {
   color: transparent;
   margin-top: 15px;
 }
 
-.add-img input[type="file"]::-webkit-file-upload-button {
+.add-img input[type="file"]::-webkit-file-upload-button,
+.add-video input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
 
-.add-img input[type="file"]::before {
+.add-img input[type="file"]::before,
+.add-video input[type="file"]::before {
+  font-family: var(--font-family-normal);
   content: "Chọn ảnh";
   display: inline-block;
 
@@ -10206,6 +10212,10 @@ html.dark,
   font-weight: 700;
   font-size: 10pt;
   color: rgba(37, 99, 235, 1);
+}
+
+.add-video input[type="file"]::before {
+  content: "Chọn video";
 }
 
 .items-start::-webkit-scrollbar-track {
