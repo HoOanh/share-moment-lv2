@@ -2064,7 +2064,7 @@
     <!-- Craete post modal -->
     <div id="create-post-modal" class="create-post is-story" uk-modal>
         <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
-
+        <form  id="form-post" enctype ="multipart/form-data" method="post">
             <div class="text-center py-3 border-b">
                 <h3 class="text-lg font-semibold"> Create Post </h3>
                 <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
@@ -2072,20 +2072,22 @@
             <div class="flex flex-1 items-start space-x-4 p-5">
                 <img src="assets/images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-11 h-11">
                 <div class="flex-1 pt-2">
-                    <textarea class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="What's Your Mind ? Stella!"></textarea>
+                
+                    <textarea name="caption" class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="What's Your Mind ? Stella!"></textarea>
 
                     <!-- them anh -->
                     <div class="add-img" style="display: none;">
 
                         <br><img id="myImg" src="#" width="100%" ; height="300px">
-                        <input type='file' />
+                        <input type='file' name="img" />
 
 
                     </div>
-
+                   
                 </div>
 
             </div>
+
             <div class="bsolute bottom-0 p-4 space-x-4 w-full">
                 <div class="flex bg-gray-50 border border-purple-100 rounded-2xl p-2 shadow-sm items-center">
                     <div class="lg:block hidden ml-1"> Add to your post </div>
@@ -2137,13 +2139,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                         </svg>
                         Live </a>
-                    <a href="#" class="bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
-                        Share </a>
+                    <button type="submit" class="share-post bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
+                        Share </button>
                 </div>
 
-                <a href="#" hidden class="bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold">
-                    Share </a>
+               
             </div>
+            </form>
         </div>
     </div>
 
@@ -2165,6 +2167,16 @@
                 }
             });
         });
+
+    // let op =   document.querySelector('#create-post-modal');
+    // if(!op.classList.contains('uk-open')){
+    //     document.querySelector('#form-post').reset()
+    // }
+    // let x = document.querySelector('.uk-modal-dialog').onblur = ()=>{
+    //     document.querySelector('#form-post').reset();
+    // }
+    
+
     </script>
 
     <!-- For Night mode -->
@@ -2212,6 +2224,7 @@
     <script src="../../app/js/js-home/custom.js"></script>
     <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <script src="../../app/ajax/create-post.js"></script>
 
     <!-- Ajax load
     ============================================= -->

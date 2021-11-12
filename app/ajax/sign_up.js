@@ -15,7 +15,7 @@ senBtn.onclick = () => {
 
                 // Chuyển JSON thành obj
                 data = JSON.parse(data);
-                console.log(data);
+             
                 if (data["data"] !== 'success') {
                     error.textContent = data["data"];
                     error.parentElement.style.display = 'flex';
