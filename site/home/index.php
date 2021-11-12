@@ -5,6 +5,8 @@ if (!isset($_SESSION['unique_id'])) {
     header("location: ../login");
 }
 
+require "../../dao/pdo.php";
+
 $VIEW_NAME = "feed.php";
 
 // if(isset($_GET['action'])){
