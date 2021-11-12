@@ -16,7 +16,7 @@
   <header>
     <div class="header_wrap">
       <a href="">
-        <img class="header_wrap-logo" src="./images/header/logo.png" alt="" />
+        <img class="header_wrap-logo" src="../../images/header/logo.png" alt="" />
       </a>
       <div class="header_user">
         <button class="header_user-button">Nâng cấp</button>
