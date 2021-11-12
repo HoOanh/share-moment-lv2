@@ -1768,6 +1768,15 @@
                             <img id="myImg" src="">
                             <input type='file' name="img" />
                         </div>
+
+                        <!-- them video -->
+                        <div class="add-video" style="display: none;">
+                            <div style="display: none;" class='video-prev' class="pull-right">
+                                    <video height="200" width="300" class="video-preview" controls="controls"/>
+                            </div>
+
+                            <input class="upload-video-file" type='file' name="file"/>
+                        </div>
                     </div>
 
                 </div>
@@ -1780,7 +1789,7 @@
                             <svg class="add-img-post bg-blue-100 h-9 p-1.5 rounded-full text-blue-600 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
-                            <svg class="text-red-600 h-9 p-1.5 rounded-full bg-red-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="add-video-post text-red-600 h-9 p-1.5 rounded-full bg-red-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"> </path>
                             </svg>
                             <svg class="text-green-600 h-9 p-1.5 rounded-full bg-green-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1837,6 +1846,9 @@
     <script>
         document.getElementsByClassName('add-img-post')[0].onclick = () => {
             let x = document.getElementsByClassName('add-img')[0].style.display = 'block';
+        }
+        document.getElementsByClassName('add-video-post')[0].onclick = () => {
+            let x = document.getElementsByClassName('add-video')[0].style.display = 'block';
         }
         window.addEventListener('load', function() {
             document.querySelector('input[type="file"]').addEventListener('change', function() {
@@ -1902,6 +1914,45 @@
     <!-- Ajax load
     ============================================= -->
     <script src="../../app/ajax/loadMessUser.js"></script>
+
+<!-- script them anh -->
+    <script>
+         $(function() {
+    $('.upload-video-file').on('change', function(){
+      if (isVideo($(this).val())){
+        $('.video-preview').attr('src', URL.createObjectURL(this.files[0]));
+        $('.video-prev').show();
+      }
+      else
+      {
+        $('.upload-video-file').val('');
+        $('.video-prev').hide();
+        alert("Only video files are allowed to upload.")
+      }
+    });
+});
+
+// If user tries to upload videos other than these extension , it will throw error.
+function isVideo(filename) {
+    var ext = getExtension(filename);
+    switch (ext.toLowerCase()) {
+    case 'm4v':
+    case 'avi':
+    case 'mp4':
+    case 'mov':
+    case 'mpg':
+    case 'mpeg':
+        // etc
+        return true;
+    }
+    return false;
+}
+
+function getExtension(filename) {
+    var parts = filename.split('.');
+    return parts[parts.length - 1];
+}
+    </script>
 </body>
 
 </html>
