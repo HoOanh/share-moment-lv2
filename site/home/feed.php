@@ -434,22 +434,22 @@
 
                             <!-- avatar -->
                             <?php
-                            $sql ="SELECT * from users where unique_id = ?";
+                            $sql = "SELECT * from users where unique_id = ?";
                             $userMain = pdo_get_one_row($sql, $_SESSION['unique_id']);
                             extract($userMain);
                             ?>
                             <a href="#">
-                                <img src="../../images/user/<?=$img?>" class="is_avatar" alt="">
+                                <img src="../../images/user/<?= $img ?>" class="is_avatar" alt="">
                             </a>
                             <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 
                                 <a href="timeline.html" class="user">
                                     <div class="user_avatar">
-                                        <img src="../../images/user/<?=$img?>" style="width:100%; height:100%">
+                                        <img src="../../images/user/<?= $img ?>" style="width:100%; height:100%">
                                     </div>
                                     <div class="user_name">
                                         <div> <?php echo $fname . " " . $lname ?> </div>
-                                        <span> @<?=$lname?></span>
+                                        <span> @<?= $lname ?></span>
                                     </div>
                                 </a>
                                 <hr>
@@ -778,7 +778,7 @@
                         <!-- create post -->
                         <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
                             <div class="flex space-x-3">
-                                <img src="../../images/user/<?=$img?>" class="w-10 h-10 rounded-full">
+                                <img src="../../images/user/<?= $img ?>" class="w-10 h-10 rounded-full">
                                 <input placeholder="What's Your Mind ? Hamse!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full">
                             </div>
                             <div class="grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm">
@@ -1758,24 +1758,24 @@
                     <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
                 </div>
                 <div class="flex flex-1 items-start space-x-4 p-5">
-                    <img src="../../images/user/<?=$userMain['img'];?>" class="bg-gray-200 border border-white rounded-full w-11 h-11">
+                    <img src="../../images/user/<?= $userMain['img']; ?>" class="bg-gray-200 border border-white rounded-full w-11 h-11">
                     <div class="flex-1 pt-2">
 
-                        <textarea name="caption" class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="Bạn đang nghĩ gì ? <?=$userMain['lname'];?> !"></textarea>
+                        <textarea name="caption" class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="Bạn đang nghĩ gì ? <?= $userMain['lname']; ?> !"></textarea>
 
                         <!-- them anh -->
                         <div class="add-img" style="display: none;">
                             <img id="myImg" src="">
-                            <input type='file' name="img" />
+                            <input class="file_img" type='file' name="img" />
                         </div>
 
                         <!-- them video -->
                         <div class="add-video" style="display: none;">
                             <div style="display: none;" class='video-prev' class="pull-right">
-                                    <video height="200" width="300" class="video-preview" controls="controls"/>
+                                <video class="video-preview" controls="controls" />
                             </div>
 
-                            <input class="upload-video-file" type='file' name="file"/>
+                            <input class="upload-video-file" type='file' name="video" />
                         </div>
                     </div>
 
@@ -1842,28 +1842,6 @@
         </div>
     </div>
 
-    <!-- them anh  -->
-    <script>
-        document.getElementsByClassName('add-img-post')[0].onclick = () => {
-            let x = document.getElementsByClassName('add-img')[0].style.display = 'block';
-        }
-        document.getElementsByClassName('add-video-post')[0].onclick = () => {
-            let x = document.getElementsByClassName('add-video')[0].style.display = 'block';
-        }
-        window.addEventListener('load', function() {
-            document.querySelector('input[type="file"]').addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    var img = document.querySelector('#myImg');
-                    img.onload = () => {
-                        URL.revokeObjectURL(img.src); // no longer needed, free memory
-                    }
-
-                    img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-                }
-            });
-        });
-    </script>
-
     <!-- For Night mode -->
     <script>
         (function(window, document, undefined) {
@@ -1915,44 +1893,72 @@
     ============================================= -->
     <script src="../../app/ajax/loadMessUser.js"></script>
 
-<!-- script them anh -->
+    <!-- script them video -->
     <script>
-         $(function() {
-    $('.upload-video-file').on('change', function(){
-      if (isVideo($(this).val())){
-        $('.video-preview').attr('src', URL.createObjectURL(this.files[0]));
-        $('.video-prev').show();
-      }
-      else
-      {
-        $('.upload-video-file').val('');
-        $('.video-prev').hide();
-        alert("Only video files are allowed to upload.")
-      }
-    });
-});
+        $(function() {
+            $('.upload-video-file').on('change', function() {
+                if (isVideo($(this).val())) {
+                    $('.video-preview').attr('src', URL.createObjectURL(this.files[0]));
+                    $('.video-prev').show();
+                } else {
+                    $('.upload-video-file').val('');
+                    $('.video-prev').hide();
+                }
+            });
+        });
 
-// If user tries to upload videos other than these extension , it will throw error.
-function isVideo(filename) {
-    var ext = getExtension(filename);
-    switch (ext.toLowerCase()) {
-    case 'm4v':
-    case 'avi':
-    case 'mp4':
-    case 'mov':
-    case 'mpg':
-    case 'mpeg':
-        // etc
-        return true;
-    }
-    return false;
-}
+        // If user tries to upload videos other than these extension , it will throw error.
+        function isVideo(filename) {
+            var ext = getExtension(filename);
+            switch (ext.toLowerCase()) {
+                case 'm4v':
+                case 'avi':
+                case 'mp4':
+                case 'mov':
+                case 'mpg':
+                case 'mpeg':
+                    // etc
+                    return true;
+            }
+            return false;
+        }
 
-function getExtension(filename) {
-    var parts = filename.split('.');
-    return parts[parts.length - 1];
-}
+        function getExtension(filename) {
+            var parts = filename.split('.');
+            return parts[parts.length - 1];
+        }
     </script>
 </body>
 
 </html>
+
+
+<!-- them anh  -->
+<script>
+    document.getElementsByClassName('add-img-post')[0].onclick = () => {
+        document.getElementsByClassName('add-img')[0].style.display = 'block';
+        document.getElementsByClassName('add-video')[0].style.display = 'none';
+        document.querySelector('.upload-video-file').value = '';
+
+    }
+    document.getElementsByClassName('add-video-post')[0].onclick = () => {
+        document.getElementsByClassName('add-video')[0].style.display = 'block';
+        document.getElementsByClassName('add-img')[0].style.display = 'none';
+
+        var img = document.querySelector('#myImg');
+        img.src = '';
+
+    }
+    window.addEventListener('load', function() {
+        document.querySelector('input[type="file"]').addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                var img = document.querySelector('#myImg');
+                img.onload = () => {
+                    URL.revokeObjectURL(img.src); // no longer needed, free memory
+                };
+
+                img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+            };
+        });
+    });
+</script>
