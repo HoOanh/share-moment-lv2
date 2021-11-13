@@ -874,7 +874,7 @@
     
                              
                                 <div class='w-full h-full'>
-                                <iframe src=\"../../video/post/{$post_video}\"  autoplay='false' frameborder='0' allowfullscreen uk-responsive class='w-full lg:h-64 h-40'></iframe>
+                                <video controls src=\"../../video/post/{$post_video}\"  frameborder='0' allowfullscreen uk-responsive class='w-full lg:h-64 h-40'></vid>
                             </div>
                                
     
