@@ -97,7 +97,10 @@ share.onclick = () => {
                 
                 
                     <div class='w-full h-full'>
-                        <iframe src=\ "../../video/post/${data['data']['post_video']}\" autoplay='false' frameborder='0' allowfullscreen uk-responsive class='w-full lg:h-64 h-40'></iframe>
+                        <video muted src=\ "../../video/post/${data['data']['post_video']}\"  controls  frameborder='0' allowfullscreen uk-responsive class='w-full lg:h-64 h-40'>
+                       
+                        
+                        </video>
                     </div>
                 
                 
@@ -365,6 +368,7 @@ share.onclick = () => {
                 }
                 newPost = newPost + temp;
                 newPostContainer.innerHTML = newPost;
+               
 
             }
         }
