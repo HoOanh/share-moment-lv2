@@ -2,7 +2,7 @@
 session_start();
 require '../dao/pdo.php';
 
-$output = ['data' => ['caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
+$output = ['data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
 
 
 $sql = 'Select * from users where unique_id = ?';
@@ -133,5 +133,10 @@ if ($check) {
         $output['data']['post_time'] = $post_time;
     }
 }
+
+$sql = 'SELECT * FROM post WHERE time = ?';
+$post_inf = pdo_get_one_row($sql, $post_time);
+
+$output['data']['post_id'] = $post_inf['post_id'];
 
 die(json_encode($output));

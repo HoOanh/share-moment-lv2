@@ -801,6 +801,7 @@
                         </div>
 
                         <div class='card lg:mx-0 uk-animation-slide-bottom-small' id='new-post'>
+
                         </div>
                         <?php
                         $sql2 = "Select * FROM post INNER JOIN users ON users.unique_id = post.unique_id ORDER BY post_id DESC LIMIT 5 ";
@@ -809,21 +810,19 @@
                             extract($item);
 
                             $sql = "Select count(*) as total from likes where post_id = ? ";
-                            $res = pdo_get_one_row($sql,$post_id);
-                            $message = "<span class='quantity-like'>{$res['total']}</span> <strong> lượt thích </strong>";
-                            if($res['total'] == 0){
+                            $res = pdo_get_one_row($sql, $post_id);
+                            $message = "
+                            <div class='flex items-center' >
+                                        <img src='../../images/post/like-icon.png' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
+                            <span class='quantity-like' style='margin-left: 0.15em;'>{$res['total']} <strong> lượt thích </strong> </span>
+                            </div>";
+                            if ($res['total'] == 0) {
                                 $message = "<span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>";
                             }
 
                             if ($post_video != '') {
-
-
-
                                 echo "
-
                                 <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
-
-                         
                                 <div class='flex justify-between items-center lg:p-4 p-2.5'>
                                     <div class='flex flex-1 items-center space-x-4'>
                                         <a href='#'>
@@ -839,7 +838,7 @@
                                     <div>
                                         <a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a>
                                         <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
-    
+
                                             <ul class='space-y-1'>
                                                 <li>
                                                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
@@ -870,23 +869,17 @@
                                                     </a>
                                                 </li>
                                             </ul>
-    
+
                                         </div>
                                     </div>
                                 </div>
-    
                                 <div class='p-5 pt-0 border-b dark:border-gray-700'>
                                 $caption
                                 </div>
-    
-                             
                                 <div class='w-full h-full'>
                                 <video controls src=\"../../video/post/{$post_video}\"  frameborder='0' allowfullscreen uk-responsive class='w-full lg:h-64 h-40'></vid>
                             </div>
-                               
-    
                                 <div class='p-4 space-y-3'>
-    
                                     <div class='flex space-x-4 lg:font-bold'>
                                         <a data='{$post_id}'class='flex items-center space-x-2 like-btn'>
                                             <div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'>
@@ -918,7 +911,7 @@
                                             {$message}
                                         </div>
                                     </div>
-    
+
                                     <div class='border-t py-4 space-y-4 dark:border-gray-600'>
                                         <div class='flex'>
                                             <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
@@ -954,11 +947,11 @@
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                     </div>
-    
+
                                     <a href='#' class='hover:text-blue-600 hover:underline'> Veiw 8 more Comments </a>
-    
+
                                     <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
                                         <input placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5'>
                                         <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
@@ -973,18 +966,15 @@
                                             </a>
                                         </div>
                                     </div>
-    
+
                                 </div>
-    
-                            </div>
-                                ";
+
+                            </div>";
                             } else {
-
-
                                 echo "
                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
 
-                         
+
                             <div class='flex justify-between items-center lg:p-4 p-2.5'>
                                 <div class='flex flex-1 items-center space-x-4'>
                                     <a href='#'>
@@ -1076,7 +1066,7 @@
                                     </a>
                                 </div>
                                 <div class='flex items-center space-x-3 pt-2'>
-                                   
+
                                     <div class='dark:text-gray-100'>
                                     {$message}
                                     </div>
@@ -1149,7 +1139,7 @@
 
                         <!-- end -->
 
-                      
+
                         <div class="flex justify-center mt-6">
                             <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                                 Load more ..</a>

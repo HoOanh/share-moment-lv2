@@ -100,7 +100,7 @@ share.onclick = () => {
                     <div class='p-4 space-y-3'>
 
                         <div class='flex space-x-4 lg:font-bold'>
-                            <a href='#' class='flex items-center space-x-2'>
+                            <a data='${data["data"]["post_id"]}' class='flex items-center space-x-2 like-btn' >
                                 <div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'>
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'>
                                         <path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' />
@@ -126,13 +126,8 @@ share.onclick = () => {
                             </a>
                         </div>
                         <div class='flex items-center space-x-3 pt-2'>
-                            <div class='flex items-center'>
-                                <img src='assets/images/avatars/avatar-1.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
-                                <img src='assets/images/avatars/avatar-4.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'>
-                                <img src='assets/images/avatars/avatar-2.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'>
-                            </div>
                             <div class='dark:text-gray-100'>
-                                Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
+                            <span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>
                             </div>
                         </div>
 
@@ -195,7 +190,6 @@ share.onclick = () => {
           }
           if (data["type"] == "img" || data["type"] == "") {
             newPost += `
-
                         <div class='flex justify-between items-center lg:p-4 p-2.5'>
                         <div class='flex flex-1 items-center space-x-4'>
                             <a href='#'>
@@ -257,11 +251,10 @@ share.onclick = () => {
                         </a>
                     </div>
 
-
                     <div class='p-4 space-y-3'>
 
                         <div class='flex space-x-4 lg:font-bold'>
-                            <a href='#' class='flex items-center space-x-2'>
+                            <a data='${data["data"]["post_id"]}' class='flex items-center space-x-2 like-btn'>
                                 <div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'>
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'>
                                         <path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' />
@@ -287,13 +280,8 @@ share.onclick = () => {
                             </a>
                         </div>
                         <div class='flex items-center space-x-3 pt-2'>
-                            <div class='flex items-center'>
-                                <img src='assets/images/avatars/avatar-1.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
-                                <img src='assets/images/avatars/avatar-4.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'>
-                                <img src='assets/images/avatars/avatar-2.jpg' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2'>
-                            </div>
                             <div class='dark:text-gray-100'>
-                                Liked <strong> Johnson</strong> and <strong> 209 Others </strong>
+                            <span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>
                             </div>
                         </div>
 
@@ -351,13 +339,58 @@ share.onclick = () => {
                                 </a>
                             </div>
                         </div>
-
                     </div>
+
                         `;
           }
 
           newPost = newPost + temp;
           newPostContainer.innerHTML = newPost;
+
+          //   ajax nút like nha
+          //   ================================================================
+
+          (function () {
+            const likeBtns = document.querySelectorAll(".like-btn");
+            likeBtns.forEach((btn) => {
+              btn.addEventListener("click", function () {
+                let postId = btn.getAttribute("data");
+                let likeContainer =
+                  btn.parentElement.parentElement.querySelector(
+                    ".quantity-like"
+                  );
+                const http = new XMLHttpRequest();
+
+                http.open("post", "../../back-end/like.php", true);
+
+                http.onload = () => {
+                  if (http.readyState === XMLHttpRequest.DONE) {
+                    if (http.status === 200) {
+                      let data = http.response;
+
+                      if (data == 0) {
+                        likeContainer.parentElement.innerHTML =
+                          "<span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>";
+                      } else {
+                        likeContainer.parentElement.innerHTML = `
+                                      <div class='flex items-center' >
+                                                      <img src='../../images/post/like-icon.png' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
+                                          <span class='quantity-like' style='margin-left: 0.15em;'> ${data}<strong> lượt thích </strong> </span>
+                                          </div>
+                                    `;
+                      }
+                    }
+                  }
+                };
+
+                http.setRequestHeader(
+                  "Content-type",
+                  "application/x-www-form-urlencoded"
+                );
+                http.send("post_id=" + postId);
+              });
+            });
+          })();
         } else {
           alert(data["data"]);
         }
