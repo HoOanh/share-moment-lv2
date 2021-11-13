@@ -131,48 +131,16 @@ share.onclick = () => {
                             </div>
                         </div>
 
-                        <div class='border-t py-4 space-y-4 dark:border-gray-600'>
-                            <div class='flex'>
-                                <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                    <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                </div>
-                                <div>
-                                    <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                        <p class='leading-6'>In ut odio libero vulputate
-                                            <urna class='i uil-heart'></urna> <i class='uil-grin-tongue-wink'> </i>
-                                        </p>
-                                        <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                    </div>
-                                    <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
-                                        <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                        <a href='#'> Replay </a>
-                                        <span> 3d </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='flex'>
-                                <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                    <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                </div>
-                                <div>
-                                    <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                        <p class='leading-6'> sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. David !<i class='uil-grin-tongue-wink-alt'></i> </p>
-                                        <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                    </div>
-                                    <div class='text-xs flex items-center space-x-3 mt-2 ml-5'>
-                                        <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                        <a href='#'> Replay </a>
-                                        <span> 3d </span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class='border-t py-4 space-y-4 dark:border-gray-600 box-comment'>
+                            
+                            
 
                         </div>
 
-                        <a href='#' class='hover:text-blue-600 hover:underline'> Veiw 8 more Comments </a>
+                       
 
                         <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
-                            <input placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5'>
+                            <input data='${data['data']['post_id']}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                             <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                 <a href='#'>
                                     <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
@@ -285,48 +253,16 @@ share.onclick = () => {
                             </div>
                         </div>
 
-                        <div class='border-t py-4 space-y-4 dark:border-gray-600'>
-                            <div class='flex'>
-                                <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                    <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                </div>
-                                <div>
-                                    <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                        <p class='leading-6'>In ut odio libero vulputate
-                                            <urna class='i uil-heart'></urna> <i class='uil-grin-tongue-wink'> </i>
-                                        </p>
-                                        <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                    </div>
-                                    <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
-                                        <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                        <a href='#'> Replay </a>
-                                        <span> 3d </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='flex'>
-                                <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                    <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                </div>
-                                <div>
-                                    <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                        <p class='leading-6'> sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. David !<i class='uil-grin-tongue-wink-alt'></i> </p>
-                                        <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                    </div>
-                                    <div class='text-xs flex items-center space-x-3 mt-2 ml-5'>
-                                        <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                        <a href='#'> Replay </a>
-                                        <span> 3d </span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class='border-t py-4 space-y-4 dark:border-gray-600 box-comment'>
+                            
+                           
 
                         </div>
 
-                        <a href='#' class='hover:text-blue-600 hover:underline'> Veiw 8 more Comments </a>
+                        
 
                         <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
-                            <input placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5'>
+                            <input data='${data['data']['post_id']}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                             <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                 <a href='#'>
                                     <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
@@ -391,6 +327,39 @@ share.onclick = () => {
               });
             });
           })();
+
+        //   ajax com men 
+          (function (){
+            let sendCmt = document.querySelectorAll('.add-cmt');
+            sendCmt.forEach((item)=>{
+                
+                item.addEventListener('keyup',(event)=>{
+                    let cmt_content = item.value;
+                    cmt_content = cmt_content.trim();
+                   if(event.keyCode == 13 &&  !event.shiftKey && cmt_content != ''){
+                      
+                    let postID = item.getAttribute("data");
+                    const http = new XMLHttpRequest();
+            
+                    http.open("post", "../../back-end/add-cmt.php", true);
+                    http.onload = () => {
+                      if (http.readyState === XMLHttpRequest.DONE) {
+                        if (http.status === 200) {
+                          let data = http.response;
+                          data =JSON.parse(data);
+                          let boxCmt =  item.parentElement.parentElement.children[2];
+                          boxCmt.innerHTML += data['data'];
+                          item.value = '';
+                        }
+                      }
+                    };
+                    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    http.send("post_id=" + postID + "&cmt_content="+ cmt_content);
+                   }
+                    
+                })
+            })
+        })()
         } else {
           alert(data["data"]);
         }

@@ -811,6 +811,39 @@
 
                             $sql = "Select count(*) as total from likes where post_id = ? ";
                             $res = pdo_get_one_row($sql, $post_id);
+
+                            $sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc limit 2";
+                            $res2 = pdo_get_all_rows($sql2, $post_id);
+
+                            $allCmt = '';
+                            foreach($res2 as $cmt){
+                                
+                                extract($cmt);
+
+                                $sql = "SELECT * FROM users WHERE unique_id = ?";
+                                $getUserCmt = pdo_get_one_row($sql, $unique_id);
+                                $allCmt .="
+                                <div class='flex'>
+                                <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
+                                    <img src='../../images/user/{$getUserCmt['img']}' alt='' class='absolute h-full rounded-full w-full'>
+                                </div>
+                                <div>
+                                    <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
+                                        <p class='leading-6'>{$content}
+                                           
+                                        </p>
+                                        <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
+                                    </div>
+                                    <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
+                                        <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
+                                        <a href='#'> Replay </a>
+                                        <span> {$cmt_time} </span>
+                                    </div>
+                                </div>
+                            </div>
+                                ";
+                            }
+
                             $message = "
                             <div class='flex items-center' >
                                         <img src='../../images/post/like-icon.png' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
@@ -911,49 +944,19 @@
                                             {$message}
                                         </div>
                                     </div>
+                              
 
-                                    <div class='border-t py-4 space-y-4 dark:border-gray-600'>
-                                        <div class='flex'>
-                                            <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                                <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                            </div>
-                                            <div>
-                                                <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                                    <p class='leading-6'>In ut odio libero vulputate
-                                                        <urna class='i uil-heart'></urna> <i class='uil-grin-tongue-wink'> </i>
-                                                    </p>
-                                                    <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                                </div>
-                                                <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
-                                                    <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                                    <a href='#'> Replay </a>
-                                                    <span> 3d </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class='flex'>
-                                            <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                                <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                            </div>
-                                            <div>
-                                                <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                                    <p class='leading-6'> sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. David !<i class='uil-grin-tongue-wink-alt'></i> </p>
-                                                    <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                                </div>
-                                                <div class='text-xs flex items-center space-x-3 mt-2 ml-5'>
-                                                    <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                                    <a href='#'> Replay </a>
-                                                    <span> 3d </span>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+                                    <div class='border-t py-4 space-y-4 dark:border-gray-600 box-comment'>
+                                        {$allCmt}
 
                                     </div>
 
-                                    <a href='#' class='hover:text-blue-600 hover:underline'> Veiw 8 more Comments </a>
+                                    <a data='{$post_id}' class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>
 
                                     <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
-                                        <input placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5'>
+                                        <input data='{$post_id}'  placeholder='Add your Comment..' class='  bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                                         <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                             <a href='#'>
                                                 <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
@@ -1071,49 +1074,16 @@
                                     {$message}
                                     </div>
                                 </div>
-
-                                <div class='border-t py-4 space-y-4 dark:border-gray-600'>
-                                    <div class='flex'>
-                                        <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                            <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                        </div>
-                                        <div>
-                                            <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                                <p class='leading-6'>In ut odio libero vulputate
-                                                    <urna class='i uil-heart'></urna> <i class='uil-grin-tongue-wink'> </i>
-                                                </p>
-                                                <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                            </div>
-                                            <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
-                                                <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                                <a href='#'> Replay </a>
-                                                <span> 3d </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class='flex'>
-                                        <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
-                                            <img src='assets/images/avatars/avatar-1.jpg' alt='' class='absolute h-full rounded-full w-full'>
-                                        </div>
-                                        <div>
-                                            <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
-                                                <p class='leading-6'> sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. David !<i class='uil-grin-tongue-wink-alt'></i> </p>
-                                                <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
-                                            </div>
-                                            <div class='text-xs flex items-center space-x-3 mt-2 ml-5'>
-                                                <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                                                <a href='#'> Replay </a>
-                                                <span> 3d </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                <!-- box comment   -->
+                                <div class='border-t py-4 space-y-4 dark:border-gray-600 box-comment'>
+                                        {$allCmt}                  
+                                
                                 </div>
 
-                                <a href='#' class='hover:text-blue-600 hover:underline'> Veiw 8 more Comments </a>
+                                <a data='{$post_id}'  class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>
 
                                 <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
-                                    <input placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5'>
+                                    <input  data='{$post_id}'  placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                                     <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                         <a href='#'>
                                             <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
@@ -1132,7 +1102,7 @@
                         </div>";
                             }
                         }
-
+                        echo "<script src='../../app/ajax/add-cmt.js'></script>";
                         echo "<script src='../../app/ajax/like.js'></script>";
 
                         ?>
