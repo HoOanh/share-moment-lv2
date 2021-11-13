@@ -15,14 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
 
-    <!-- icons
-    ================================================== -->
-    <link rel="stylesheet" href="../../app/css/css-home/icons.css">
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="../../app/css/css-home/uikit.css">
-    <link rel="stylesheet" href="../../app/css/css-home/style.css">
+    <link rel="stylesheet" href="../../app/css/css-home/uikit.min.css">
+    <link rel="stylesheet" href="../../app/css/css-home/style.min.css">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- FONT AWESOME CDNJS -->
@@ -49,7 +46,7 @@
                         </span>
 
                         <div id="logo">
-                            <a href="feed.html">
+                            <a href="../home/">
                                 <img src="../../images/header/logo.png" alt="">
                                 <img src="../../images/header/logo.png-mobile.png" class="logo_mobile" alt="">
                             </a>
@@ -816,13 +813,13 @@
                             $res2 = pdo_get_all_rows($sql2, $post_id);
 
                             $allCmt = '';
-                            foreach($res2 as $cmt){
-                                
+                            foreach ($res2 as $cmt) {
+
                                 extract($cmt);
 
                                 $sql = "SELECT * FROM users WHERE unique_id = ?";
                                 $getUserCmt = pdo_get_one_row($sql, $unique_id);
-                                $allCmt .="
+                                $allCmt .= "
                                 <div class='flex'>
                                 <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
                                     <img src='../../images/user/{$getUserCmt['img']}' alt='' class='absolute h-full rounded-full w-full'>
@@ -830,7 +827,7 @@
                                 <div>
                                     <div class='text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100'>
                                         <p class='leading-6'>{$content}
-                                           
+
                                         </p>
                                         <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
                                     </div>
@@ -944,7 +941,7 @@
                                             {$message}
                                         </div>
                                     </div>
-                              
+
 
 
 
@@ -1076,8 +1073,8 @@
                                 </div>
                                 <!-- box comment   -->
                                 <div class='border-t py-4 space-y-4 dark:border-gray-600 box-comment'>
-                                        {$allCmt}                  
-                                
+                                        {$allCmt}
+
                                 </div>
 
                                 <a data='{$post_id}'  class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>
@@ -1868,7 +1865,6 @@
     <script src="../../app/js/js-home/simplebar.js"></script>
     <script src="../../app/js/js-home/custom.js"></script>
     <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
-    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
     <script src="../../app/ajax/create-post.js"></script>
 
     <!-- Ajax load
