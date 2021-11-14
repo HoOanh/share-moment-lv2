@@ -1938,6 +1938,9 @@
             });
         });
     </script>
+
+
+<script src="../../app/ajax/last-activity.js"></script>
 </body>
 
 </html>

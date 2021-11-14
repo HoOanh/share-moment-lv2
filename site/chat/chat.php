@@ -760,6 +760,9 @@
   <script src="../../app/js/script.js"></script>
   <script src="../../app/ajax/mess.js"></script>
   <script src="../../app/ajax/user.js"></script>
+
+
+  <script src="../../app/ajax/last-activity.js"></script>
 </body>
 
 </html>
