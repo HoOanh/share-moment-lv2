@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "../dao/pdo.php";
+$firstMess = '';
 $receiver = $_POST['receiver'];
 $sql = "SELECT * FROM message left join users
             on users.unique_id = message.receive_id
@@ -20,7 +21,9 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
 <div class='chat-name'>
     <div id="receiver_id" data="<?php echo $receiver_info['unique_id'] ?>" hidden></div>
     <div>
-        <h2 class='chat-name--name'><?php echo $receiver_info['fname'] . " " . $receiver_info['lname'] ?><?php echo  $receiver_info['user_status'] == 'Đang hoạt động' ? "<span class='status online'> {$receiver_info['user_status']}" : "<span class='status offline'> {$receiver_info['user_status']}" ?></span></h2>
+        <h2 class='chat-name--name'><?php echo $receiver_info['fname'] . " " . $receiver_info['lname'] ?>
+            <span class='status'></span>
+        </h2>
 
     </div>
     <div class='chat-name--delete'>
@@ -104,5 +107,3 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
         <span><i class='fas fa-paper-plane'></i></span>
     </div>
 </div>
-
-<!-- Chạy ajax load tin nhắn -->

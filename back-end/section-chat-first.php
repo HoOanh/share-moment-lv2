@@ -11,17 +11,15 @@ $allMess = pdo_get_all_rows($sql, $receiver, $_SESSION['unique_id'], $_SESSION['
 $sql = "SELECT * FROM users WHERE unique_id = ?";
 
 $receiver_info = pdo_get_one_row($sql, $receiver);
-if ($receiver ===  $_SESSION['unique_id']) $name = "Cloud của tôi";
-else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
 ?>
-
 
 
 <div class='chat-name'>
     <div id="receiver_id" data="<?php echo $receiver_info['unique_id'] ?>" hidden></div>
     <div>
-        <h2 class='chat-name--name'><?php echo $receiver_info['fname'] . " " . $receiver_info['lname'] ?><?php echo  $receiver_info['user_status'] == 'Đang hoạt động' ? "<span class='status online'> {$receiver_info['user_status']}" : "<span class='status offline'> {$receiver_info['user_status']}" ?></span></h2>
-
+        <h2 class='chat-name--name'><?php echo $receiver_info['fname'] . " " . $receiver_info['lname'] ?>
+            <span class='status'></span>
+        </h2>
     </div>
     <div class='chat-name--delete'>
         <i class='far fa-trash-alt'></i>Xóa lịch sử cuộc hội thoại
@@ -106,101 +104,116 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
 </div>
 
 <script>
-    (function() {
-        const chatContent = document.querySelector(".chat-content");
-        const receiverId = document
-            .querySelector("#receiver_id")
-            .getAttribute("data");
-        // <!-- Scroll To bottom -->
-        function scrollToBottom() {
-            chatContent.scrollTop = chatContent.scrollHeight;
-        }
+    const chatContent = document.querySelector(".chat-content");
+    const receiverId = document
+        .querySelector("#receiver_id")
+        .getAttribute("data");
 
-        chatContent.addEventListener("mouseenter", function() {
-            chatContent.classList.add("active");
-        });
-        chatContent.addEventListener("mouseleave", function() {
-            chatContent.classList.remove("active");
-        });
+    // <!-- Scroll To bottom -->
+    function scrollToBottom() {
+        chatContent.scrollTop = chatContent.scrollHeight;
+    }
 
-        setInterval(function() {
-            const http = new XMLHttpRequest();
+    chatContent.addEventListener("mouseenter", function() {
+        chatContent.classList.add("active");
+    });
+    chatContent.addEventListener("mouseleave", function() {
+        chatContent.classList.remove("active");
+    });
 
-            http.open("post", "../../back-end/loadChatContent.php", true);
-            http.onload = () => {
-                if (http.readyState === XMLHttpRequest.DONE) {
-                    if (http.status === 200) {
-                        let data = http.response;
-                        chatContent.innerHTML = data;
-                        if (!chatContent.classList.contains("active")) {
-                            scrollToBottom();
-                        }
+    let inter2 = setInterval(function() {
+        const http = new XMLHttpRequest();
+
+        http.open("post", "../../back-end/loadChatContent.php", true);
+        http.onload = () => {
+            if (http.readyState === XMLHttpRequest.DONE) {
+                if (http.status === 200) {
+                    let data = http.response;
+                    data = JSON.parse(data);
+                    chatContent.innerHTML = data['data'];
+
+                    let statusUser = document.querySelector(".chat-name--name .status");
+
+                    if (data["status"] == "Đang hoạt động") {
+                        statusUser.innerText = `${data["status"]}`;
+                        statusUser.classList.add("online");
+                        statusUser.classList.remove("offline");
+                    } else {
+                        statusUser.innerText = `${data["status"]}`;
+                        statusUser.classList.add("offline");
+                        statusUser.classList.remove("online");
+                    }
+
+                    if (!chatContent.classList.contains("active")) {
+                        scrollToBottom();
                     }
                 }
-            };
-            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            http.send("receiver=" + receiverId);
-        }, 500);
+            }
+        };
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-        //  Chạy ajax nhắn tin
+        http.send("receiver=" + receiverId);
+    }, 500);
 
-        const messageInput = document.querySelector(".write-input");
-        const sendBtn = document.querySelector(".write-send-btn");
+    //  Chạy ajax nhắn tin
 
-        sendBtn.addEventListener("click", function() {
-            let content = messageInput.value;
-            const http = new XMLHttpRequest();
+    const messageInput = document.querySelector(".write-input");
+    const sendBtn = document.querySelector(".write-send-btn");
 
-            http.open("post", "../../back-end/sendMessage.php", true);
-            http.onload = () => {
-                if (http.readyState === XMLHttpRequest.DONE) {
-                    if (http.status === 200) {
-                        let data = http.response;
-                        if (data == "success") {
-                            messageInput.value = "";
-                        }
+    sendBtn.addEventListener("click", function() {
+        let content = messageInput.value;
+        const http = new XMLHttpRequest();
+
+        http.open("post", "../../back-end/sendMessage.php", true);
+        http.onload = () => {
+            if (http.readyState === XMLHttpRequest.DONE) {
+                if (http.status === 200) {
+                    let data = http.response;
+                    if (data == "success") {
+                        messageInput.value = "";
                     }
                 }
-            };
-            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            http.send("box_id=" + receiverId + "&content=" + content);
-        });
+            }
+        };
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send("box_id=" + receiverId + "&content=" + content);
+    });
 
-        messageInput.addEventListener("keyup", function(event) {
-            let content = messageInput.value;
-            content = content.trim();
-            if (event.keyCode == 13 && !event.shiftKey) {
-                if (content.length > 0) {
-                    const http = new XMLHttpRequest();
+    messageInput.addEventListener("keyup", function(event) {
+        let content = messageInput.value;
+        content = content.trim();
+        if (event.keyCode == 13 && !event.shiftKey) {
+            if (content.length > 0) {
+                const http = new XMLHttpRequest();
 
-                    http.open("post", "../../back-end/sendMessage.php", true);
-                    http.onload = () => {
-                        if (http.readyState === XMLHttpRequest.DONE) {
-                            if (http.status === 200) {
-                                let data = http.response;
-                                if (data == "success") {
-                                    messageInput.value = "";
-                                    content = "";
-                                    sendBtn.classList.remove("active");
-                                }
+                http.open("post", "../../back-end/sendMessage.php", true);
+                http.onload = () => {
+                    if (http.readyState === XMLHttpRequest.DONE) {
+                        if (http.status === 200) {
+                            let data = http.response;
+                            if (data == "success") {
+                                messageInput.value = "";
+                                content = "";
+                                sendBtn.classList.remove("active");
                             }
                         }
-                    };
-                    http.setRequestHeader(
-                        "Content-type",
-                        "application/x-www-form-urlencoded"
-                    );
-                    http.send("box_id=" + receiverId + "&content=" + content);
-                } else {
-                    messageInput.value = "";
-                }
-            }
+                    }
+                };
+                http.setRequestHeader(
+                    "Content-type",
+                    "application/x-www-form-urlencoded"
+                );
 
-            if (content) {
-                sendBtn.classList.add("active");
+                http.send("box_id=" + receiverId + "&content=" + content);
             } else {
-                sendBtn.classList.remove("active");
+                messageInput.value = "";
             }
-        });
-    })()
+        }
+
+        if (content) {
+            sendBtn.classList.add("active");
+        } else {
+            sendBtn.classList.remove("active");
+        }
+    });
 </script>

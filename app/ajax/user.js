@@ -1,5 +1,6 @@
 let userContainer = document.querySelector(".messenger__list");
 let searchInput = document.querySelector(".inp-search");
+let inter = null;
 
 searchInput.onkeyup = () => {
   let searchValue = searchInput.value;
@@ -98,5 +99,3 @@ setInterval(() => {
   };
   http.send();
 }, 500);
-
-

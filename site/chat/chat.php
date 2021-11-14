@@ -750,8 +750,12 @@
     </div>
     <!-- Section chat -->
     <div class="section-chat">
-      <?php if (isset($_GET['box_id']))
-        require "../../back-end/section-chat-first.php" ?>
+      <?php
+      $firstMess = '';
+      if (isset($_GET['box_id'])) $firstMess = $_GET['box_id'];
+      if ($firstMess) require "../../back-end/section-chat-first.php";
+      ?>
+
     </div>
 
   </div>
@@ -760,11 +764,9 @@
   <script src="../../app/js/script.js"></script>
   <script src="../../app/ajax/mess.js"></script>
   <script src="../../app/ajax/user.js"></script>
-
-
   <script src="../../app/ajax/last-activity.js"></script>
+
+
 </body>
 
 </html>
-
-<!--  -->
