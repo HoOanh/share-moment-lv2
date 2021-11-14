@@ -27,6 +27,11 @@
 
 </head>
 
+<style>
+    .hidden {
+        display: hidden;
+    }
+</style>
 
 <body>
 
@@ -716,7 +721,7 @@
 
                 <!--  Feeds  -->
                 <div class="lg:flex lg:space-x-10">
-                    <div class="lg:w-3/4 lg:px-20 space-y-7">
+                    <div class="lg:w-3/4 lg:px-20 space-y-7 " id="container-feed-content">
 
                         <!-- user story -->
                         <div class="user_story grid md:grid-cols-5 grid-cols-3 gap-2 lg:-mx-20 relative">
@@ -1107,12 +1112,10 @@
                         <!-- end -->
 
 
-                        <div class="flex justify-center mt-6">
-                            <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                                Load more ..</a>
-                        </div>
+
 
                     </div>
+
                     <div class="lg:w-72 w-full">
 
                         <a href="#birthdays" uk-toggle>
@@ -1940,7 +1943,88 @@
     </script>
 
 
-<script src="../../app/ajax/last-activity.js"></script>
+    <script src="../../app/ajax/last-activity.js"></script>
+
+    <script>
+        (function() {
+            // Biến dùng kiểm tra nếu đang gửi ajax thì ko thực hiện gửi thêm
+            var is_busy = false;
+
+            // Biến lưu trữ trang hiện tại
+            let start = 5;
+            let quantity = 5;
+
+            let check = true;
+            $(document).ready(function() {
+                // Khi kéo scroll thì xử lý
+                if (check) {
+
+                    $(window).scroll(function() {
+                        // Element append nội dung
+                        $element = $('#container-feed-content');
+
+                        // ELement hiển thị chữ loadding
+
+
+                        // Nếu màn hình đang ở dưới cuối thẻ thì thực hiện ajax
+                        if ($(window).scrollTop() + $(window).height() >= $element.height()) {
+                            // Nếu đang gửi ajax thì ngưng
+                            if (is_busy == true) {
+                                return false;
+                            }
+
+                            
+
+                            // Thiết lập đang gửi ajax
+                            is_busy = true;
+
+
+                            // Hiển thị loadding
+
+
+                            // Gửi Ajax
+                            if (!check) {
+                                return;
+                            }
+                            $.ajax({
+                                    type: 'get',
+                                    dataType: 'json',
+                                    url: '../../back-end/load-post.php',
+                                    data: {
+                                        start: start,
+                                        quantity: quantity
+                                    },
+                                    success: function(result) {
+                                        console.log(result['soluon']);
+                                        if (result['status']) {
+
+                                            $element.append(result['data']);
+                                            start += 5;
+                                        } else {
+                                            let runOutOfPost = `<div class='flex justify-center mt-6'>
+                                                                        <a id='loading-content' class='bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white'>
+                                                                            Không còn bài viết nữa</a>
+                                                                    </div>`;
+                                            $element.append(runOutOfPost);
+                                            check = false;
+                                        }
+
+                                    }
+                                })
+                                .always(function() {
+                                    // Sau khi thực hiện xong ajax thì ẩn hidden và cho trạng thái gửi ajax = false
+
+                                    is_busy = false;
+                                });
+                            return false;
+                        }
+                    });
+                }
+            });
+        })()
+    </script>
 </body>
+
+
 
 </html>
