@@ -2,6 +2,7 @@
   const likeBtns = document.querySelectorAll(".like-btn");
   likeBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
+      btn.classList.toggle("active");
       let postId = btn.getAttribute("data");
       let likeContainer =
         btn.parentElement.parentElement.querySelector(".quantity-like");

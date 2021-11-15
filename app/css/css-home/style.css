@@ -14,7 +14,6 @@
 ----------------------------------------------------------------- */
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css");
 /* -------------------------------------------------------------- */
 
 /* Header Settings for Desktop Devices
@@ -677,7 +676,7 @@ img {
 .keyword .keyword-remove:before {
   display: inline-block;
   cursor: pointer;
-  font-family: "Font awesome 6 free";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   content: "\ea02";
   line-height: 20px;
   position: relative;
@@ -874,7 +873,6 @@ body {
   color: #666;
   font-size: 15px;
   line-height: 27px;
-  font-family: Inter, sans-serif !important;
   text-transform: none;
 }
 
@@ -891,32 +889,27 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Inter, sans-serif !important;
   text-transform: none;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-  font-family: Inter, sans-serif !important;
   text-transform: none;
 }
 
 textarea,
 select {
-  font-family: Inter, sans-serif !important;
   text-transform: none;
 }
 
 input[type="button"],
 input[type="submit"] {
-  font-family: Inter, sans-serif !important;
   text-transform: none;
 }
 
 button,
 body .pac-container {
-  font-family: Inter, sans-serif !important;
   text-transform: none;
 }
 
@@ -1083,8 +1076,8 @@ a.headline-link.bottom-icon:after {
 }
 
 a.headline-link:after {
-  content: "\e995";
-  font-family: "Material-Icons";
+  content: "";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   font-size: 21px;
   line-height: 0;
   position: relative;
@@ -1780,7 +1773,7 @@ select.selectpicker {
 }
 
 .bootstrap-select.open .dropdown-toggle .caret::before {
-  content: "\e931";
+  content: "\f106";
 }
 
 .bootstrap-select.btn-group[class*="col-"] .dropdown-toggle {
@@ -2036,7 +2029,7 @@ select.selectpicker {
 }
 
 .bs-searchbox:after {
-  font-family: "Material-Icons";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   content: "\e982";
   font-size: 20px;
   width: 20px;
@@ -2063,8 +2056,8 @@ select.selectpicker {
   width: 1.4em;
   margin-right: -12px;
   float: right;
-  font-family: "Feather-Icons";
-  content: "\e92e";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
+  content: "\f107";
   color: rgba(0, 0, 0, 0.54);
 }
 
@@ -2321,8 +2314,8 @@ select.selectpicker {
 }
 
 .bootstrap-select.btn-group .dropdown-menu li span.check-mark:before {
-  font-family: "Feather-Icons";
-  content: "\e92b";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
+  content: "\f00c";
   font-size: 18px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -2790,7 +2783,7 @@ button.mfp-close {
 }
 
 .og-close:before {
-  font-family: "Feather-Icons";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   font-size: 20px;
   top: 2px;
   left: 0;
@@ -2799,7 +2792,7 @@ button.mfp-close {
 }
 
 .mfp-close:before {
-  font-family: "Feather-Icons";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   font-size: 20px;
   top: 2px;
   left: 0;
@@ -6189,7 +6182,6 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
@@ -6480,7 +6472,7 @@ template {
 }
 
 .sidebar .sidebar_inner ul li a:after {
-  font-family: "Feather-Icons";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   content: "\e92e";
   opacity: 1;
   font-size: 22px;
@@ -7038,7 +7030,7 @@ template {
     z-index: 100;
   }
   .sidechat .sidechat_overly::before {
-    font-family: "Feather-Icons";
+    font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
     font-size: 22px;
     content: "\e991";
     line-height: 30px;
@@ -7808,7 +7800,7 @@ header .header_inner .right_side {
 }
 
 .header-search-icon::before {
-  font-family: "Feather-Icons";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   font-size: 22px;
   content: "\e9c1";
   line-height: 30px;
@@ -9374,7 +9366,7 @@ body.story-active header .header_widgets .is_link {
 }
 
 .slider-icon::before {
-  font-family: "Feather-Icons";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   font-size: 26px;
   line-height: 30px;
   -webkit-transform: translate(-50%, -50%);
@@ -9698,7 +9690,7 @@ body.story-active header .header_widgets .is_link {
   padding: 0 7px;
   display: inline-block;
   font-size: 12px;
-  font-family: "Feather-Icons";
+  font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
 }
 
 .breadcrumb ul li a {
@@ -10249,11 +10241,20 @@ header .header_inner .left_side #logo img.logo_mobile {
   height: 35px;
 }
 
-.share-post::before {
-  font-family: "Font Awesome 6 Free";
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "\f00c";
-  font-weight: 400;
+*::before {
+  font-weight: 900;
+}
+
+.like-btn > * {
+  cursor: pointer;
+}
+
+.like-btn.active > * {
+  color: #0056b3;
+}
+
+.write__input-more {
+  font-size: 18px;
+  padding: 0.375rem;
+  margin-bottom: 5px;
 }

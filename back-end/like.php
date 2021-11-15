@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require "../dao/pdo.php";
 
@@ -20,4 +20,3 @@ $res = pdo_get_one_row($sql,$post_id);
 
 
 echo $res['total'];
-?>
