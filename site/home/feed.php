@@ -10,11 +10,13 @@
 
     <!-- Basic Page Needs
         ================================================== -->
-    <title>Socialite Template</title>
+    <title>Share Moment</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
 
+    <!-- FONT AWESOME CDNJS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS
     ================================================== -->
@@ -22,8 +24,7 @@
     <link rel="stylesheet" href="../../app/css/css-home/style.min.css">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- FONT AWESOME CDNJS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 </head>
 
@@ -1845,7 +1846,7 @@
             var is_busy = false;
 
             // Biến lưu trữ trang hiện tại
-          
+
             let quantity = 5;
 
             let check = true;
@@ -1889,7 +1890,7 @@
                                         quantity: quantity
                                     },
                                     success: function(result) {
-                                        
+
                                         if (result['status']) {
                                             soluong = result['soluong'];
                                             $element.append(result['data']);
