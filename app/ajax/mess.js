@@ -4,7 +4,7 @@ function mess() {
     clearInterval(inter);
   });
 
-  clearInterval(inter2);
+    clearInterval(inter2);
 
   const chatContent = document.querySelector(".chat-content");
   const receiverId = document
