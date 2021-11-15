@@ -32,7 +32,7 @@
                 <p class="header_drop_headline-title-user-name">
                   <strong><?php echo $fname . " " . $lname ?></strong>
                 </p>
-                <p class="header_drop_headline-title-user-tag">@<?= $lname ?></p>
+                <p class="header_drop_headline-title-user-tag">@<?= $user_name ?></p>
               </div>
               <div class="header_drop_headline_utilities"></div>
             </div>
