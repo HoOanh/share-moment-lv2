@@ -121,7 +121,7 @@ $receiver_info = pdo_get_one_row($sql, $receiver);
         chatContent.classList.remove("active");
     });
 
-    let inter2 = setInterval(function() {
+    inter2 = setInterval(function() {
         const http = new XMLHttpRequest();
 
         http.open("post", "../../back-end/loadChatContent.php", true);

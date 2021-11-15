@@ -4,7 +4,7 @@ form.onsubmit = (e) => {
 }
 let error = document.querySelector('.er');
 var senBtn = document.querySelector('.btn-send');
-senBtn.onclick = () => {
+let submit = () => {
     var http = new XMLHttpRequest();
     http.open('post', '../../back-end/checkMail.php', true);
 
@@ -64,3 +64,16 @@ senBtn.onclick = () => {
     let formData = new FormData(form);
     http.send(formData); // gui form
 }
+
+var senBtn = document.querySelector(".btn-send");
+senBtn.onclick = submit;
+
+let inputList = document.querySelectorAll("input");
+
+inputList.forEach((item) => {
+    item.addEventListener("keydown", function(event) {
+        if (event.keyCode == 13) {
+            submit();
+        }
+    });
+})

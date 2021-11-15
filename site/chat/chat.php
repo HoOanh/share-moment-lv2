@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script>
+  let inter2=null;
+</script>
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,7 +34,7 @@
                 <p class="header_drop_headline-title-user-name">
                   <strong><?php echo $fname . " " . $lname ?></strong>
                 </p>
-                <p class="header_drop_headline-title-user-tag">@<?= $lname ?></p>
+                <p class="header_drop_headline-title-user-tag">@<?= $user_name ?></p>
               </div>
               <div class="header_drop_headline_utilities"></div>
             </div>

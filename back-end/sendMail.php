@@ -25,7 +25,7 @@ $mail->Subject = "Reset password";
 $mail->setFrom("sharemoment.offical@gmail.com");
 $mail->isHTML(true);
 
-$mail->Body = "<h1 style='color:#10b981'>Xin chào, đây là Sharemoment!</h1><a style='color:#000' href='https://localhost/share-moment/site/login/?action=inputPass&token=$encode_mail'>Nhấp vào đây để đổi mật khẩu</a>";
+$mail->Body = "<h1 style='color:#10b981'>Xin chào, đây là Sharemoment!</h1><a style='color:#000' href='https://localhost/share-moment-lv2/site/login/?action=inputPass&token=$encode_mail'>Nhấp vào đây để đổi mật khẩu</a>";
 $mail->addAddress($email);
 
 if ($mail->Send()) {
