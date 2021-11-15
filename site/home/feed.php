@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link href="assets/images/favicon.png" rel="icon" type="image/png">
+    <link href="../../images/header/logo-mobile.png" rel="icon" type="image/png">
 
     <!-- Basic Page Needs
         ================================================== -->
@@ -53,7 +53,7 @@
                         <div id="logo">
                             <a href="../home/">
                                 <img src="../../images/header/logo.png" alt="">
-                                <img src="../../images/header/logo.png-mobile.png" class="logo_mobile" alt="">
+                                <img src="../../images/header/logo-mobile.png" class="logo_mobile" alt="">
                             </a>
                         </div>
                     </div>
@@ -1702,8 +1702,8 @@
                 <div class="flex items-center w-full justify-between border-t p-3">
 
                     <select class="selectpicker mt-2 story" name="post_role">
-                        <option value="0">Chỉ mình tôi</option>
                         <option value="1">Mọi người</option>
+                        <option value="0">Chỉ mình tôi</option>
                     </select>
 
                     <div class="flex space-x-2">
@@ -1838,12 +1838,14 @@
     <script src="../../app/ajax/last-activity.js"></script>
 
     <script>
+        let start = 5;
+        let soluong = 0;
         (function() {
             // Biến dùng kiểm tra nếu đang gửi ajax thì ko thực hiện gửi thêm
             var is_busy = false;
 
             // Biến lưu trữ trang hiện tại
-            let start = 5;
+          
             let quantity = 5;
 
             let check = true;
@@ -1887,9 +1889,9 @@
                                         quantity: quantity
                                     },
                                     success: function(result) {
-                                        console.log(result['soluon']);
+                                        
                                         if (result['status']) {
-
+                                            soluong = result['soluong'];
                                             $element.append(result['data']);
                                             start += 5;
                                         } else {

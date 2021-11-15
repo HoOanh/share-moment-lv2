@@ -312,8 +312,9 @@ foreach ($feedList as $item) {
     }
 }
 
-$output['data'] .= "<script src='../../app/ajax/add-cmt.js'></script>";
-$output['data'] .= "<script src='../../app/ajax/like.js'></script>";
+$output['data'] .= "<script src='../../app/ajax/ajax-cmt-like-for-load-more-post.js'></script>";
 
 
 die(json_encode($output));
+?>
+

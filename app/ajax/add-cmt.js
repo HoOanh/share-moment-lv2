@@ -1,8 +1,8 @@
 // them cmt
+
 (function() {
     let sendCmt = document.querySelectorAll('.add-cmt');
     sendCmt.forEach((item) => {
-
         item.addEventListener('keyup', (event) => {
             let cmt_content = item.value;
             cmt_content = cmt_content.trim();
@@ -48,7 +48,6 @@
                         boxCmt.innerHTML = data['data'];
                         item.style.display = 'none';
                         item.nextElementSibling.children[0].focus();
-
 
                     }
                 }
