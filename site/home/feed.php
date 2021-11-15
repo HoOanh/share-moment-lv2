@@ -58,45 +58,13 @@
                         </div>
                     </div>
 
-                    <!-- search icon for mobile -->
+                    <!--  icon for mobile -->
                     <div class="header-search-icon" uk-toggle="target: #wrapper ; cls: show-searchbox"> </div>
                     <div class="header_search"><i class="uil-search-alt"></i>
-                        <input value="" type="text" class="form-control" placeholder="Search for Friends , Videos and more.." autocomplete="off">
-                        <div uk-drop="mode: click" class="header_search_dropdown">
+                        <input value="" id="search-User-In-Home" type="text" class="form-control" placeholder="Search for Friends , Videos and more.." autocomplete="off">
+                        <div uk-drop="mode: click" class="header_search_dropdown"  id="search-User-Container">
 
-                            <h4 class="search_title"> Recently </h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/avatars/avatar-1.jpg" alt="" class="list-avatar">
-                                        <div class="list-name"> Erica Jones </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="" class="list-avatar">
-                                        <div class="list-name"> Coffee Addicts </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/avatars/avatar-3.jpg" alt="" class="list-avatar">
-                                        <div class="list-name"> Mountain Riders </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/avatars/avatar-4.jpg" alt="" class="list-avatar">
-                                        <div class="list-name"> Property Rent And Sale </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/avatars/avatar-5.jpg" alt="" class="list-avatar">
-                                        <div class="list-name"> Erica Jones </div>
-                                    </a>
-                                </li>
-                            </ul>
+                        <h4 class='search_title'> Nhập để bắt đầu tìm kiếm </h4>
 
                         </div>
                     </div>
@@ -1761,6 +1729,7 @@
     <script src="../../app/js/js-home/custom.js"></script>
     <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
     <script src="../../app/ajax/create-post.js"></script>
+    <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
 
     <!-- Ajax load
     ============================================= -->
