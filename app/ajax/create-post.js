@@ -132,15 +132,15 @@ share.onclick = () => {
                         </div>
 
                         <div class='border-t py-4 space-y-4 dark:border-gray-600 box-comment'>
-                            
-                            
+
+
 
                         </div>
 
-                       
+
 
                         <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
-                            <input data='${data['data']['post_id']}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
+                            <input data='${data["data"]["post_id"]}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                             <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                 <a href='#'>
                                     <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
@@ -254,15 +254,15 @@ share.onclick = () => {
                         </div>
 
                         <div class='border-t py-4 space-y-4 dark:border-gray-600 box-comment'>
-                            
-                           
+
+
 
                         </div>
 
-                        
+
 
                         <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
-                            <input data='${data['data']['post_id']}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
+                            <input data='${data["data"]["post_id"]}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                             <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                 <a href='#'>
                                     <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
@@ -328,38 +328,38 @@ share.onclick = () => {
             });
           })();
 
-        //   ajax com men 
-          (function (){
-            let sendCmt = document.querySelectorAll('.add-cmt');
-            sendCmt.forEach((item)=>{
-                
-                item.addEventListener('keyup',(event)=>{
-                    let cmt_content = item.value;
-                    cmt_content = cmt_content.trim();
-                   if(event.keyCode == 13 &&  !event.shiftKey && cmt_content != ''){
-                      
-                    let postID = item.getAttribute("data");
-                    const http = new XMLHttpRequest();
-            
-                    http.open("post", "../../back-end/add-cmt.php", true);
-                    http.onload = () => {
-                      if (http.readyState === XMLHttpRequest.DONE) {
-                        if (http.status === 200) {
-                          let data = http.response;
-                          data =JSON.parse(data);
-                          let boxCmt =  item.parentElement.parentElement.children[2];
-                          boxCmt.innerHTML += data['data'];
-                          item.value = '';
+            // ajax com men
+            (function (){
+              let sendCmt = document.querySelectorAll('.add-cmt');
+              sendCmt.forEach((item)=>{
+
+                  item.addEventListener('keyup',(event)=>{
+                      let cmt_content = item.value;
+                      cmt_content = cmt_content.trim();
+                     if(event.keyCode == 13 &&  !event.shiftKey && cmt_content != ''){
+
+                      let postID = item.getAttribute("data");
+                      const http = new XMLHttpRequest();
+
+                      http.open("post", "../../back-end/add-cmt.php", true);
+                      http.onload = () => {
+                        if (http.readyState === XMLHttpRequest.DONE) {
+                          if (http.status === 200) {
+                            let data = http.response;
+                            data =JSON.parse(data);
+                            let boxCmt =  item.parentElement.parentElement.children[2];
+                            boxCmt.innerHTML += data['data'];
+                            item.value = '';
+                          }
                         }
-                      }
-                    };
-                    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    http.send("post_id=" + postID + "&cmt_content="+ cmt_content);
-                   }
-                    
-                })
-            })
-        })()
+                      };
+                      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                      http.send("post_id=" + postID + "&cmt_content="+ cmt_content);
+                     }
+
+                  })
+              })
+          })()
         } else {
           alert(data["data"]);
         }

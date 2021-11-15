@@ -2,7 +2,7 @@
 session_start();
 require '../dao/pdo.php';
 
-$output = ['data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
+$output = ['data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => '', 'post_role' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
 
 
 $sql = 'Select * from users where unique_id = ?';
@@ -124,8 +124,9 @@ if ($imgCheck) {
 
 // Nếu không có lỗi thì thêm vào db
 if ($check) {
-    $sql = "INSERT INTO post (caption,time,img_post,post_video,unique_id)  VALUES (?,?,?,?,?)";
-    if (pdo_execute($sql, $caption, $post_time, $final_img, $final_video, $_SESSION['unique_id'])) {
+    $post_role = $_POST['post_role'];
+    $sql = "INSERT INTO post (caption,time,img_post,post_video,post_role,unique_id)  VALUES (?,?,?,?,?,?)";
+    if (pdo_execute($sql, $caption, $post_time, $final_img, $final_video, $post_role, $_SESSION['unique_id'])) {
         $output['status'] = true;
         $output['data']['caption'] = $caption;
         $output['data']['post_img'] = $final_img;

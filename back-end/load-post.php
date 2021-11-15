@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require "../dao/pdo.php";
 
@@ -7,7 +7,7 @@ $output = ['data'=>'','status'=>true,'soluong'=>0];
 $start = intval($_GET['start']);
 $quantity = intval($_GET['quantity']);
 
-$sql2 = "Select * FROM post INNER JOIN users ON users.unique_id = post.unique_id ORDER BY post_id DESC LIMIT {$start},{$quantity}";
+$sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.post_role = 1)ORDER BY post_id DESC LIMIT {$start},{$quantity}";
 $feedList = pdo_get_all_rows($sql2);
 $output['soluong'] = count($feedList);
 if(count($feedList) == 0){
@@ -317,6 +317,3 @@ $output['data'] .= "<script src='../../app/ajax/like.js'></script>";
 
 
 die(json_encode($output));
-?>
-
-

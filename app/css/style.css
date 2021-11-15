@@ -992,7 +992,7 @@ input:checked + .header_drop_content-user-slider:before {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 2rem 3rem;
+  padding: 2.686rem 3rem;
   border-bottom: 1px solid #eaeaea;
 }
 
@@ -1427,7 +1427,7 @@ input:checked + .header_drop_content-user-slider:before {
   margin: 0px 15px 0px 0px;
   padding: 10px 10px;
   outline: none;
-  border: 1px solid #333;
+  border: none;
   resize: none;
   font-family: "Roboto", sans-serif;
   font-size: 16px;

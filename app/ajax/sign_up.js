@@ -25,7 +25,7 @@ senBtn.onclick = () => {
           });
         } else {
           error.parentElement.style.display = "none";
-          location.href = "../chat";
+          location.href = "../home";
         }
       }
     }

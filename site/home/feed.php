@@ -104,8 +104,8 @@
                     <div class="right_side">
 
                         <div class="header_widgets">
-                            <a href="pages-upgrade.html" class="is_link"> Upgrade </a>
-                            <a href="#" class="is_icon" uk-tooltip="title: Cart">
+
+                            <!-- <a href="#" class="is_icon" uk-tooltip="title: Cart">
                                 <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
                                 </svg>
@@ -215,9 +215,9 @@
                                     <p> Subtotal : $ 320 </p>
                                     <h1> Total : <strong> $ 320</strong> </h1>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <a href="#" class="is_icon" uk-tooltip="title: Notifications">
+                            <!-- <a href="#" class="is_icon" uk-tooltip="title: Notifications">
                                 <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
                                 </svg>
@@ -392,14 +392,14 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Message -->
                             <a href="#" class="is_icon" uk-tooltip="title: Message">
                                 <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path>
                                 </svg>
-                                <span>4</span>
+                                <!-- <span>4</span> -->
                             </a>
                             <div uk-drop="mode: click" class="header_dropdown is_message">
                                 <div class="dropdown_scrollbar" data-simplebar>
@@ -513,17 +513,24 @@
             <div class="sidebar_inner" data-simplebar>
 
                 <ul>
-                    <li class="active"><a href="feed.html">
+                    <li class="active"><a href="../home/">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-600">
                                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                             </svg>
-                            <span> Feed </span> </a>
+                            <span> Bảng tin </span> </a>
                     </li>
                     <li><a href="pages.html">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-yellow-500">
                                 <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path>
                             </svg>
-                            <span> Pages </span> </a>
+                            <span> Trang </span> </a>
+                    </li>
+                    <li><a href="../chat/">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-500">
+                                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+                            </svg>
+                            <span> Tin Nhắn </span> </a>
                     </li>
                     <li><a href="videos.html">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-red-500">
@@ -534,41 +541,7 @@
                     <li><a href="groups.html">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-500">
                                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                            </svg><span> Groups </span></a>
-                    </li>
-                    <li><a href="jobs.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-pink-500">
-                                <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
-                                <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
-                            </svg> <span> Jobs</span> </a>
-                    </li>
-                    <li><a href="courses.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-indigo-500">
-                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
-                            </svg>
-                            <span> Course</span></a>
-                    </li>
-                    <li><a href="games.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-green-500">
-                                <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
-                            </svg> <span> Games </span></a>
-                    </li>
-
-                    <li id="more-veiw" hidden><a href="events.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-yellow-500">
-                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                            </svg><span> Events </span></a>
-                    </li>
-                    <li id="more-veiw" hidden><a href="products.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-red-500">
-                                <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
-                            </svg>
-                            <span> Products</span></a>
-                    </li>
-                    <li id="more-veiw" hidden><a href="albums.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-purple-500">
-                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
-                            </svg> <span> Photos </span></a>
+                            </svg><span> Nhóm </span></a>
                     </li>
                     <li id="more-veiw" hidden><a href="blogs.html">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-pink-500">
@@ -582,21 +555,9 @@
                                 <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
                                 <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
                             </svg>
-                            <span> forum</span> </a>
+                            <span> Diễn đàn</span> </a>
                     </li>
-                    <li id="more-veiw" hidden><a href="birthdays.html">
-                            <svg fill="currentColor" class="text-yellow-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd"></path>
-                                <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
-                            </svg>
-                            <span> Birthdays </span> <span class="new">N</span></a>
-                    </li>
-                    <li id="more-veiw" hidden><a href="fundraiser.html">
-                            <svg fill="currentColor" class="text-red-500" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span> Fundraiser </span> <span class="new">N</span></a>
-                    </li>
+
                 </ul>
 
                 <a href="#" class="see-mover h-10 flex my-1 pl-2 rounded-xl text-gray-600" uk-toggle="target: #more-veiw; animation: uk-animation-fade">
@@ -604,17 +565,17 @@
                         <svg class="  bg-gray-100 mr-2 p-0.5 rounded-full text-lg w-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                         </svg>
-                        See More
+                        Xem Thêm
                     </span>
                     <span class="w-full flex items-center" id="more-veiw" hidden>
                         <svg class="bg-gray-100 mr-2 p-0.5 rounded-full text-lg w-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path>
                         </svg>
-                        See Less
+                        Ẩn bớt
                     </span>
                 </a>
 
-                <h3 class="side-title"> Contacts </h3>
+                <h3 class="side-title"> Liên Hệ </h3>
 
                 <div class="contact-list my-2 ml-1">
 
@@ -647,56 +608,6 @@
 
                 </div>
 
-                <ul class="side_links" data-sub-title="Pages">
-                    <li>
-                        <a href="feed.html">
-                            <ion-icon name="settings-outline" class="side-icon"></ion-icon> <span> Setting </span>
-                        </a>
-                        <ul>
-                            <li><a href="pages-setting.html">layout 1</a></li>
-                            <li><a href="pages-setting2.html">layout 2</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <ion-icon name="albums-outline" class="side-icon"></ion-icon> <span> Info Pages </span>
-                        </a>
-                        <ul>
-                            <li><a href="pages-about.html"> About </a></li>
-                            <li><a href="pages-contact.html"> Contact us </a></li>
-                            <li><a href="pages-privacy.html"> Privacy </a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <ion-icon name="document-outline" class="side-icon"></ion-icon> <span> Create Content </span>
-                        </a>
-                        <ul>
-                            <li><a href="create-group.html"> Create Group </a></li>
-                            <li><a href="create-page.html"> Create Page </a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <ion-icon name="code-slash-outline" class="side-icon"></ion-icon> <span> Development </span>
-                        </a>
-                        <ul>
-                            <li><a href="development-components.html"> Compounents </a></li>
-                            <li><a href="development-plugins.html"> Plugins </a></li>
-                            <li><a href="development-icons.html"> Icons </a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <ion-icon name="log-in-outline" class="side-icon"></ion-icon> <span> Authentication </span>
-                        </a>
-                        <ul>
-                            <li><a href="form-login.html">form login </a></li>
-                            <li><a href="form-register.html">form register</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
 
                 <div class="footer-links">
                     <a href="#">About</a>
@@ -724,7 +635,7 @@
                     <div class="lg:w-3/4 lg:px-20 space-y-7 " id="container-feed-content">
 
                         <!-- user story -->
-                        <div class="user_story grid md:grid-cols-5 grid-cols-3 gap-2 lg:-mx-20 relative">
+                        <!-- <div class="user_story grid md:grid-cols-5 grid-cols-3 gap-2 lg:-mx-20 relative">
                             <a href="#create-post" uk-toggle="target: body ; cls: story-active">
                                 <div class="single_story">
                                     <img src="assets/images/avatars/avatar-lg-1.jpg" alt="">
@@ -775,29 +686,29 @@
                             shadow-md text-xl w-9 z-10 uk-position-center-right -mr-4 hidden" uk-toggle="target: body ; cls: story-active">
                                 <i class="icon-feather-chevron-right"></i></span>
 
-                        </div>
+                        </div> -->
 
                         <!-- create post -->
                         <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
                             <div class="flex space-x-3">
                                 <img src="../../images/user/<?= $img ?>" class="w-10 h-10 rounded-full">
-                                <input placeholder="What's Your Mind ? Hamse!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full">
+                                <input placeholder="Bạn đang nghĩ gì vậy? <?= $lname ?>!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full">
                             </div>
                             <div class="grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm">
                                 <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
-                                    <svg class="bg-blue-100 h-9 mr-2 p-1.5 rounded-full text-blue-600 w-9 -my-0.5 hidden lg:block" data-tippy-placement="top" title="Tooltip" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="bg-blue-100 h-9 mr-2 p-1.5 rounded-full text-blue-600 w-9 -my-0.5 hidden lg:block" data-tippy-placement="top" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                    </svg> Photo/Video
+                                    </svg> Ảnh/Video
                                 </div>
                                 <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
-                                    <svg class="bg-green-100 h-9 mr-2 p-1.5 rounded-full text-green-600 w-9 -my-0.5 hidden lg:block" uk-tooltip="title: Messages ; pos: bottom ;offset:7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="" aria-expanded="false">
+                                    <svg class="bg-green-100 h-9 mr-2 p-1.5 rounded-full text-green-600 w-9 -my-0.5 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" title="" aria-expanded="false">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-                                    </svg> Tag Friend
+                                    </svg> Gắn thẻ
                                 </div>
                                 <div class="hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer">
                                     <svg class="bg-red-100 h-9 mr-2 p-1.5 rounded-full text-red-600 w-9 -my-0.5 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg> Fealing /Activity
+                                    </svg> Cảm thấy/Hoạt động
                                 </div>
                             </div>
                         </div>
@@ -806,7 +717,7 @@
 
                         </div>
                         <?php
-                        $sql2 = "Select * FROM post INNER JOIN users ON users.unique_id = post.unique_id ORDER BY post_id DESC LIMIT 5 ";
+                        $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.post_role = 1) ORDER BY post_id DESC LIMIT 5 ";
                         $feedList = pdo_get_all_rows($sql2);
                         foreach ($feedList as $item) {
                             extract($item);
@@ -1117,17 +1028,6 @@
                     </div>
 
                     <div class="lg:w-72 w-full">
-
-                        <a href="#birthdays" uk-toggle>
-                            <div class="bg-white mb-5 px-4 py-3 rounded-md shadow">
-                                <h3 class="text-line-through font-semibold mb-1"> Birthdays </h3>
-                                <div class="-mx-2 duration-300 flex hover:bg-gray-50 px-2 py-2 rounded-md">
-                                    <img src="assets/images/icons/gift-icon.png" class="w-9 h-9 mr-3" alt="">
-                                    <p class="line-clamp-2 leading-6"> <strong> Jessica Erica </strong> and <strong> two others </strong> have a birthdays to day .
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
 
                         <h3 class="text-xl font-semibold"> Contacts </h3>
 
@@ -1774,7 +1674,7 @@
                             <svg class="add-video-post text-red-600 h-9 p-1.5 rounded-full bg-red-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"> </path>
                             </svg>
-                            <svg class="text-green-600 h-9 p-1.5 rounded-full bg-green-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <!-- <svg class="text-green-600 h-9 p-1.5 rounded-full bg-green-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                             </svg>
                             <svg class="text-pink-600 h-9 p-1.5 rounded-full bg-pink-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1789,35 +1689,27 @@
                             </svg>
                             <svg class="text-purple-600 h-9 p-1.5 rounded-full bg-purple-100 w-9 cursor-pointer" id="veiw-more" hidden fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
-                            </svg>
+                            </svg> -->
 
                             <!-- view more -->
-                            <svg class="hover:bg-gray-200 h-9 p-1.5 rounded-full w-9 cursor-pointer" id="veiw-more" uk-toggle="target: #veiw-more; animation: uk-animation-fade" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <!-- <svg class="hover:bg-gray-200 h-9 p-1.5 rounded-full w-9 cursor-pointer" id="veiw-more" uk-toggle="target: #veiw-more; animation: uk-animation-fade" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"> </path>
-                            </svg>
+                            </svg> -->
 
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center w-full justify-between border-t p-3">
 
-                    <select class="selectpicker mt-2 story">
-                        <option>Only me</option>
-                        <option>Every one</option>
-                        <option>People I Follow </option>
-                        <optionion>People Follow Me</optionion>
+                    <select class="selectpicker mt-2 story" name="post_role">
+                        <option value="0">Chỉ mình tôi</option>
+                        <option value="1">Mọi người</option>
                     </select>
 
                     <div class="flex space-x-2">
-                        <a href="#" class="bg-red-100 flex font-medium h-9 items-center justify-center px-5 rounded-md text-red-600 text-sm">
-                            <svg class="h-5 pr-1 rounded-full text-red-500 w-6 fill-current" id="veiw-more" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="false">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                            </svg>
-                            Live </a>
                         <button type="submit" class="share-post bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
-                            Share </button>
+                            Đăng </button>
                     </div>
-
 
                 </div>
             </form>
@@ -1973,7 +1865,7 @@
                                 return false;
                             }
 
-                            
+
 
                             // Thiết lập đang gửi ajax
                             is_busy = true;
