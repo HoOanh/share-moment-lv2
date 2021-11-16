@@ -10245,8 +10245,20 @@ header .header_inner .left_side #logo img.logo_mobile {
   font-weight: 900;
 }
 
+.like-btn path,
 .like-btn > * {
   cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.like-btn svg {
+  overflow: visible;
+}
+
+.like-btn:hover path {
+  color: #0056b3;
+  transition: all 0.2s ease-in-out;
+  transform: rotate(-60deg) scale3d(1.5,1.5,-1.5) translate3d(-8px,-5px,-5px);
 }
 
 .like-btn.active > * {

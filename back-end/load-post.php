@@ -1,8 +1,8 @@
 <?php
-
+session_start();
 require "../dao/pdo.php";
 
-$output = ['data'=>'','status'=>true,'soluong'=>0];
+$output = ['data' => '', 'status' => true, 'soluong' => 0];
 
 $start = intval($_GET['start']);
 $quantity = intval($_GET['quantity']);
@@ -10,7 +10,7 @@ $quantity = intval($_GET['quantity']);
 $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.post_role = 1)ORDER BY post_id DESC LIMIT {$start},{$quantity}";
 $feedList = pdo_get_all_rows($sql2);
 $output['soluong'] = count($feedList);
-if(count($feedList) == 0){
+if (count($feedList) == 0) {
     $output['status'] = false;
     die(json_encode($output));
 }
@@ -24,6 +24,11 @@ foreach ($feedList as $item) {
     $sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc limit 2";
     $res2 = pdo_get_all_rows($sql2, $post_id);
 
+    $sql3 = "Select * from likes where unique_id = ? and post_id = ?";
+    $checkLike = pdo_get_one_row($sql3, $_SESSION['unique_id'], $post_id);
+    if ($checkLike == []) $liked = '';
+    else $liked = 'active';
+
     $allCmt = '';
     foreach ($res2 as $cmt) {
 
@@ -31,6 +36,8 @@ foreach ($feedList as $item) {
 
         $sql = "SELECT * FROM users WHERE unique_id = ?";
         $getUserCmt = pdo_get_one_row($sql, $unique_id);
+
+
         $allCmt .= "
         <div class='flex'>
         <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
@@ -73,44 +80,49 @@ foreach ($feedList as $item) {
                 <div class='flex-1 font-semibold capitalize'>
                     <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
                     <div class='text-gray-700 flex items-center space-x-2'> $time
-                        <ion-icon name='people'></ion-icon>
+                    <i class='fas fa-user-friends'></i>
                     </div>
                 </div>
             </div>
             <div>
-                <a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a>
+                <a href='#'><i class='fas fa-ellipsis-h'></i>  </a>
                 <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
-                    <ul class='space-y-1'>
-                        <li>
-                            <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                <i class='uil-share-alt mr-1'></i> Share
-                            </a>
-                        </li>
-                        <li>
-                            <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                <i class='uil-edit-alt mr-1'></i> Edit Post
-                            </a>
-                        </li>
-                        <li>
-                            <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                <i class='uil-comment-slash mr-1'></i> Disable comments
-                            </a>
-                        </li>
-                        <li>
-                            <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                <i class='uil-favorite mr-1'></i> Add favorites
-                            </a>
-                        </li>
-                        <li>
-                            <hr class='-mx-2 my-2 dark:border-gray-800'>
-                        </li>
-                        <li>
-                            <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                <i class='uil-trash-alt mr-1'></i> Delete
-                            </a>
-                        </li>
-                    </ul>
+                <ul class='space-y-1'>
+                <li class='ajax-download-btn'>
+                    <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                        <i class='fas fa-download mr-1'></i> Tải ảnh
+                    </a>
+                </li>
+                <li>
+                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                          <i class='fas fa-share-alt mr-1'></i> Chia sẽ
+                    </a>
+                </li>
+                <li>
+                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                        <i class='far fa-edit mr-1'></i> Chỉnh sữa
+                    </a>
+                </li>
+                <li>
+                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                        <i class='uil-comment-slash mr-1'></i> Disable comments
+                    </a>
+                </li>
+                <li>
+                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                        <i class='uil-favorite mr-1'></i> Add favorites
+                    </a>
+                </li>
+                <li>
+                    <hr class='-mx-2 my-2 dark:border-gray-800'>
+                </li>
+                <li>
+                    <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
+                        <i class='far fa-trash-alt mr-1'></i> Delete
+                    </a>
+                </li>
+            </ul>
 
                 </div>
             </div>
@@ -123,7 +135,7 @@ foreach ($feedList as $item) {
     </div>
         <div class='p-4 space-y-3'>
             <div class='flex space-x-4 lg:font-bold'>
-                <a data='{$post_id}'class='flex items-center space-x-2 like-btn'>
+                <a data='{$post_id}'class='flex items-center space-x-2 like-btn $liked'>
                     <div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'>
                             <path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' />
@@ -167,15 +179,15 @@ foreach ($feedList as $item) {
             <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
                 <input data='{$post_id}'  placeholder='Add your Comment..' class='  bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                 <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
-                    <a href='#'>
-                        <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
-                    </a>
-                    <a href='#'>
-                        <ion-icon name='image-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
-                    </a>
-                    <a href='#'>
-                        <ion-icon name='link-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
-                    </a>
+                <a href='#'>
+                    <i class='far fa-smile write__input-more'></i>
+                </a>
+                <a href='#'>
+                    <i class='far fa-image write__input-more'></i>
+                </a>
+                <a href='#'>
+                    <i class='fas fa-paperclip write__input-more'></i>
+                </a>
                 </div>
             </div>
 
@@ -195,49 +207,49 @@ foreach ($feedList as $item) {
             <div class='flex-1 font-semibold capitalize'>
                 <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
                 <div class='text-gray-700 flex items-center space-x-2'> $time
-                    <ion-icon name='people'></ion-icon>
+                <i class='fas fa-user-friends'></i>
                 </div>
             </div>
         </div>
         <div>
-            <a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a>
+            <a href='#'> <i class='fas fa-ellipsis-h'></i>  </a>
             <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
-                <ul class='space-y-1'>
-                    <li class='ajax-download-btn'>
-                        <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                            <i class='fas fa-download mr-1'></i> Tải ảnh
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                            <i class='uil-share-alt mr-1'></i> Share
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                            <i class='uil-edit-alt mr-1'></i> Edit Post
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                            <i class='uil-comment-slash mr-1'></i> Disable comments
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                            <i class='uil-favorite mr-1'></i> Add favorites
-                        </a>
-                    </li>
-                    <li>
-                        <hr class='-mx-2 my-2 dark:border-gray-800'>
-                    </li>
-                    <li>
-                        <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                            <i class='uil-trash-alt mr-1'></i> Delete
-                        </a>
-                    </li>
-                </ul>
+            <ul class='space-y-1'>
+            <li class='ajax-download-btn'>
+                <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                    <i class='fas fa-download mr-1'></i> Tải ảnh
+                </a>
+            </li>
+            <li>
+                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                      <i class='fas fa-share-alt mr-1'></i> Chia sẽ
+                </a>
+            </li>
+            <li>
+                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                    <i class='far fa-edit mr-1'></i> Chỉnh sữa
+                </a>
+            </li>
+            <li>
+                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                    <i class='uil-comment-slash mr-1'></i> Disable comments
+                </a>
+            </li>
+            <li>
+                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                    <i class='uil-favorite mr-1'></i> Add favorites
+                </a>
+            </li>
+            <li>
+                <hr class='-mx-2 my-2 dark:border-gray-800'>
+            </li>
+            <li>
+                <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
+                    <i class='far fa-trash-alt mr-1'></i> Delete
+                </a>
+            </li>
+        </ul>
 
             </div>
         </div>
@@ -257,7 +269,7 @@ foreach ($feedList as $item) {
     <div class='p-4 space-y-3'>
 
         <div class='flex space-x-4 lg:font-bold'>
-            <a data = '{$post_id}'  class='flex items-center space-x-2 like-btn'>
+            <a data = '{$post_id}'  class='flex items-center space-x-2 like-btn $liked'>
                 <div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'>
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'>
                         <path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' />
@@ -300,13 +312,13 @@ foreach ($feedList as $item) {
             <input  data='{$post_id}'  placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
             <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                 <a href='#'>
-                    <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                    <i class='far fa-smile write__input-more'></i>
                 </a>
                 <a href='#'>
-                    <ion-icon name='image-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                    <i class='far fa-image write__input-more'></i>
                 </a>
                 <a href='#'>
-                    <ion-icon name='link-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                    <i class='fas fa-paperclip write__input-more'></i>
                 </a>
             </div>
         </div>
