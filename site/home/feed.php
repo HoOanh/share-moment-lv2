@@ -978,14 +978,14 @@
 
                     <div class="lg:w-72 w-full">
 
-                        <h3 class="text-xl font-semibold"> Contacts </h3>
+                        <h3 class="text-xl font-semibold"> Liên lạc </h3>
 
                         <div class="" uk-sticky="offset:80">
 
                             <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                                 <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">
-                                    <li class="uk-active"><a class="active" href="#0"> Friends <span> 310 </span> </a></li>
-                                    <li><a href="#0">Groups</a></li>
+                                    <li class="uk-active"><a class="active" href="#0"> Người dùng <span> 310 </span> </a></li>
+                                    <li><a href="#0">Nhóm</a></li>
                                 </ul>
                             </nav>
 
