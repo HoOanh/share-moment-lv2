@@ -36,9 +36,10 @@ foreach ($kq as $item) {
             <strong> Stella Johnson </strong> and <strong> 14 Others</strong>
         </p>
         <div class='contact-list-box-btns'>
+        <a href='../chat?box_id=$unique_id'>
             <button type='button' class='button primary flex-1 block mr-2'>
                 <i class='uil-envelope mr-1'></i> Send message</button>
-            
+                </a>  
         </div>
     </div>
     </div>
