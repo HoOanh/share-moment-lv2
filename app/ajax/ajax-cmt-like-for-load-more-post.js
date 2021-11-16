@@ -130,3 +130,31 @@
             });
         });
     })();
+
+    // Download image
+    ;
+    (function() {
+        let downloadBtns = document.querySelectorAll('.ajax-download-btn');
+
+        // convert nodelist to array
+        let arr = [];
+        for (var i = downloadBtns.length; i--; arr.unshift(downloadBtns[i]));
+
+        let count = -1 * soluong;
+
+        arr = arr.slice(count);
+
+        arr.forEach((btn) => {
+
+            btn.addEventListener("click", function() {
+
+                const container = btn.parentElement.parentElement.parentElement.parentElement.parentElement;
+                const img = container.querySelector(".ajax-image");
+
+                const url = img.getAttribute("src");
+                const imgName = url.substring(url.lastIndexOf("/") + 1);
+                saveAs(url, imgName);
+            })
+
+        });
+    })();
