@@ -20,7 +20,6 @@ $output = ['data' => '', 'status' => ''];
 
 $output['status'] = $receiver_info['user_status'];
 
-
 if (!$allMess) {
     $output['data'] = "<div class='content-date'>
             <span>Hãy bắt đầu cuộc hội thoại</span>
@@ -28,42 +27,67 @@ if (!$allMess) {
 } else {
 
     $checkDay = true;
+    $count = 0;
+    $temp = "";
     foreach ($allMess as $mess) {
         extract($mess);
         $content = nl2br($content);
 
         // set up ngày tháng
 
-        $d =  explode("-", explode(" ", $mess['time'])[0])[2];
-        $h =  explode(":", explode(" ", $mess['time'])[1])[0];
-        $m =  explode(":", explode(" ", $mess['time'])[1])[1];
+        $d =  explode("-", explode(" ", $mess['time'])[0])[2];  //Ngày tin nhắn
+        $M =  explode("-", explode(" ", $mess['time'])[0])[1];  //Tháng tin nhắn
+        $y =  explode("-", explode(" ", $mess['time'])[0])[0];  //Năm tin nhắn
+        $h =  explode(":", explode(" ", $mess['time'])[1])[0];  //Giờ tin nhắn
+        $m =  explode(":", explode(" ", $mess['time'])[1])[1];  //Phút tin nhắn
 
-        $nowD = date('d', time() + 3600 * 6);
-        $nowH = date('H', time() + 3600 * 6);
-        $nowM = date('i', time() + 3600 * 6);
+        $smallTime = $h . ":" . $m; //Thời gian tin nhắn (Rút gọn)
+        
 
+        $nowD = date('d', time() + 3600 * 6);   //Ngày hiện tại
+        $nowM = date('m', time() + 3600 * 6);   //Tháng hiện tại
+        $nowY = date('Y', time() + 3600 * 6);   //Năm hiện tại
+        
 
+        $totalDate1= $d + ($M*30) + (($y)*30*12);   //Tổng ngày tin nhắn
+        $totalDate2= $nowD + ($nowM*30) + ($nowY*30*12);    //Tổng ngày hiện tại
+        $minus = $totalDate2 - $totalDate1; //Thời gian đã trôi qua
+        
 
         $when = "";
-        $datetime1 = strtotime($mess['time']);
-        $datetime2 = strtotime(date('Y/m/d H:i:s', time() + 3600 * 6));
-
-        $minus = $datetime2 - $datetime1;
-        $smallTime = $h . ":" . $m;
-
-
-        if ($minus < 3600 * 24 && $nowD - $d == 0) {
+        if ($minus < 1 && $nowD - $d == 0) {
             if ($checkDay) {
+
                 $when = "Hôm nay";
                 $checkDay = false;
+
             }
-        } else if ($minus >= 3600 * 24) {
+        } else if ($minus >= 1) {
 
             $tempTime = explode("-", explode(" ", $mess['time'])[0]);
             $tempTime = array_reverse(array_slice($tempTime, 1));
             $when = implode(" Tháng ", $tempTime);
+            $count++;
+
         }
 
+        // Biến check xem có lập không
+        if ($count == 1) {
+
+            $temp = $when;
+
+        } else if ($count > 1) {
+            
+            if ($temp == $when){
+
+                $when = "";
+
+            }else{
+
+                $temp = $when;
+
+            }
+        }
 
         if ($send_id == $_SESSION['unique_id']) {
             $output['data'] .= "
