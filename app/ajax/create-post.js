@@ -33,7 +33,7 @@ share.onclick = () => {
         let temp = newPostContainer.innerHTML;
         if (data["status"]) {
           if (data["type"] == "video") {
-            newPost += `<div class='flex justify-between items-center lg:p-4 p-2.5'>
+            newPost += `<div class='card lg:mx-0 uk-animation-slide-bottom-small'><div class='flex justify-between items-center lg:p-4 p-2.5'>
                         <div class='flex flex-1 items-center space-x-4'>
                             <a href='#'>
                                 <img src='../../images/user/${data["user"]["img"]}' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
@@ -41,7 +41,7 @@ share.onclick = () => {
                             <div class='flex-1 font-semibold capitalize'>
                                 <a href='#' class='text-black dark:text-gray-100'>${data["user"]["fname"]} ${data["user"]["lname"]}</a>
                                 <div class='text-gray-700 flex items-center space-x-2'> ${data["data"]["post_time"]}
-                                    <ion-icon name='people'></ion-icon>
+                                <i class='fas fa-user-friends'></i>
                                 </div>
                             </div>
                         </div>
@@ -154,10 +154,11 @@ share.onclick = () => {
                             </div>
                         </div>
 
-                    </div> `;
+                    </div></div> `;
           }
           if (data["type"] == "img" || data["type"] == "") {
-            newPost += `
+            newPost += `<div class='card lg:mx-0 uk-animation-slide-bottom-small'>
+
                         <div class='flex justify-between items-center lg:p-4 p-2.5'>
                         <div class='flex flex-1 items-center space-x-4'>
                             <a href='#'>
@@ -166,7 +167,7 @@ share.onclick = () => {
                             <div class='flex-1 font-semibold capitalize'>
                                 <a href='#' class='text-black dark:text-gray-100'>${data["user"]["fname"]} ${data["user"]["lname"]}</a>
                                 <div class='text-gray-700 flex items-center space-x-2'> ${data["data"]["post_time"]}
-                                    <ion-icon name='people'></ion-icon>
+                                <i class='fas fa-user-friends'></i>
                                 </div>
                             </div>
                         </div>
@@ -175,6 +176,11 @@ share.onclick = () => {
                             <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                 <ul class='space-y-1'>
+                                    <li class='ajax-download-btn'>
+                                        <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                            <i class='fas fa-download mr-1'></i> Tải ảnh
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                             <i class='fas fa-share-alt mr-1'></i> Chia sẽ
@@ -215,7 +221,7 @@ share.onclick = () => {
 
                     <div uk-lightbox>
                         <a href='../../images/post/${data["data"]["post_img"]}'>
-                            <img src='../../images/post/${data["data"]["post_img"]}' alt='' class='max-h-96 w-full object-cover'>
+                            <img src='../../images/post/${data["data"]["post_img"]}' alt='' class='max-h-96 w-full object-cover ajax-image'>
                         </a>
                     </div>
 
@@ -276,7 +282,7 @@ share.onclick = () => {
                             </div>
                         </div>
                     </div>
-
+                    </div>
                         `;
           }
 
@@ -288,77 +294,106 @@ share.onclick = () => {
           //   ================================================================
 
           (function () {
-            const likeBtns = document.querySelector(".like-btn");
+            const allContainer = document.querySelectorAll("#new-post>div");
 
-            likeBtns.addEventListener("click", function () {
+            allContainer.forEach((e) => {
+              const likeBtns = e.querySelector(".like-btn");
+              likeBtns.addEventListener("click", function () {
                 likeBtns.classList.toggle("active");
-              let postId = likeBtns.getAttribute("data");
-              let likeContainer =
-                likeBtns.parentElement.parentElement.querySelector(
-                  ".quantity-like"
-                );
-              const http = new XMLHttpRequest();
+                let postId = likeBtns.getAttribute("data");
+                let likeContainer =
+                  likeBtns.parentElement.parentElement.querySelector(
+                    ".quantity-like"
+                  );
+                const http = new XMLHttpRequest();
 
-              http.open("post", "../../back-end/like.php", true);
+                http.open("post", "../../back-end/like.php", true);
 
-              http.onload = () => {
-                if (http.readyState === XMLHttpRequest.DONE) {
-                  if (http.status === 200) {
-                    let data = http.response;
+                http.onload = () => {
+                  if (http.readyState === XMLHttpRequest.DONE) {
+                    if (http.status === 200) {
+                      let data = http.response;
 
-                    if (data == 0) {
-                      likeContainer.parentElement.innerHTML =
-                        "<span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>";
-                    } else {
-                      likeContainer.parentElement.innerHTML = `
-                                                  <div class='flex items-center' >
-                                                                  <img src='../../images/post/like-icon.png' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
-                                                      <span class='quantity-like' style='margin-left: 0.15em;'> ${data}<strong> lượt thích </strong> </span>
-                                                      </div>
-                                                `;
+                      if (data == 0) {
+                        likeContainer.parentElement.innerHTML =
+                          "<span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>";
+                      } else {
+                        likeContainer.parentElement.innerHTML = `
+                                                      <div class='flex items-center' >
+                                                                      <img src='../../images/post/like-icon.png' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
+                                                          <span class='quantity-like' style='margin-left: 0.15em;'> ${data}<strong> lượt thích </strong> </span>
+                                                          </div>
+                                                    `;
+                      }
                     }
                   }
-                }
-              };
+                };
 
-              http.setRequestHeader(
-                "Content-type",
-                "application/x-www-form-urlencoded"
-              );
-              http.send("post_id=" + postId);
+                http.setRequestHeader(
+                  "Content-type",
+                  "application/x-www-form-urlencoded"
+                );
+                http.send("post_id=" + postId);
+              });
             });
           })();
 
           // ajax com men
           (function () {
-            let sendCmt = document.querySelector(".add-cmt");
+            const allContainer = document.querySelectorAll("#new-post>div");
 
-            sendCmt.addEventListener("keyup", (event) => {
-              let cmt_content = sendCmt.value;
-              cmt_content = cmt_content.trim();
-              if (event.keyCode == 13 && !event.shiftKey && cmt_content != "") {
-                let postID = sendCmt.getAttribute("data");
-                const http = new XMLHttpRequest();
+            allContainer.forEach((e) => {
+              let sendCmt = e.querySelector(".add-cmt");
 
-                http.open("post", "../../back-end/add-cmt.php", true);
-                http.onload = () => {
-                  if (http.readyState === XMLHttpRequest.DONE) {
-                    if (http.status === 200) {
-                      let data = http.response;
-                      data = JSON.parse(data);
-                      let boxCmt =
-                        sendCmt.parentElement.parentElement.children[2];
-                      boxCmt.innerHTML += data["data"];
-                      sendCmt.value = "";
+              sendCmt.addEventListener("keyup", (event) => {
+                let cmt_content = sendCmt.value;
+                cmt_content = cmt_content.trim();
+                if (
+                  event.keyCode == 13 &&
+                  !event.shiftKey &&
+                  cmt_content != ""
+                ) {
+                  let postID = sendCmt.getAttribute("data");
+                  const http = new XMLHttpRequest();
+
+                  http.open("post", "../../back-end/add-cmt.php", true);
+                  http.onload = () => {
+                    if (http.readyState === XMLHttpRequest.DONE) {
+                      if (http.status === 200) {
+                        let data = http.response;
+                        data = JSON.parse(data);
+                        let boxCmt =
+                          sendCmt.parentElement.parentElement.children[2];
+                        boxCmt.innerHTML += data["data"];
+                        sendCmt.value = "";
+                      }
                     }
-                  }
-                };
-                http.setRequestHeader(
-                  "Content-type",
-                  "application/x-www-form-urlencoded"
-                );
-                http.send("post_id=" + postID + "&cmt_content=" + cmt_content);
-              }
+                  };
+                  http.setRequestHeader(
+                    "Content-type",
+                    "application/x-www-form-urlencoded"
+                  );
+                  http.send(
+                    "post_id=" + postID + "&cmt_content=" + cmt_content
+                  );
+                }
+              });
+            });
+          })();
+
+          // Tải ảnh
+          (function () {
+            const allContainer = document.querySelectorAll("#new-post>div");
+
+            allContainer.forEach((e) => {
+              const downloadBtn = e.querySelector(".ajax-download-btn");
+              downloadBtn.addEventListener("click", function () {
+                const img = e.querySelector(".ajax-image");
+
+                let imgUrl = img.getAttribute("src");
+                const imgName = imgUrl.substring(imgUrl.lastIndexOf("/") + 1);
+                saveAs(imgUrl, imgName);
+              });
             });
           })();
         } else {
