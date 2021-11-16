@@ -657,9 +657,9 @@
                             }
                             $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
                             $res3 = pdo_get_all_rows($sql3, $post_id);
-                            $moreCmt ="";
-                            if(count($res3)>2){
-                                $moreCmt ="  <a data='{$post_id}' class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>";
+                            $moreCmt = "";
+                            if (count($res3) > 2) {
+                                $moreCmt = "  <a data='{$post_id}' class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>";
                             }
 
                             $message = "
@@ -1071,9 +1071,9 @@
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="../../app/js/js-home/tippy.all.min.js"></script>
-    <script src="../../app/js/js-home/uikit.js"></script>
-    <script src="../../app/js/js-home/simplebar.js"></script>
-    <script src="../../app/js/js-home/custom.js"></script>
+    <script src="../../app/js/js-home/uikit.min.js"></script>
+    <script src="../../app/js/js-home/simplebar.min.js"></script>
+    <script src="../../app/js/js-home/custom.min.js"></script>
     <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
     <script src="../../app/ajax/create-post.js"></script>
     <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
