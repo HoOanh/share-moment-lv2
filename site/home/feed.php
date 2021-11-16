@@ -63,9 +63,9 @@
                     <div class="header-search-icon" uk-toggle="target: #wrapper ; cls: show-searchbox"> </div>
                     <div class="header_search"><i class="uil-search-alt"></i>
                         <input value="" id="search-User-In-Home" type="text" class="form-control" placeholder="Tìm kiếm người dùng, video và ..." autocomplete="off">
-                        <div uk-drop="mode: click" class="header_search_dropdown"  id="search-User-Container">
+                        <div uk-drop="mode: click" class="header_search_dropdown" id="search-User-Container">
 
-                        <h4 class='search_title'> Nhập để bắt đầu tìm kiếm </h4>
+                            <h4 class='search_title'> Nhập để bắt đầu tìm kiếm </h4>
 
                         </div>
                     </div>
@@ -385,7 +385,7 @@
                                     </div>
                                     <input type="text" class="uk-input" placeholder="Tìm kiếm trong tin nhắn">
                                     <ul id="messageUserContainer">
-                                </ul>
+                                    </ul>
                                 </div>
                                 <a href="../chat/" class="see-all">Xem tất cả tin nhắn</a>
                             </div>
@@ -411,7 +411,7 @@
                                     </div>
                                 </a>
                                 <hr>
-                                
+
                                 <a href="page-setting.html">
                                     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
@@ -989,107 +989,7 @@
                                 </ul>
                             </nav>
 
-                            <div class="contact-list">
-
-                                <a href="#">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                        <span class="user_status status_online"></span>
-                                    </div>
-                                    <div class="contact-username"> Dennis Han</div>
-                                </a>
-                                <div uk-drop="pos: left-center ;animation: uk-animation-slide-left-small">
-                                    <div class="contact-list-box">
-                                        <div class="contact-avatar">
-                                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                            <span class="user_status status_online"></span>
-                                        </div>
-                                        <div class="contact-username"> Dennis Han</div>
-                                        <p>
-                                            <ion-icon name="people" class="text-lg mr-1"></ion-icon> Become friends with
-                                            <strong> Stella Johnson </strong> and <strong> 14 Others</strong>
-                                        </p>
-                                        <div class="contact-list-box-btns">
-                                            <button type="button" class="button primary flex-1 block mr-2">
-                                                <i class="uil-envelope mr-1"></i> Send message</button>
-                                            <button type="button" href="#" class="button secondary button-icon mr-2">
-                                                <i class="uil-list-ul"> </i> </button>
-                                            <button type="button" a href="#" class="button secondary button-icon">
-                                                <i class="uil-ellipsis-h"> </i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <a href="#">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                        <span class="user_status"></span>
-                                    </div>
-                                    <div class="contact-username"> Erica Jones</div>
-                                </a>
-                                <div uk-drop="pos: left-center ;animation: uk-animation-slide-left-small">
-                                    <div class="contact-list-box">
-                                        <div class="contact-avatar">
-                                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                            <span class="user_status"></span>
-                                        </div>
-                                        <div class="contact-username"> Erica Jones </div>
-                                        <p>
-                                            <ion-icon name="people" class="text-lg mr-1"></ion-icon> Become friends with
-                                            <strong> Stella Johnson </strong> and <strong> 14 Others</strong>
-                                        </p>
-                                        <div class="contact-list-box-btns">
-                                            <button type="button" class="button primary flex-1 block mr-2">
-                                                <i class="uil-envelope mr-1"></i> Send message</button>
-                                            <button type="button" href="#" class="button secondary button-icon mr-2">
-                                                <i class="uil-list-ul"> </i> </button>
-                                            <button type="button" a href="#" class="button secondary button-icon">
-                                                <i class="uil-ellipsis-h"> </i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-5.jpg" alt="">
-                                        <span class="user_status status_online"></span>
-                                    </div>
-                                    <div class="contact-username">Stella Johnson</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-6.jpg" alt="">
-                                    </div>
-                                    <div class="contact-username"> Alex Dolgove</div>
-                                </a>
-
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                        <span class="user_status status_online"></span>
-                                    </div>
-                                    <div class="contact-username"> Dennis Han</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                        <span class="user_status"></span>
-                                    </div>
-                                    <div class="contact-username"> Erica Jones</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-7.jpg" alt="">
-                                    </div>
-                                    <div class="contact-username">Stella Johnson</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                    </div>
-                                    <div class="contact-username"> Alex Dolgove</div>
-                                </a>
+                            <div class="contact-list load-user-home">
 
 
                             </div>
@@ -1711,6 +1611,7 @@
     <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
     <script src="../../app/ajax/create-post.js"></script>
     <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
+    <script src="../../app/ajax/load-user-home.js"></script>
 
     <!-- Ajax load
     ============================================= -->
