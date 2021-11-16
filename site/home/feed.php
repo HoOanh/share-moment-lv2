@@ -10,11 +10,13 @@
 
     <!-- Basic Page Needs
         ================================================== -->
-    <title>Socialite Template</title>
+    <title>Share Moment</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
 
+    <!-- FONT AWESOME CDNJS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS
     ================================================== -->
@@ -22,8 +24,7 @@
     <link rel="stylesheet" href="../../app/css/css-home/style.min.css">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- FONT AWESOME CDNJS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 </head>
 
@@ -62,9 +63,9 @@
                     <div class="header-search-icon" uk-toggle="target: #wrapper ; cls: show-searchbox"> </div>
                     <div class="header_search"><i class="uil-search-alt"></i>
                         <input value="" id="search-User-In-Home" type="text" class="form-control" placeholder="Tìm kiếm người dùng, video và ..." autocomplete="off">
-                        <div uk-drop="mode: click" class="header_search_dropdown"  id="search-User-Container">
+                        <div uk-drop="mode: click" class="header_search_dropdown" id="search-User-Container">
 
-                        <h4 class='search_title'> Nhập để bắt đầu tìm kiếm </h4>
+                            <h4 class='search_title'> Nhập để bắt đầu tìm kiếm </h4>
 
                         </div>
                     </div>
@@ -384,7 +385,7 @@
                                     </div>
                                     <input type="text" class="uk-input" placeholder="Tìm kiếm trong tin nhắn">
                                     <ul id="messageUserContainer">
-                                </ul>
+                                    </ul>
                                 </div>
                                 <a href="../chat/" class="see-all">Xem tất cả tin nhắn</a>
                             </div>
@@ -410,7 +411,7 @@
                                     </div>
                                 </a>
                                 <hr>
-                                
+
                                 <a href="page-setting.html">
                                     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
@@ -656,7 +657,6 @@
                         </div>
 
                         <div class='card lg:mx-0 uk-animation-slide-bottom-small' id='new-post'>
-
                         </div>
                         <?php
                         $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.post_role = 1) ORDER BY post_id DESC LIMIT 5 ";
@@ -664,11 +664,18 @@
                         foreach ($feedList as $item) {
                             extract($item);
 
+
                             $sql = "Select count(*) as total from likes where post_id = ? ";
                             $res = pdo_get_one_row($sql, $post_id);
 
                             $sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc limit 2";
                             $res2 = pdo_get_all_rows($sql2, $post_id);
+
+
+                            $sql3 = "Select * from likes where unique_id = ? and post_id = ?";
+                            $checkLike = pdo_get_one_row($sql3, $_SESSION['unique_id'], $post_id);
+                            if ($checkLike == []) $liked = '';
+                            else $liked = 'active';
 
                             $allCmt = '';
                             foreach ($res2 as $cmt) {
@@ -690,7 +697,7 @@
                                         <div class='absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800'></div>
                                     </div>
                                     <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
-                                        <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
+                                        <a href='#' class='text-red-600'> <i class='far fa-heart mr-1'></i>Love </a>
                                         <a href='#'> Replay </a>
                                         <span> {$cmt_time} </span>
                                     </div>
@@ -724,18 +731,18 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a>
+                                        <a href='#'> <i class='fas fa-ellipsis-h'></i>
                                         <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                             <ul class='space-y-1'>
                                                 <li>
                                                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='uil-share-alt mr-1'></i> Share
+                                                    <i class='fas fa-share-alt mr-1'></i> Share
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='uil-edit-alt mr-1'></i> Edit Post
+                                                        <i class='far fa-edit mr-1'></i> Chỉnh sữa
                                                     </a>
                                                 </li>
                                                 <li>
@@ -753,7 +760,7 @@
                                                 </li>
                                                 <li>
                                                     <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                                        <i class='uil-trash-alt mr-1'></i> Delete
+                                                        <i class='far fa-trash-alt mr-1'></i> Delete
                                                     </a>
                                                 </li>
                                             </ul>
@@ -769,7 +776,7 @@
                             </div>
                                 <div class='p-4 space-y-3'>
                                     <div class='flex space-x-4 lg:font-bold'>
-                                        <a data='{$post_id}'class='flex items-center space-x-2 like-btn'>
+                                        <a data='{$post_id}'class='flex items-center space-x-2 like-btn $liked'>
                                             <div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'>
                                                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'>
                                                     <path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' />
@@ -814,13 +821,13 @@
                                         <input data='{$post_id}'  placeholder='Add your Comment..' class='  bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                                         <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                             <a href='#'>
-                                                <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                                <i class='far fa-smile write__input-more'></i>
                                             </a>
                                             <a href='#'>
-                                                <ion-icon name='image-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                                <i class='far fa-image write__input-more'></i>
                                             </a>
                                             <a href='#'>
-                                                <ion-icon name='link-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                                <i class='fas fa-paperclip write__input-more'></i>
                                             </a>
                                         </div>
                                     </div>
@@ -846,18 +853,18 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a>
+                                    <a href='#'> <i class='fas fa-ellipsis-h'></i> </a>
                                     <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                         <ul class='space-y-1'>
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='uil-share-alt mr-1'></i> Share
+                                                      <i class='fas fa-share-alt mr-1'></i> Chia sẽ
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='uil-edit-alt mr-1'></i> Edit Post
+                                                    <i class='far fa-edit mr-1'></i> Chỉnh sữa
                                                 </a>
                                             </li>
                                             <li>
@@ -875,7 +882,7 @@
                                             </li>
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                                    <i class='uil-trash-alt mr-1'></i> Delete
+                                                    <i class='far fa-trash-alt mr-1'></i> Delete
                                                 </a>
                                             </li>
                                         </ul>
@@ -898,7 +905,7 @@
                             <div class='p-4 space-y-3'>
 
                                 <div class='flex space-x-4 lg:font-bold'>
-                                    <a data = '{$post_id}'  class='flex items-center space-x-2 like-btn'>
+                                    <a data = '{$post_id}'  class='flex items-center space-x-2 like-btn $liked'>
                                         <div class='p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600'>
                                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' width='22' height='22' class='dark:text-gray-100'>
                                                 <path d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' />
@@ -941,13 +948,13 @@
                                     <input  data='{$post_id}'  placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                                     <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
                                         <a href='#'>
-                                            <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                            <i class='far fa-smile write__input-more'></i>
                                         </a>
                                         <a href='#'>
-                                            <ion-icon name='image-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                             <i class='far fa-image write__input-more'></i>
                                         </a>
                                         <a href='#'>
-                                            <ion-icon name='link-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                             <i class='fas fa-paperclip write__input-more'></i>
                                         </a>
                                     </div>
                                 </div>
@@ -982,107 +989,7 @@
                                 </ul>
                             </nav>
 
-                            <div class="contact-list">
-
-                                <a href="#">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                        <span class="user_status status_online"></span>
-                                    </div>
-                                    <div class="contact-username"> Dennis Han</div>
-                                </a>
-                                <div uk-drop="pos: left-center ;animation: uk-animation-slide-left-small">
-                                    <div class="contact-list-box">
-                                        <div class="contact-avatar">
-                                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                            <span class="user_status status_online"></span>
-                                        </div>
-                                        <div class="contact-username"> Dennis Han</div>
-                                        <p>
-                                            <ion-icon name="people" class="text-lg mr-1"></ion-icon> Become friends with
-                                            <strong> Stella Johnson </strong> and <strong> 14 Others</strong>
-                                        </p>
-                                        <div class="contact-list-box-btns">
-                                            <button type="button" class="button primary flex-1 block mr-2">
-                                                <i class="uil-envelope mr-1"></i> Send message</button>
-                                            <button type="button" href="#" class="button secondary button-icon mr-2">
-                                                <i class="uil-list-ul"> </i> </button>
-                                            <button type="button" a href="#" class="button secondary button-icon">
-                                                <i class="uil-ellipsis-h"> </i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <a href="#">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                        <span class="user_status"></span>
-                                    </div>
-                                    <div class="contact-username"> Erica Jones</div>
-                                </a>
-                                <div uk-drop="pos: left-center ;animation: uk-animation-slide-left-small">
-                                    <div class="contact-list-box">
-                                        <div class="contact-avatar">
-                                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                            <span class="user_status"></span>
-                                        </div>
-                                        <div class="contact-username"> Erica Jones </div>
-                                        <p>
-                                            <ion-icon name="people" class="text-lg mr-1"></ion-icon> Become friends with
-                                            <strong> Stella Johnson </strong> and <strong> 14 Others</strong>
-                                        </p>
-                                        <div class="contact-list-box-btns">
-                                            <button type="button" class="button primary flex-1 block mr-2">
-                                                <i class="uil-envelope mr-1"></i> Send message</button>
-                                            <button type="button" href="#" class="button secondary button-icon mr-2">
-                                                <i class="uil-list-ul"> </i> </button>
-                                            <button type="button" a href="#" class="button secondary button-icon">
-                                                <i class="uil-ellipsis-h"> </i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-5.jpg" alt="">
-                                        <span class="user_status status_online"></span>
-                                    </div>
-                                    <div class="contact-username">Stella Johnson</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-6.jpg" alt="">
-                                    </div>
-                                    <div class="contact-username"> Alex Dolgove</div>
-                                </a>
-
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                                        <span class="user_status status_online"></span>
-                                    </div>
-                                    <div class="contact-username"> Dennis Han</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                        <span class="user_status"></span>
-                                    </div>
-                                    <div class="contact-username"> Erica Jones</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-7.jpg" alt="">
-                                    </div>
-                                    <div class="contact-username">Stella Johnson</div>
-                                </a>
-                                <a href="timeline.html">
-                                    <div class="contact-avatar">
-                                        <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                    </div>
-                                    <div class="contact-username"> Alex Dolgove</div>
-                                </a>
+                            <div class="contact-list load-user-home">
 
 
                             </div>
@@ -1704,6 +1611,7 @@
     <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
     <script src="../../app/ajax/create-post.js"></script>
     <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
+    <script src="../../app/ajax/load-user-home.js"></script>
 
     <!-- Ajax load
     ============================================= -->
@@ -1788,7 +1696,7 @@
             var is_busy = false;
 
             // Biến lưu trữ trang hiện tại
-          
+
             let quantity = 5;
 
             let check = true;
@@ -1832,7 +1740,7 @@
                                         quantity: quantity
                                     },
                                     success: function(result) {
-                                        
+
                                         if (result['status']) {
                                             soluong = result['soluong'];
                                             $element.append(result['data']);

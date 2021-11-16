@@ -2,38 +2,38 @@ let formPost = document.querySelector("#form-post");
 let share = document.querySelector(".share-post");
 
 formPost.onsubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 };
 share.onclick = () => {
-    var http = new XMLHttpRequest();
-    http.open("post", "../../back-end/create-post.php", true);
+  var http = new XMLHttpRequest();
+  http.open("post", "../../back-end/create-post.php", true);
 
-    http.onload = () => {
-        if (http.readyState === XMLHttpRequest.DONE) {
-            if (http.status === 200) {
-                document.querySelector("html").classList.remove("uk-modal-page");
+  http.onload = () => {
+    if (http.readyState === XMLHttpRequest.DONE) {
+      if (http.status === 200) {
+        document.querySelector("html").classList.remove("uk-modal-page");
 
-                let op = document.querySelector("#create-post-modal");
-                op.classList.remove("uk-open");
-                op.classList.remove("uk-flex");
+        let op = document.querySelector("#create-post-modal");
+        op.classList.remove("uk-open");
+        op.classList.remove("uk-flex");
 
-                formPost.reset();
+        formPost.reset();
 
-                var img = document.querySelector("#myImg");
-                img.src = "";
-                document.getElementsByClassName("add-img")[0].style.display = "none";
+        var img = document.querySelector("#myImg");
+        img.src = "";
+        document.getElementsByClassName("add-img")[0].style.display = "none";
 
-                const video = document.querySelector(".video-preview");
-                video.src = "";
-                document.getElementsByClassName("add-video")[0].style.display = "none";
+        const video = document.querySelector(".video-preview");
+        video.src = "";
+        document.getElementsByClassName("add-video")[0].style.display = "none";
 
-                let data = JSON.parse(http.response);
-                const newPostContainer = document.querySelector("#new-post");
-                let newPost = "";
-                let temp = newPostContainer.innerHTML;
-                if (data["status"]) {
-                    if (data["type"] == "video") {
-                        newPost += `<div class='flex justify-between items-center lg:p-4 p-2.5'>
+        let data = JSON.parse(http.response);
+        const newPostContainer = document.querySelector("#new-post");
+        let newPost = "";
+        let temp = newPostContainer.innerHTML;
+        if (data["status"]) {
+          if (data["type"] == "video") {
+            newPost += `<div class='flex justify-between items-center lg:p-4 p-2.5'>
                         <div class='flex flex-1 items-center space-x-4'>
                             <a href='#'>
                                 <img src='../../images/user/${data["user"]["img"]}' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
@@ -46,18 +46,18 @@ share.onclick = () => {
                             </div>
                         </div>
                         <div>
-                            <a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a>
+                            <a href='#'> <i class='fas fa-ellipsis-h'></i> </a>
                             <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                 <ul class='space-y-1'>
                                     <li>
                                         <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                            <i class='uil-share-alt mr-1'></i> Share
+                                            <i class='fas fa-share-alt mr-1'></i> Chia sẽ
                                         </a>
                                     </li>
                                     <li>
                                         <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                            <i class='uil-edit-alt mr-1'></i> Edit Post
+                                            <i class='far fa-edit mr-1'></i> Chỉnh sữa
                                         </a>
                                     </li>
                                     <li>
@@ -75,7 +75,7 @@ share.onclick = () => {
                                     </li>
                                     <li>
                                         <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                            <i class='uil-trash-alt mr-1'></i> Delete
+                                            <i class='far fa-trash-alt mr-1'></i> Delete
                                         </a>
                                     </li>
                                 </ul>
@@ -142,22 +142,22 @@ share.onclick = () => {
                         <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
                             <input data='${data["data"]["post_id"]}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                             <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
-                                <a href='#'>
-                                    <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
-                                </a>
-                                <a href='#'>
-                                    <ion-icon name='image-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
-                                </a>
-                                <a href='#'>
-                                    <ion-icon name='link-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
-                                </a>
+                               <a href='#'>
+                                            <i class='far fa-smile write__input-more'></i>
+                                        </a>
+                                        <a href='#'>
+                                             <i class='far fa-image write__input-more'></i>
+                                        </a>
+                                        <a href='#'>
+                                             <i class='fas fa-paperclip write__input-more'></i>
+                                        </a>
                             </div>
                         </div>
 
                     </div> `;
-                    }
-                    if (data["type"] == "img" || data["type"] == "") {
-                        newPost += `
+          }
+          if (data["type"] == "img" || data["type"] == "") {
+            newPost += `
                         <div class='flex justify-between items-center lg:p-4 p-2.5'>
                         <div class='flex flex-1 items-center space-x-4'>
                             <a href='#'>
@@ -171,18 +171,18 @@ share.onclick = () => {
                             </div>
                         </div>
                         <div>
-                            <a href='#'> <i class='icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700'></i> </a>
+                            <a href='#'> <i class='fas fa-ellipsis-h'></i> </a>
                             <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                 <ul class='space-y-1'>
                                     <li>
                                         <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                            <i class='uil-share-alt mr-1'></i> Share
+                                            <i class='fas fa-share-alt mr-1'></i> Chia sẽ
                                         </a>
                                     </li>
                                     <li>
                                         <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                            <i class='uil-edit-alt mr-1'></i> Edit Post
+                                            <i class='far fa-edit mr-1'></i> Chỉnh sữa
                                         </a>
                                     </li>
                                     <li>
@@ -200,7 +200,7 @@ share.onclick = () => {
                                     </li>
                                     <li>
                                         <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                            <i class='uil-trash-alt mr-1'></i> Delete
+                                            <i class='far fa-trash-alt mr-1'></i> Delete
                                         </a>
                                     </li>
                                 </ul>
@@ -264,109 +264,109 @@ share.onclick = () => {
                         <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
                             <input data='${data["data"]["post_id"]}' placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>
                             <div class='-m-0.5 absolute bottom-0 flex items-center right-3 text-xl'>
-                                <a href='#'>
-                                    <ion-icon name='happy-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                               <a href='#'>
+                                    <i class='far fa-smile write__input-more'></i>
                                 </a>
                                 <a href='#'>
-                                    <ion-icon name='image-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                        <i class='far fa-image write__input-more'></i>
                                 </a>
                                 <a href='#'>
-                                    <ion-icon name='link-outline' class='hover:bg-gray-200 p-1.5 rounded-full'></ion-icon>
+                                        <i class='fas fa-paperclip write__input-more'></i>
                                 </a>
                             </div>
                         </div>
                     </div>
 
                         `;
-                    }
+          }
 
-                    newPost = newPost + temp;
-                    newPostContainer.innerHTML = newPost;
-                    start += 1;
+          newPost = newPost + temp;
+          newPostContainer.innerHTML = newPost;
+          start += 1;
 
-                    //   ajax nút like nha
-                    //   ================================================================
+          //   ajax nút like nha
+          //   ================================================================
 
-                    (function() {
-                        const likeBtns = document.querySelector(".like-btn");
+          (function () {
+            const likeBtns = document.querySelector(".like-btn");
 
-                        likeBtns.addEventListener("click", function() {
-                            let postId = likeBtns.getAttribute("data");
-                            let likeContainer =
-                                likeBtns.parentElement.parentElement.querySelector(
-                                    ".quantity-like"
-                                );
-                            const http = new XMLHttpRequest();
+            likeBtns.addEventListener("click", function () {
+                likeBtns.classList.toggle("active");
+              let postId = likeBtns.getAttribute("data");
+              let likeContainer =
+                likeBtns.parentElement.parentElement.querySelector(
+                  ".quantity-like"
+                );
+              const http = new XMLHttpRequest();
 
-                            http.open("post", "../../back-end/like.php", true);
+              http.open("post", "../../back-end/like.php", true);
 
-                            http.onload = () => {
-                                if (http.readyState === XMLHttpRequest.DONE) {
-                                    if (http.status === 200) {
-                                        let data = http.response;
+              http.onload = () => {
+                if (http.readyState === XMLHttpRequest.DONE) {
+                  if (http.status === 200) {
+                    let data = http.response;
 
-                                        if (data == 0) {
-                                            likeContainer.parentElement.innerHTML =
-                                                "<span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>";
-                                        } else {
-                                            likeContainer.parentElement.innerHTML = `
+                    if (data == 0) {
+                      likeContainer.parentElement.innerHTML =
+                        "<span class='quantity-like'></span><strong>Hãy là người đầu tiên thích bài viết này </strong>";
+                    } else {
+                      likeContainer.parentElement.innerHTML = `
                                                   <div class='flex items-center' >
                                                                   <img src='../../images/post/like-icon.png' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
                                                       <span class='quantity-like' style='margin-left: 0.15em;'> ${data}<strong> lượt thích </strong> </span>
                                                       </div>
                                                 `;
-                                        }
-                                    }
-                                }
-                            };
-
-                            http.setRequestHeader(
-                                "Content-type",
-                                "application/x-www-form-urlencoded"
-                            );
-                            http.send("post_id=" + postId);
-                        });
-
-                    })();
-
-
-                    // ajax com men
-                    (function() {
-                        let sendCmt = document.querySelector('.add-cmt');
-
-                        sendCmt.addEventListener('keyup', (event) => {
-                            let cmt_content = sendCmt.value;
-                            cmt_content = cmt_content.trim();
-                            if (event.keyCode == 13 && !event.shiftKey && cmt_content != '') {
-
-                                let postID = sendCmt.getAttribute("data");
-                                const http = new XMLHttpRequest();
-
-                                http.open("post", "../../back-end/add-cmt.php", true);
-                                http.onload = () => {
-                                    if (http.readyState === XMLHttpRequest.DONE) {
-                                        if (http.status === 200) {
-                                            let data = http.response;
-                                            data = JSON.parse(data);
-                                            let boxCmt = sendCmt.parentElement.parentElement.children[2];
-                                            boxCmt.innerHTML += data['data'];
-                                            sendCmt.value = '';
-                                        }
-                                    }
-                                };
-                                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                                http.send("post_id=" + postID + "&cmt_content=" + cmt_content);
-                            }
-
-                        })
-
-                    })()
-                } else {
-                    alert(data["data"]);
+                    }
+                  }
                 }
-            }
+              };
+
+              http.setRequestHeader(
+                "Content-type",
+                "application/x-www-form-urlencoded"
+              );
+              http.send("post_id=" + postId);
+            });
+          })();
+
+          // ajax com men
+          (function () {
+            let sendCmt = document.querySelector(".add-cmt");
+
+            sendCmt.addEventListener("keyup", (event) => {
+              let cmt_content = sendCmt.value;
+              cmt_content = cmt_content.trim();
+              if (event.keyCode == 13 && !event.shiftKey && cmt_content != "") {
+                let postID = sendCmt.getAttribute("data");
+                const http = new XMLHttpRequest();
+
+                http.open("post", "../../back-end/add-cmt.php", true);
+                http.onload = () => {
+                  if (http.readyState === XMLHttpRequest.DONE) {
+                    if (http.status === 200) {
+                      let data = http.response;
+                      data = JSON.parse(data);
+                      let boxCmt =
+                        sendCmt.parentElement.parentElement.children[2];
+                      boxCmt.innerHTML += data["data"];
+                      sendCmt.value = "";
+                    }
+                  }
+                };
+                http.setRequestHeader(
+                  "Content-type",
+                  "application/x-www-form-urlencoded"
+                );
+                http.send("post_id=" + postID + "&cmt_content=" + cmt_content);
+              }
+            });
+          })();
+        } else {
+          alert(data["data"]);
         }
-    };
-    let formData = new FormData(formPost);
-    http.send(formData);
+      }
+    }
+  };
+  let formData = new FormData(formPost);
+  http.send(formData);
 };
