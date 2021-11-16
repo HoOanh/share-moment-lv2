@@ -204,6 +204,11 @@ foreach ($feedList as $item) {
             <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                 <ul class='space-y-1'>
+                    <li class='ajax-download-btn'>
+                        <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                            <i class='fas fa-download mr-1'></i> Tải ảnh
+                        </a>
+                    </li>
                     <li>
                         <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                             <i class='uil-share-alt mr-1'></i> Share
@@ -244,7 +249,7 @@ foreach ($feedList as $item) {
 
     <div uk-lightbox>
         <a href='../../images/post/$img_post'>
-            <img src='../../images/post/$img_post' alt='' class='max-h-96 w-full object-cover'>
+            <img src='../../images/post/$img_post' alt='' class='max-h-96 w-full object-cover ajax-image'>
         </a>
     </div>
 
@@ -316,5 +321,3 @@ $output['data'] .= "<script src='../../app/ajax/ajax-cmt-like-for-load-more-post
 
 
 die(json_encode($output));
-?>
-
