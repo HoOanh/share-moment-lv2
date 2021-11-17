@@ -14,7 +14,7 @@ $newPostUserData = pdo_get_one_row($sql, $_SESSION['unique_id']);
 $output['user']['img'] = $newPostUserData['img'];
 $output['user']['fname'] = $newPostUserData['fname'];
 $output['user']['lname'] = $newPostUserData['lname'];
-
+$output['user']['unique_id'] = $_SESSION['unique_id'];
 
 // mac dinh
 $imgCheck = '';
@@ -70,7 +70,6 @@ if ($videoCheck) {
     $video_explode = explode('.', $img_name); // hàm explode trả về mảng ngăn cách bằng dấu chấm
 
     $video_ext = strtolower(end($video_explode)); // lay phan mo rong cua file upload
-
     $duoi_cua_video = ['mp4', 'mpeg', 'mpg', 'mov'];
     if ($video_size >= (1024 * 30000)) {
         $check = false;
