@@ -36,7 +36,7 @@ if (isset($_FILES['video'])) {
     $videoCheck = $_FILES['video']['tmp_name'];
 }
 
-$post_time = date('Y/m/d H:i:s', time() + 3600 * 6);
+$post_time = date('Y/m/d H:i:s', time() + 3600 * 7);
 
 // TH0: không có gì hết
 

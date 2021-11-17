@@ -16,7 +16,7 @@ if ($lastMessage) {
   else $last = $lastMessage['content'];
 
   $datetime1 = strtotime($lastMessage['time']);
-  $datetime2 = strtotime(date('Y/m/d H:i:s', time() + 3600 * 6));
+  $datetime2 = strtotime(date('Y/m/d H:i:s', time() + 3600 *7));
 
   $time = $datetime2 - $datetime1;
   if ($time < 3600) {
