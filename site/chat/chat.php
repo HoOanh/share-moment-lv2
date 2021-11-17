@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
-  let inter2=null;
+  let inter2 = null;
 </script>
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -155,7 +156,6 @@
   <script src="../../app/ajax/mess.js"></script>
   <script src="../../app/ajax/user.js"></script>
   <script src="../../app/ajax/last-activity.js"></script>
-
 
 </body>
 

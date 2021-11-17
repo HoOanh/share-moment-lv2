@@ -4,7 +4,7 @@ function mess() {
     clearInterval(inter);
   });
 
-    clearInterval(inter2);
+  clearInterval(inter2);
 
   const chatContent = document.querySelector(".chat-content");
   const receiverId = document
@@ -114,4 +114,42 @@ function mess() {
       sendBtn.classList.remove("active");
     }
   });
+
+  //Set xóa tin nhắn
+  let deleteBtn = document.querySelector('.chat-name--delete');
+  deleteBtn.onclick = () => {
+    let box_id = deleteBtn.getAttribute('data'); // unique_id
+    confirm('Bạn chắc chứ ?');
+    let check = confirm('Bạn có thật sự chắc chắn không ?'); // có = true, không = false
+    if (check) {
+
+      const http = new XMLHttpRequest();
+      http.open("post", "../../back-end/deleteMessage.php", true);
+
+      http.onload = () => {
+        if (http.readyState === XMLHttpRequest.DONE) {
+          if (http.status === 200) {
+            var data = http.response;
+
+            if (data = 1) {
+
+              alert('Xóa thành công');
+
+            } else {
+
+              alert('Xóa thất bại');
+
+            }
+
+          }
+        }
+      };
+
+      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+      http.send('box_id=' + box_id);
+
+    }
+  }
+  
 }

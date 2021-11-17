@@ -28,7 +28,7 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
         </h2>
 
     </div>
-    <div class='chat-name--delete'>
+    <div class='chat-name--delete' data="<?= $receiver_info['unique_id'] ?>">
         <i class='far fa-trash-alt'></i>Xóa lịch sử cuộc hội thoại
     </div>
 </div>
@@ -120,7 +120,6 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
                         <div class='small-time'>{$smallTime}</div>
                     </div>";
             }
-        
         }
     }
 
@@ -132,3 +131,5 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
         <span><i class='fas fa-paper-plane'></i></span>
     </div>
 </div>
+
+<script src='../app/js/delete-conversation.js'></script>
