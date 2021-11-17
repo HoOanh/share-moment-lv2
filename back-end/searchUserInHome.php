@@ -20,7 +20,7 @@ if ($getUser) {
         $result .= "
                         <ul id='search-User-Container'>
                             <li>
-                                <a href='../chat/?box_id={$item['unique_id']}'>
+                                <a href='../timeline/?timeline_id={$item['unique_id']}'>
                                     <img src='../../images/user/{$item['img']}' alt='' class='list-avatar'>
                                     <div class='list-name'>{$item['fname']} {$item['lname']}</div>
                                 </a>
@@ -28,7 +28,6 @@ if ($getUser) {
                         </ul>
                         ";
     }
-    
 } else {
     $result = "<h4 class='search_title'> Không tìm thấy ai cả </h4>";
 }

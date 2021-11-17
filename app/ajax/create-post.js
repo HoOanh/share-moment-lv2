@@ -41,7 +41,7 @@ share.onclick = () => {
                             <div class='flex-1 font-semibold capitalize'>
                                 <a href='#' class='text-black dark:text-gray-100'>${data["user"]["fname"]} ${data["user"]["lname"]}</a>
                                 <div class='text-gray-700 flex items-center space-x-2'> ${data["data"]["post_time"]}
-                                <i class='fas fa-user-friends'></i>
+                               ${data["data"]["post_role"]}
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@ share.onclick = () => {
                             <div class='flex-1 font-semibold capitalize'>
                                 <a href='#' class='text-black dark:text-gray-100'>${data["user"]["fname"]} ${data["user"]["lname"]}</a>
                                 <div class='text-gray-700 flex items-center space-x-2'> ${data["data"]["post_time"]}
-                                <i class='fas fa-user-friends'></i>
+                                ${data["data"]["post_role"]}
                                 </div>
                             </div>
                         </div>
