@@ -1,10 +1,11 @@
 <?php
 session_start();
 require '../dao/pdo.php';
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $post_id = $_POST['post_id'];
 $cmt_content = $_POST['cmt_content'];
-$cmt_time = date('Y/m/d H:i:s', time() + 3600 * 7);
+$cmt_time = date('Y/m/d H:i:s', time());
 $output = ['data'=>''];
 $sql = "INSERT INTO cmt (content,unique_id,post_id,cmt_time)
         VALUES (?,?,?,?)";

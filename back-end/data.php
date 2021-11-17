@@ -2,6 +2,7 @@
 extract($item);
 $name = $fname . " " . $lname;
 $status = "";
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 // Lấy tin nhắn cuối cùng
 $sql = "SELECT * FROM message where (send_id = ? and receive_id = ?) or (send_id = ? and receive_id = ?) order by time desc limit 1";
@@ -16,7 +17,7 @@ if ($lastMessage) {
   else $last = $lastMessage['content'];
 
   $datetime1 = strtotime($lastMessage['time']);
-  $datetime2 = strtotime(date('Y/m/d H:i:s', time() + 3600 *7));
+  $datetime2 = strtotime(date('Y/m/d H:i:s', time()));
 
   $time = $datetime2 - $datetime1;
   if ($time < 3600) {

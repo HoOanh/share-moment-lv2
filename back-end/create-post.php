@@ -1,6 +1,8 @@
 <?php
 session_start();
 require '../dao/pdo.php';
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 
 $output = ['data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => '', 'post_role' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
 
@@ -36,7 +38,7 @@ if (isset($_FILES['video'])) {
     $videoCheck = $_FILES['video']['tmp_name'];
 }
 
-$post_time = date('Y/m/d H:i:s', time() + 3600 * 7);
+$post_time = date('Y/m/d H:i:s', time());
 
 // TH0: không có gì hết
 

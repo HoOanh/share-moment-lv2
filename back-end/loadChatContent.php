@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 require "../dao/pdo.php";
 
 $receiver = $_POST['receiver'];
@@ -44,9 +44,10 @@ if (!$allMess) {
         $smallTime = $h . ":" . $m; //Thời gian tin nhắn (Rút gọn)
         
 
-        $nowD = date('d', time() + 3600 * 6);   //Ngày hiện tại
-        $nowM = date('m', time() + 3600 * 6);   //Tháng hiện tại
-        $nowY = date('Y', time() + 3600 * 6);   //Năm hiện tại
+        $nowD = date('d', time());   //Ngày hiện tại
+        $nowM = date('m', time());   //Tháng hiện tại
+        $nowY = date('Y', time());   //Năm hiện tại
+        $nowh = date('H', time()); //Giờ hiện tại
         
 
         $totalDate1= $d + ($M*30) + (($y)*30*12);   //Tổng ngày tin nhắn
@@ -111,6 +112,7 @@ if (!$allMess) {
                 <div class='small-time'>{$smallTime}</div>
             </div>";
         }
+        // $output['data'].="<p>$nowh</p>";
     }
 }
 

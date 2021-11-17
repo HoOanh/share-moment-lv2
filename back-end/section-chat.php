@@ -3,6 +3,8 @@ session_start();
 require "../dao/pdo.php";
 $firstMess = '';
 $receiver = $_POST['receiver'];
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 $sql = "SELECT * FROM message left join users
             on users.unique_id = message.receive_id
            where ( send_id = ? and receive_id = ?) or (send_id = ? and receive_id = ?) order by time";
@@ -42,6 +44,7 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
         $count = 0;
         $temp = "";
         foreach ($allMess as $mess) {
+            // date_default_timezone_set('Europe/London');
             extract($mess);
             $content = nl2br($content);
             // set up ngày tháng
@@ -55,9 +58,9 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
             $smallTime = $h . ":" . $m; //Thời gian tin nhắn (Rút gọn)
 
 
-            $nowD = date('d', time() + 3600 * 6);   //Ngày hiện tại
-            $nowM = date('m', time() + 3600 * 6);   //Tháng hiện tại
-            $nowY = date('Y', time() + 3600 * 6);   //Năm hiện tại
+            $nowD = date('d', time());   //Ngày hiện tại
+            $nowM = date('m', time());   //Tháng hiện tại
+            $nowY = date('Y', time());   //Năm hiện tại
 
 
             $totalDate1 = $d + ($M * 30) + (($y) * 30 * 12);   //Tổng ngày tin nhắn
@@ -117,6 +120,7 @@ else $name = $receiver_info['fname'] . " " . $receiver_info['lname'];
                         <div class='small-time'>{$smallTime}</div>
                     </div>";
             }
+        
         }
     }
 
