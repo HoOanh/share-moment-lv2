@@ -65,7 +65,7 @@
 
                     <!--  icon for mobile -->
                     <div class="header-search-icon" uk-toggle="target: #wrapper ; cls: show-searchbox"> </div>
-                    <div class="header_search"><i class="uil-search-alt"></i>
+                    <div class="header_search"><i class="fas fa-search"></i>
                         <input value="" id="search-User-In-Home" type="text" class="form-control" placeholder="Tìm kiếm người dùng, video và ..." autocomplete="off">
                         <div uk-drop="mode: click" class="header_search_dropdown" id="search-User-Container">
 
@@ -405,7 +405,7 @@
                             </a>
                             <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 
-                                <a href="timeline.html" class="user">
+                                <a href="../timeline/" class="user">
                                     <div class="user_avatar">
                                         <img src="../../images/user/<?= $img ?>" style="width:100%; height:100%">
                                     </div>

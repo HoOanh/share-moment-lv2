@@ -133,6 +133,11 @@ if ($check) {
         $output['data']['post_img'] = $final_img;
         $output['data']['post_video'] = $final_video;
         $output['data']['post_time'] = $post_time;
+        
+        if ($post_role) $role = "<i class='fas fa-user-friends ml-1'></i>";
+        else $role = "<i class='fas fa-user-lock ml-1'></i>";
+
+        $output['data']['post_role'] = $role;
     }
 }
 

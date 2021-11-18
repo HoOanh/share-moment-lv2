@@ -41,7 +41,7 @@ share.onclick = () => {
                             <div class='flex-1 font-semibold capitalize'>
                                 <a href='#' class='text-black dark:text-gray-100'>${data["user"]["fname"]} ${data["user"]["lname"]}</a>
                                 <div class='text-gray-700 flex items-center space-x-2'> ${data["data"]["post_time"]}
-                                <i class='fas fa-user-friends'></i>
+                               ${data["data"]["post_role"]}
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@ share.onclick = () => {
                             <div class='flex-1 font-semibold capitalize'>
                                 <a href='#' class='text-black dark:text-gray-100'>${data["user"]["fname"]} ${data["user"]["lname"]}</a>
                                 <div class='text-gray-700 flex items-center space-x-2'> ${data["data"]["post_time"]}
-                                <i class='fas fa-user-friends'></i>
+                                ${data["data"]["post_role"]}
                                 </div>
                             </div>
                         </div>
@@ -293,12 +293,12 @@ share.onclick = () => {
                     //   ajax nút like nha
                     //   ================================================================
 
-                    (function () {
+                    (function() {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
                             const likeBtns = e.querySelector(".like-btn");
-                            likeBtns.addEventListener("click", function () {
+                            likeBtns.addEventListener("click", function() {
                                 likeBtns.classList.toggle("active");
                                 let postId = likeBtns.getAttribute("data");
                                 let likeContainer =
@@ -339,7 +339,7 @@ share.onclick = () => {
                     })();
 
                     // ajax com men
-                    (function () {
+                    (function() {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
@@ -382,18 +382,21 @@ share.onclick = () => {
                     })();
 
                     // Tải ảnh
-                    (function () {
+                    (function() {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
                             const downloadBtn = e.querySelector(".ajax-download-btn");
-                            downloadBtn.addEventListener("click", function () {
-                                const img = e.querySelector(".ajax-image");
+                            if (downloadBtn) {
 
-                                let imgUrl = img.getAttribute("src");
-                                const imgName = imgUrl.substring(imgUrl.lastIndexOf("/") + 1);
-                                saveAs(imgUrl, imgName);
-                            });
+                                downloadBtn.addEventListener("click", function() {
+                                    const img = e.querySelector(".ajax-image");
+
+                                    let imgUrl = img.getAttribute("src");
+                                    const imgName = imgUrl.substring(imgUrl.lastIndexOf("/") + 1);
+                                    saveAs(imgUrl, imgName);
+                                });
+                            }
                         });
                     })();
                 } else {

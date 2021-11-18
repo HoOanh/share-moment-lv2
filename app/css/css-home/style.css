@@ -7802,7 +7802,7 @@ header .header_inner .right_side {
 .header-search-icon::before {
   font-family: var(--fa-style-family, "Font Awesome 6 Free") !important;
   font-size: 22px;
-  content: "\e9c1";
+  content: "\f002";
   line-height: 30px;
   top: 50%;
   left: 50%;
@@ -8018,6 +8018,7 @@ header .header_inner .right_side {
   font-size: 30px;
   margin-bottom: 7px;
   margin-top: 10px;
+  text-align: center;
 }
 
 .profile.user-profile .profiles_content .profile_info p {
@@ -9866,7 +9867,7 @@ body.story-active header .header_widgets .is_link {
     right: 8px;
   }
   .show-searchbox .header-search-icon::before {
-    content: "\ea02";
+    content: "\f00d";
   }
 }
 
