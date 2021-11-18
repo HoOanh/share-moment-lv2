@@ -10,7 +10,7 @@
 
     <!-- Basic Page Needs
         ================================================== -->
-    <title><?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?></title>
+    <title>Sharemoment | <?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
@@ -281,12 +281,12 @@
 
                     <div class="profiles_banner">
                         <img src="../../images/background/<?= $timeline_user['bg_user'] ?>" alt="">
-                        <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
+                        <!-- <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
                             <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
                                 <i class="far fa-edit"></i>
                                 <span> Chỉnh sửa </span>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="profiles_content">
 
@@ -302,7 +302,7 @@
 
                         <div class="profile_info">
                             <h1> <?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?> </h1>
-                            <!-- <p> Family , Food , Fashion , Fourever <a href="#">Edit </a></p> -->
+                            <p> Family , Food , Fashion , Fourever </p>
                         </div>
 
                     </div>
@@ -487,7 +487,7 @@
                                                         <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                                                     </a>
                                                     <div class='flex-1 font-semibold capitalize'>
-                                                        <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                                                        <a href='?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                                                         <div class='text-gray-700 flex items-center space-x-2'> $time
                                                             $role
                                                         </div>
@@ -609,7 +609,7 @@
                                                         <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                                                     </a>
                                                     <div class='flex-1 font-semibold capitalize'>
-                                                        <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                                                        <a href='?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                                                         <div class='text-gray-700 flex items-center space-x-2'> $time
                                                         $role
                                                         </div>
@@ -750,18 +750,33 @@
                                 <h4 class="text-lg font-semibold"> Giới thiệu </h4>
                                 <ul class="text-gray-600 space-y-3 mt-3">
                                     <li class="flex items-center space-x-2">
-                                        <i class="fas fa-envelope mr-1"></i>
+                                        <i class="fas fa-home rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đang sống ở: <strong> Cairo , Eygept </strong>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i class="fas fa-globe-europe rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đến Từ: <strong> Aden , Yemen </strong>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i class="fas fa-envelope rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
                                         Email: <strong> <?= $timeline_user['email'] ?> </strong>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i class="fas fa-birthday-cake rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Sinh Nhật: <strong> Chưa cập nhật </strong>
                                     </li>
 
                                 </ul>
                                 <div class="gap-3 grid grid-cols-3 mt-4">
                                     <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="object-cover rounded-lg col-span-full">
+                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
+                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
+                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
                                     <!-- <img src="assets/images/avatars/avatar-2.jpg" alt="" class="rounded-lg">
                                     <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-lg">
                                     <img src="assets/images/avatars/avatar-5.jpg" alt="" class="rounded-lg"> -->
                                 </div>
-                                <a href="#" class="button gray mt-3 w-full"> Chỉnh sửa </a>
+                                <!-- <a href="#" class="button gray mt-3 w-full"> Chỉnh sửa </a> -->
                             </div>
 
                             <?php
