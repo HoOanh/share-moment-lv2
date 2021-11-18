@@ -526,13 +526,13 @@
 
                 <div class="contact-list my-2 ml-1">
                     <?php
-                    $sql="SELECT * FROM users WHERE role = 1";
+                    $sql = "SELECT * FROM users WHERE role = 1";
                     $admin = pdo_get_all_rows($sql);
 
                     foreach ($admin as $item) {
-                       extract($item);
-                       if ($user_status == "Đang hoạt động") $status ="user_status status_online";
-                      echo "
+                        extract($item);
+                        if ($user_status == "Đang hoạt động") $status = "user_status status_online";
+                        echo "
                       <a href='../timeline/?timeline_id={$unique_id}'>
                         <div class='contact-avatar'>
                             <img src='../../images/user/$img' >
@@ -543,7 +543,7 @@
                       ";
                     }
                     ?>
-                               
+
 
                 </div>
 
@@ -647,7 +647,7 @@
                             </div>
                                 ";
                             }
-                            
+
                             $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
                             $res3 = pdo_get_all_rows($sql3, $post_id);
                             $moreCmt = "";
@@ -704,7 +704,10 @@
                                                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                                         <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
                                                     </a>
-                                                </li>
+                                                </li>";
+
+                                if ($unique_id === $_SESSION['unique_id']) {
+                                    echo "
                                                 <li>
                                                     <hr class='-mx-2 my-2 dark:border-gray-800'>
                                                 </li>
@@ -712,9 +715,11 @@
                                                     <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
                                                         <i class='far fa-trash-alt mr-1'></i> Xóa bài viết
                                                     </a>
-                                                </li>
-                                            </ul>
+                                                </li>";
+                                }
 
+                                echo "
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -831,17 +836,20 @@
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                                     <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
                                                 </a>
-                                            </li>
-                                            <li>
-                                                <hr class='-mx-2 my-2 dark:border-gray-800'>
-                                            </li>
-                                            <li post_id='$post_id' unique_id='$unique_id' listener='false' class='deleteBtn'>
-                                                <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                                    <i class='far fa-trash-alt mr-1'></i> Xóa bài viết
-                                                </a>
-                                            </li>
+                                                </li>";
+                                if ($unique_id === $_SESSION['unique_id']) {
+                                    echo "
+                                                <li>
+                                                    <hr class='-mx-2 my-2 dark:border-gray-800'>
+                                                </li>
+                                                <li post_id='$post_id' unique_id='$unique_id' listener='false' class='deleteBtn'>
+                                                    <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
+                                                        <i class='far fa-trash-alt mr-1'></i> Xóa bài viết
+                                                    </a>
+                                                </li>";
+                                }
+                                echo "
                                         </ul>
-
                                     </div>
                                 </div>
                             </div>
@@ -937,14 +945,14 @@
                         <h3 class="text-xl font-semibold"> Liên lạc </h3>
 
                         <div class="" uk-sticky="offset:80">
-                        <?php 
-                            $sql= "select count(*) as total from users";
+                            <?php
+                            $sql = "select count(*) as total from users";
                             $res = pdo_get_one_row($sql);
-                        
-                        ?>
+
+                            ?>
                             <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                                 <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">
-                                    <li class="uk-active"><a class="active" href="#0"> Người dùng <span><?php echo $res['total']?></span> </a></li>
+                                    <li class="uk-active"><a class="active" href="#0"> Người dùng <span><?php echo $res['total'] ?></span> </a></li>
                                     <li><a href="#0">Nhóm</a></li>
                                 </ul>
                             </nav>
