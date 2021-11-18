@@ -524,36 +524,28 @@
 
                 <h3 class="side-title"> Liên Hệ </h3>
 
-                <!-- <div class="contact-list my-2 ml-1">
+                <div class="contact-list my-2 ml-1">
+                    <?php
+                    $sql="SELECT * FROM users WHERE role = 1";
+                    $admin = pdo_get_all_rows($sql);
 
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                            <span class="user_status status_online"></span>
+                    foreach ($admin as $item) {
+                       extract($item);
+                       if ($user_status == "Đang hoạt động") $status ="user_status status_online";
+                      echo "
+                      <a href='../timeline/?timeline_id={$unique_id}'>
+                        <div class='contact-avatar'>
+                            <img src='../../images/user/$img' >
+                            <span class='user_status $status'></span>
                         </div>
-                        <div class="contact-username"> Dennis Han</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                            <span class="user_status"></span>
-                        </div>
-                        <div class="contact-username"> Erica Jones</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-7.jpg" alt="">
-                        </div>
-                        <div class="contact-username">Stella Johnson</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                        </div>
-                        <div class="contact-username"> Alex Dolgove</div>
-                    </a>
+                        <div class='contact-username'>$fname $lname </div>
+                    </a>     
+                      ";
+                    }
+                    ?>
+                               
 
-                </div> -->
+                </div>
 
 
                 <div class="footer-links">
@@ -681,7 +673,7 @@
                                             <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                                         </a>
                                         <div class='flex-1 font-semibold capitalize'>
-                                            <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                                            <a href='../timeline/?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                                             <div class='text-gray-700 flex items-center space-x-2'> $time
                                                 <i class='fas fa-user-friends'></i>
                                             </div>
@@ -804,7 +796,7 @@
                                         <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                                     </a>
                                     <div class='flex-1 font-semibold capitalize'>
-                                        <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                                        <a href='../timeline/?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                                         <div class='text-gray-700 flex items-center space-x-2'> $time
                                         <i class='fas fa-user-friends'></i>
                                         </div>
@@ -859,8 +851,8 @@
                             </div>
 
                             <div uk-lightbox>
-                                <a href='../../images/post/$img_post'>
-                                    <img src='../../images/post/$img_post' alt='' class='max-h-96 w-full object-cover ajax-image'>
+                                <a href=\"../../images/post/$img_post\">
+                                    <img src=\"../../images/post/$img_post\" alt='' class='max-h-96 w-full object-cover ajax-image'>
                                 </a>
                             </div>
 

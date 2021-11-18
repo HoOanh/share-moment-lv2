@@ -36,7 +36,7 @@ share.onclick = () => {
                         newPost += `<div class='card lg:mx-0 uk-animation-slide-bottom-small'><div class='flex justify-between items-center lg:p-4 p-2.5'>
                         <div class='flex flex-1 items-center space-x-4'>
                             <a href='#'>
-                                <img src='../../images/user/${data["user"]["img"]}' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
+                                <img src=\"../../images/user/${data["user"]["img"]}\" class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                             </a>
                             <div class='flex-1 font-semibold capitalize'>
                                 <a href='#' class='text-black dark:text-gray-100'>${data["user"]["fname"]} ${data["user"]["lname"]}</a>
@@ -220,8 +220,8 @@ share.onclick = () => {
                     </div>
 
                     <div uk-lightbox>
-                        <a href='../../images/post/${data["data"]["post_img"]}'>
-                            <img src='../../images/post/${data["data"]["post_img"]}' alt='' class='max-h-96 w-full object-cover ajax-image'>
+                        <a href=\"../../images/post/${data["data"]["post_img"]}\">
+                            <img src=\"../../images/post/${data["data"]["post_img"]}\" alt='' class='max-h-96 w-full object-cover ajax-image'>
                         </a>
                     </div>
 

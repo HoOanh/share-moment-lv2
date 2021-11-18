@@ -17,7 +17,7 @@ foreach ($kq as $item) {
     else $status = "user_status";
     $output .= "
 
-    <a href='#'>
+    <a href='../timeline/?timeline_id={$item['unique_id']}'>
     <div class='contact-avatar'>
         <img src='../../images/user/$img' >
         <span class='{$status}'></span>

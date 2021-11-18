@@ -10,7 +10,7 @@
 
     <!-- Basic Page Needs
         ================================================== -->
-    <title><?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?></title>
+    <title>Sharemoment | <?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
@@ -234,38 +234,26 @@
                 </a>
 
                 <h3 class="side-title"> Liên Hệ </h3>
+                <div class="contact-list my-2 ml-1">
+                <?php
+                    $sql="SELECT * FROM users WHERE role = 1";
+                    $admin = pdo_get_all_rows($sql);
 
-                <!-- <div class="contact-list my-2 ml-1">
-
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                            <span class="user_status status_online"></span>
+                    foreach ($admin as $item) {
+                       extract($item);
+                       if ($user_status == "Đang hoạt động") $status ="user_status status_online";
+                      echo "
+                      <a href='?timeline_id={$unique_id}'>
+                        <div class='contact-avatar'>
+                            <img src='../../images/user/$img' >
+                            <span class='user_status $status '></span>
                         </div>
-                        <div class="contact-username"> Dennis Han</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                            <span class="user_status"></span>
-                        </div>
-                        <div class="contact-username"> Erica Jones</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-7.jpg" alt="">
-                        </div>
-                        <div class="contact-username">Stella Johnson</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                        </div>
-                        <div class="contact-username"> Alex Dolgove</div>
-                    </a>
-
-                </div> -->
-
+                        <div class='contact-username'>$fname $lname </div>
+                    </a>     
+                      ";
+                    }
+                    ?>
+                </div>
 
                 <div class="footer-links">
                     <a href="#">About</a>
@@ -293,12 +281,12 @@
 
                     <div class="profiles_banner">
                         <img src="../../images/background/<?= $timeline_user['bg_user'] ?>" alt="">
-                        <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
+                        <!-- <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
                             <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
                                 <i class="far fa-edit"></i>
                                 <span> Chỉnh sửa </span>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="profiles_content">
 
@@ -314,7 +302,7 @@
 
                         <div class="profile_info">
                             <h1> <?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?> </h1>
-                            <!-- <p> Family , Food , Fashion , Fourever <a href="#">Edit </a></p> -->
+                            <p> Family , Food , Fashion , Fourever </p>
                         </div>
 
                     </div>
@@ -499,7 +487,7 @@
                                                         <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                                                     </a>
                                                     <div class='flex-1 font-semibold capitalize'>
-                                                        <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                                                        <a href='?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                                                         <div class='text-gray-700 flex items-center space-x-2'> $time
                                                             $role
                                                         </div>
@@ -621,7 +609,7 @@
                                                         <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                                                     </a>
                                                     <div class='flex-1 font-semibold capitalize'>
-                                                        <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                                                        <a href='?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                                                         <div class='text-gray-700 flex items-center space-x-2'> $time
                                                         $role
                                                         </div>
@@ -762,18 +750,33 @@
                                 <h4 class="text-lg font-semibold"> Giới thiệu </h4>
                                 <ul class="text-gray-600 space-y-3 mt-3">
                                     <li class="flex items-center space-x-2">
-                                        <i class="fas fa-envelope mr-1"></i>
+                                        <i class="fas fa-home rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đang sống ở: <strong> Cairo , Eygept </strong>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i class="fas fa-globe-europe rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đến Từ: <strong> Aden , Yemen </strong>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i class="fas fa-envelope rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
                                         Email: <strong> <?= $timeline_user['email'] ?> </strong>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i class="fas fa-birthday-cake rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Sinh Nhật: <strong> Chưa cập nhật </strong>
                                     </li>
 
                                 </ul>
                                 <div class="gap-3 grid grid-cols-3 mt-4">
                                     <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="object-cover rounded-lg col-span-full">
+                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
+                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
+                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
                                     <!-- <img src="assets/images/avatars/avatar-2.jpg" alt="" class="rounded-lg">
                                     <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-lg">
                                     <img src="assets/images/avatars/avatar-5.jpg" alt="" class="rounded-lg"> -->
                                 </div>
-                                <a href="#" class="button gray mt-3 w-full"> Chỉnh sửa </a>
+                                <!-- <a href="#" class="button gray mt-3 w-full"> Chỉnh sửa </a> -->
                             </div>
 
                             <?php
@@ -819,6 +822,56 @@
                                 <a href="#" class="button gray mt-3 w-full"> Xem tất cả </a>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Photos  -->
+                    <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+
+                        <div class="flex justify-between items-start relative md:mb-4 mb-3">
+                            <div class="flex-1">
+                                <h2 class="text-xl font-bold"> Photos </h2>
+                                <nav class="responsive-nav style-2 md:m-0 -mx-4">
+                                    <ul>
+                                        <li class="active"><a href="#">  Photos of you  <span> 230</span> </a></li>
+                                        
+                                    </ul>
+                                </nav>
+                            </div>
+                            
+                        </div>
+
+                        <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3 mt-5">
+                            <?php 
+                            
+                                $sql = "select * from post where unique_id = ? and img_post != ''";
+                                $unique_id = $_SESSION['unique_id'];
+                                if(isset($_GET['timeline_id'])){
+                                    $unique_id = $_GET['timeline_id'];
+                                }
+
+                                $allImages = pdo_get_all_rows($sql,$unique_id);
+
+                                foreach($allImages as $img){
+                                    echo " <div>
+                                    <div class='bg-green-400 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle'>
+                                       <img src='../../images/post/{$img['img_post']}' class='w-full h-full absolute object-cover inset-0'>
+                                        <!-- overly-->
+                                        <div class='-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full'></div>
+                                        
+                                    </div>
+                                </div>";
+                                }
+                            
+                            ?>
+                           
+                           
+                        </div>
+
+                        <div class="flex justify-center mt-6">
+                            <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
+                                Load more ..</a>
+                        </div>
+
                     </div>
 
                 </div>
