@@ -73,8 +73,8 @@ share.onclick = () => {
                                     <li>
                                         <hr class='-mx-2 my-2 dark:border-gray-800'>
                                     </li>
-                                    <li data='${data["data"]["post_id"]} ${data["user"]["unique_id"]}' class='deleteBtn' >
-                                        <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
+                                    <li post_id='${data["data"]["post_id"]}' unique_id='${data["user"]["unique_id"]}' listener='false' class='deleteBtn' >
+                                        <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
                                             <i class='far fa-trash-alt mr-1'></i> Delete
                                         </a>
                                     </li>
@@ -204,8 +204,8 @@ share.onclick = () => {
                                     <li>
                                         <hr class='-mx-2 my-2 dark:border-gray-800'>
                                     </li>
-                                    <li data='${data["data"]["post_id"]} ${data["user"]["unique_id"]}' class='deleteBtn'>
-                                        <a href='#' class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
+                                    <li post_id='${data["data"]["post_id"]}' unique_id='${data["user"]["unique_id"]}' listener='false' class='deleteBtn'>
+                                        <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
                                             <i class='far fa-trash-alt mr-1'></i> Delete
                                         </a>
                                     </li>
@@ -293,12 +293,12 @@ share.onclick = () => {
                     //   ajax nút like nha
                     //   ================================================================
 
-                    (function() {
+                    (function () {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
                             const likeBtns = e.querySelector(".like-btn");
-                            likeBtns.addEventListener("click", function() {
+                            likeBtns.addEventListener("click", function () {
                                 likeBtns.classList.toggle("active");
                                 let postId = likeBtns.getAttribute("data");
                                 let likeContainer =
@@ -339,7 +339,7 @@ share.onclick = () => {
                     })();
 
                     // ajax com men
-                    (function() {
+                    (function () {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
@@ -382,14 +382,14 @@ share.onclick = () => {
                     })();
 
                     // Tải ảnh
-                    (function() {
+                    (function () {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
                             const downloadBtn = e.querySelector(".ajax-download-btn");
                             if (downloadBtn) {
 
-                                downloadBtn.addEventListener("click", function() {
+                                downloadBtn.addEventListener("click", function () {
                                     const img = e.querySelector(".ajax-image");
 
                                     let imgUrl = img.getAttribute("src");
@@ -399,6 +399,52 @@ share.onclick = () => {
                             }
                         });
                     })();
+
+                    // Xóa ảnh
+                    (function () {
+                        let deleteBtn = document.querySelectorAll('.deleteBtn');
+
+                        deleteBtn.forEach(item => {
+
+                            if (item.getAttribute('listener') !== "true") {
+                                item.setAttribute('listener', 'true');
+
+                                item.addEventListener('click', function () {
+
+                                    let post_id = item.getAttribute('post_id'); //Data bao gồm post_id và unique_id người đăng
+                                    let unique_id = item.getAttribute('unique_id');
+
+                                    let check = confirm('Xóa bài viết này nhé ?');
+
+                                    if (check) {
+                                        const http = new XMLHttpRequest();
+                                        http.open("post", "../../back-end/deletePost.php", true);
+
+                                        http.onload = () => {
+                                            if (http.readyState === XMLHttpRequest.DONE) {
+                                                if (http.status === 200) {
+                                                    var data = http.response;
+
+                                                    alert(data);
+                                                    if (data == "Xóa thành công") {
+                                                        item.parentNode.parentNode.parentNode.parentNode.parentNode.remove(item);
+                                                    }
+                                                    console.log(data);
+
+                                                }
+                                            }
+                                        };
+
+                                        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                                        http.send('post_id=' + post_id + '&unique_id=' + unique_id);
+                                    }
+
+                                })
+                            }
+                        })
+                    })()
+
                 } else {
                     alert(data["data"]);
                 }
