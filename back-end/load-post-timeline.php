@@ -8,9 +8,10 @@ $output = ['data' => '', 'status' => true, 'soluong' => 0];
 
 $start = intval($_GET['start']);
 $quantity = intval($_GET['quantity']);
-$timeline_id = intval($_GET['timeline_id']);
 
-if ($timeline_id != $_POST['unique_id']) $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.unique_id = ?) and (post.post_role = 1) ORDER BY post_id DESC LIMIT {$start},{$quantity}";
+$timeline_id = $_GET['timeline_id'];
+
+if ($timeline_id != $_SESSION['unique_id']) $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.unique_id = ?) and (post.post_role = 1) ORDER BY post_id DESC LIMIT {$start},{$quantity}";
 else $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.unique_id = ?) ORDER BY post_id DESC LIMIT {$start},{$quantity}";
 
 $feedList = pdo_get_all_rows($sql2, $timeline_id);
