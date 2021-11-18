@@ -80,6 +80,11 @@ if ($videoCheck) {
             $time = time();
             $final_video = $time . $img_name;
 
+            $final_video = str_replace(array(
+                '\'', '"',
+                ',', ';', '<', '>'
+            ), '', $final_video);
+
             if (move_uploaded_file($video_tmp_name, "../video/post/" . $final_video)) {
                 $output['type'] = 'video';
             } else {
@@ -111,6 +116,11 @@ if ($imgCheck) {
         $time = time(); // ta
         $final_img = $time . $img_name;
 
+        $final_img = str_replace(array(
+            '\'', '"',
+            ',', ';', '<', '>'
+        ), '', $final_img);
+
         // (Nơi ở ban đầu, điểm đến, tên ảnh)
         if (move_uploaded_file($img_tmp_name, "../images/post/" . $final_img)) {
             $output['type'] = 'img';
@@ -134,7 +144,7 @@ if ($check) {
         $output['data']['post_img'] = $final_img;
         $output['data']['post_video'] = $final_video;
         $output['data']['post_time'] = $post_time;
-        
+
         if ($post_role) $role = "<i class='fas fa-user-friends ml-1'></i>";
         else $role = "<i class='fas fa-user-lock ml-1'></i>";
 

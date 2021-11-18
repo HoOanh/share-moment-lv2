@@ -821,6 +821,56 @@
                         </div>
                     </div>
 
+                    <!-- Photos  -->
+                    <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+
+                        <div class="flex justify-between items-start relative md:mb-4 mb-3">
+                            <div class="flex-1">
+                                <h2 class="text-xl font-bold"> Photos </h2>
+                                <nav class="responsive-nav style-2 md:m-0 -mx-4">
+                                    <ul>
+                                        <li class="active"><a href="#">  Photos of you  <span> 230</span> </a></li>
+                                        
+                                    </ul>
+                                </nav>
+                            </div>
+                            
+                        </div>
+
+                        <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3 mt-5">
+                            <?php 
+                            
+                                $sql = "select * from post where unique_id = ? and img_post != ''";
+                                $unique_id = $_SESSION['unique_id'];
+                                if(isset($_GET['timeline_id'])){
+                                    $unique_id = $_GET['timeline_id'];
+                                }
+
+                                $allImages = pdo_get_all_rows($sql,$unique_id);
+
+                                foreach($allImages as $img){
+                                    echo " <div>
+                                    <div class='bg-green-400 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle'>
+                                       <img src='../../images/post/{$img['img_post']}' class='w-full h-full absolute object-cover inset-0'>
+                                        <!-- overly-->
+                                        <div class='-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full'></div>
+                                        
+                                    </div>
+                                </div>";
+                                }
+                            
+                            ?>
+                           
+                           
+                        </div>
+
+                        <div class="flex justify-center mt-6">
+                            <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
+                                Load more ..</a>
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
