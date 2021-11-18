@@ -424,12 +424,10 @@ share.onclick = () => {
                                             if (http.readyState === XMLHttpRequest.DONE) {
                                                 if (http.status === 200) {
                                                     var data = http.response;
-
-                                                    alert(data);
+                                                    
                                                     if (data == "Xóa thành công") {
                                                         item.parentNode.parentNode.parentNode.parentNode.parentNode.remove(item);
                                                     }
-                                                    console.log(data);
 
                                                 }
                                             }
