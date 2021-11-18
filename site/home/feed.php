@@ -850,8 +850,8 @@
                             </div>
 
                             <div uk-lightbox>
-                                <a href='../../images/post/$img_post'>
-                                    <img src='../../images/post/$img_post' alt='' class='max-h-96 w-full object-cover ajax-image'>
+                                <a href=\"../../images/post/$img_post\">
+                                    <img src=\"../../images/post/$img_post\" alt='' class='max-h-96 w-full object-cover ajax-image'>
                                 </a>
                             </div>
 
