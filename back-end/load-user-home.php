@@ -11,11 +11,11 @@ $output = "";
 foreach ($kq as $item) {
     if ($item['unique_id'] == $_SESSION['unique_id']) {
         continue;
-      }
+    }
     extract($item);
-    if ($user_status == "Đang hoạt động") $status ="user_status status_online" ;
-    else $status ="user_status";
-    $output.="
+    if ($user_status == "Đang hoạt động") $status = "user_status status_online";
+    else $status = "user_status";
+    $output .= "
 
     <a href='#'>
     <div class='contact-avatar'>
@@ -38,14 +38,11 @@ foreach ($kq as $item) {
         <div class='contact-list-box-btns'>
         <a href='../chat?box_id=$unique_id'>
             <button type='button' class='button primary flex-1 block mr-2'>
-                <i class='uil-envelope mr-1'></i> Send message</button>
+                <i class='uil-envelope mr-1'></i> Nhắn tin </button>
                 </a>  
         </div>
     </div>
     </div>
-    
-    
-    
     ";
 }
 

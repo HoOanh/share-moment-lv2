@@ -3,20 +3,20 @@ session_start();
 require '../dao/pdo.php';
 
 $post_id = $_POST['post_id'];
-$output = ['data'=>''];
+$output = ['data' => ''];
 
-   
-    $sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc";
-    $res2 = pdo_get_all_rows($sql2, $post_id);
 
-    $allCmt = '';
-    foreach($res2 as $cmt){
-        
-        extract($cmt);
+$sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc";
+$res2 = pdo_get_all_rows($sql2, $post_id);
 
-        $sql = "SELECT * FROM users WHERE unique_id = ?";
-        $getUserCmt = pdo_get_one_row($sql, $unique_id);
-        $allCmt .="
+$allCmt = '';
+foreach ($res2 as $cmt) {
+
+    extract($cmt);
+
+    $sql = "SELECT * FROM users WHERE unique_id = ?";
+    $getUserCmt = pdo_get_one_row($sql, $unique_id);
+    $allCmt .= "
         <div class='flex'>
         <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
             <img src='../../images/user/{$getUserCmt['img']}' alt='' class='absolute h-full rounded-full w-full'>
@@ -36,10 +36,7 @@ $output = ['data'=>''];
         </div>
     </div>
         ";
-    }
+}
+
 $output['data'] = $allCmt;
-die(json_encode($output)) ;
-
-
-
-?>
+die(json_encode($output));

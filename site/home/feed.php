@@ -655,6 +655,7 @@
                             </div>
                                 ";
                             }
+                            
                             $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
                             $res3 = pdo_get_all_rows($sql3, $post_id);
                             $moreCmt = "";
@@ -699,17 +700,17 @@
                                                 </li>
                                                 <li>
                                                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='far fa-edit mr-1'></i> Chỉnh sữa
+                                                        <i class='far fa-edit mr-1'></i> Chỉnh sửa
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='uil-comment-slash mr-1'></i> Disable comments
+                                                        <i class='uil-comment-slash mr-1'></i> Tắt bình luận
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='uil-favorite mr-1'></i> Add favorites
+                                                        <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
                                                     </a>
                                                 </li>
                                                 <li>
@@ -717,7 +718,7 @@
                                                 </li>
                                                 <li post_id='$post_id' unique_id='$unique_id' listener='false' class='deleteBtn'>
                                                     <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                                        <i class='far fa-trash-alt mr-1'></i> Delete
+                                                        <i class='far fa-trash-alt mr-1'></i> Xóa bài viết
                                                     </a>
                                                 </li>
                                             </ul>
@@ -821,22 +822,22 @@
                                             </li>
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                      <i class='fas fa-share-alt mr-1'></i> Chia sẽ
+                                                      <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='far fa-edit mr-1'></i> Chỉnh sữa
+                                                    <i class='far fa-edit mr-1'></i> Chỉnh sửa
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='uil-comment-slash mr-1'></i> Disable comments
+                                                    <i class='uil-comment-slash mr-1'></i> Tắt bình luận
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='uil-favorite mr-1'></i> Add favorites
+                                                    <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
                                                 </a>
                                             </li>
                                             <li>
@@ -844,7 +845,7 @@
                                             </li>
                                             <li post_id='$post_id' unique_id='$unique_id' listener='false' class='deleteBtn'>
                                                 <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                                    <i class='far fa-trash-alt mr-1'></i> Delete
+                                                    <i class='far fa-trash-alt mr-1'></i> Xóa bài viết
                                                 </a>
                                             </li>
                                         </ul>
