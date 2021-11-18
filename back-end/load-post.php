@@ -78,7 +78,7 @@ foreach ($feedList as $item) {
                     <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
                 </a>
                 <div class='flex-1 font-semibold capitalize'>
-                    <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                    <a href='../timeline/?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                     <div class='text-gray-700 flex items-center space-x-2'> $time
                     <i class='fas fa-user-friends'></i>
                     </div>
@@ -205,7 +205,7 @@ foreach ($feedList as $item) {
                 <img src='../../images/user/$img' class='bg-gray-200 border border-white rounded-full w-10 h-10'>
             </a>
             <div class='flex-1 font-semibold capitalize'>
-                <a href='#' class='text-black dark:text-gray-100'> $fname $lname </a>
+                <a href='../timeline/?timeline_id=$unique_id' class='text-black dark:text-gray-100'> $fname $lname </a>
                 <div class='text-gray-700 flex items-center space-x-2'> $time
                 <i class='fas fa-user-friends'></i>
                 </div>
