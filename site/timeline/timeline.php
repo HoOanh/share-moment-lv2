@@ -235,14 +235,14 @@
 
                 <h3 class="side-title"> Liên Hệ </h3>
                 <div class="contact-list my-2 ml-1">
-                <?php
-                    $sql="SELECT * FROM users WHERE role = 1";
+                    <?php
+                    $sql = "SELECT * FROM users WHERE role = 1";
                     $admin = pdo_get_all_rows($sql);
 
                     foreach ($admin as $item) {
-                       extract($item);
-                       if ($user_status == "Đang hoạt động") $status ="user_status status_online";
-                      echo "
+                        extract($item);
+                        if ($user_status == "Đang hoạt động") $status = "user_status status_online";
+                        echo "
                       <a href='?timeline_id={$unique_id}'>
                         <div class='contact-avatar'>
                             <img src='../../images/user/$img' >
@@ -310,11 +310,10 @@
                     <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
                         <nav class="responsive-nav pl-3">
                             <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
-                                <li><a href="#">Dòng thời gian</a></li>
-                                <li><a href="#">Hình ảnh </a></li>
-                                <li><a href="#">Trang</a></li>
-                                <li><a href="#">Nhóm</a></li>
-                                <li><a href="#">Videos</a></li>
+                                <li><a href="">Dòng thời gian</a></li>
+                                <li><a href="">Hình ảnh </a></li>
+                                <li><a href="">Video</a></li>
+
                             </ul>
                         </nav>
 
@@ -825,34 +824,37 @@
                     </div>
 
                     <!-- Photos  -->
+                    <?php
+
+                    $sql = "select * from post where unique_id = ? and img_post != ''";
+                    $unique_id = $_SESSION['unique_id'];
+                    if (isset($_GET['timeline_id'])) {
+                        $unique_id = $_GET['timeline_id'];
+                    }
+
+                    $allImages = pdo_get_all_rows($sql, $unique_id); ?>
+
+
+
                     <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
                         <div class="flex justify-between items-start relative md:mb-4 mb-3">
                             <div class="flex-1">
-                                <h2 class="text-xl font-bold"> Photos </h2>
+                                <h2 class="text-xl font-bold"> Hình ảnh </h2>
                                 <nav class="responsive-nav style-2 md:m-0 -mx-4">
                                     <ul>
-                                        <li class="active"><a href="#">  Photos of you  <span> 230</span> </a></li>
-                                        
+                                        <li class="active"><a href="#"><span><?php echo count($allImages) ?></span> bức ảnh</a></li>
                                     </ul>
                                 </nav>
                             </div>
-                            
+
                         </div>
 
                         <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3 mt-5">
-                            <?php 
-                            
-                                $sql = "select * from post where unique_id = ? and img_post != ''";
-                                $unique_id = $_SESSION['unique_id'];
-                                if(isset($_GET['timeline_id'])){
-                                    $unique_id = $_GET['timeline_id'];
-                                }
 
-                                $allImages = pdo_get_all_rows($sql,$unique_id);
-
-                                foreach($allImages as $img){
-                                    echo " <div>
+                            <?php
+                            foreach ($allImages as $img) {
+                                echo " <div>
                                     <div class='bg-green-400 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle'>
                                        <img src='../../images/post/{$img['img_post']}' class='w-full h-full absolute object-cover inset-0'>
                                         <!-- overly-->
@@ -860,176 +862,168 @@
                                         
                                     </div>
                                 </div>";
-                                }
+                            }
+
+                            ?>
+
+
+                        </div>
+
+                       
+                    </div>
+
+
+
+                    <!-- Videos -->
+                    <?php
+
+                    $sql = "select * from post where unique_id = ? and post_video != ''";
+                    $unique_id = $_SESSION['unique_id'];
+                    if (isset($_GET['timeline_id'])) {
+                        $unique_id = $_GET['timeline_id'];
+                    }
+
+                    $allVideos = pdo_get_all_rows($sql, $unique_id); ?>
+
+
+
+                    <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+
+                        <h2 class="text-xl font-semibold"> Video</h2>
+                        <nav class="responsive-nav border-b">
+                            <ul>
+                                <li class="active"><a href="#" class="lg:px-2"> Có <span><?php echo count($allVideos)?> videos</span> </a></li>
+                            </ul>
+                        </nav>
+
+                        <div class='grid md:grid-cols-3 grid-cols-2  gap-x-2 gap-y-4 mt-3'>
+                            <?php 
+                            
+                            foreach($allVideos as $video){
+                                echo " <div>
+                                <!-- <a href='video-watch.html' class='w-full h-36 overflow-hidden rounded-lg relative block'>
+                                    <img src='assets/images/video/img-1.png'  class='w-full h-full absolute inset-0 object-cover'>
+                                    <span class='absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs'> 12:21</span>
+                                    <img src='assets/images/icon-play.svg' class='w-12 h-12 uk-position-center'>
+                                </a> -->
+                                <video controls src=\"../../video/post/{$video['post_video']}\"></video>
+                            </div>";
+                            }
                             
                             ?>
                            
-                           
-                        </div>
-
-                        <div class="flex justify-center mt-6">
-                            <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                                Load more ..</a>
+                            
                         </div>
 
                     </div>
 
                 </div>
-
             </div>
+
         </div>
 
-    </div>
+        <!-- Create post modal -->
+        <div id="create-post-modal" class="create-post is-story" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
+                <form id="form-post" enctype="multipart/form-data" method="post">
+                    <div class="text-center py-3 border-b">
+                        <h3 class="text-lg font-semibold"> Tạo bài viết </h3>
+                        <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+                    </div>
+                    <div class="flex flex-1 items-start space-x-4 p-5">
+                        <img src="../../images/user/<?= $userMain['img']; ?>" class="bg-gray-200 border border-white rounded-full w-11 h-11">
+                        <div class="flex-1 pt-2">
 
-    <!-- Create post modal -->
-    <div id="create-post-modal" class="create-post is-story" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
-            <form id="form-post" enctype="multipart/form-data" method="post">
-                <div class="text-center py-3 border-b">
-                    <h3 class="text-lg font-semibold"> Tạo bài viết </h3>
-                    <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
-                </div>
-                <div class="flex flex-1 items-start space-x-4 p-5">
-                    <img src="../../images/user/<?= $userMain['img']; ?>" class="bg-gray-200 border border-white rounded-full w-11 h-11">
-                    <div class="flex-1 pt-2">
+                            <textarea name="caption" class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="Bạn đang nghĩ gì ? <?= $userMain['lname']; ?> !"></textarea>
 
-                        <textarea name="caption" class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="Bạn đang nghĩ gì ? <?= $userMain['lname']; ?> !"></textarea>
-
-                        <!-- them anh -->
-                        <div class="add-img" style="display: none;">
-                            <img id="myImg" src="">
-                            <input class="file_img" type='file' name="img" />
-                        </div>
-
-                        <!-- them video -->
-                        <div class="add-video" style="display: none;">
-                            <div style="display: none;" class='video-prev' class="pull-right">
-                                <video class="video-preview" controls="controls" />
+                            <!-- them anh -->
+                            <div class="add-img" style="display: none;">
+                                <img id="myImg" src="">
+                                <input class="file_img" type='file' name="img" />
                             </div>
 
-                            <input class="upload-video-file" type='file' name="video" />
+                            <!-- them video -->
+                            <div class="add-video" style="display: none;">
+                                <div style="display: none;" class='video-prev' class="pull-right">
+                                    <video class="video-preview" controls="controls" />
+                                </div>
+
+                                <input class="upload-video-file" type='file' name="video" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="bsolute bottom-0 p-4 space-x-4 w-full">
+                        <div class="flex bg-gray-50 border border-purple-100 rounded-2xl p-2 shadow-sm items-center">
+                            <div class="lg:block hidden ml-1"> Thêm vào bài viết </div>
+                            <div class="flex flex-1 items-center lg:justify-end justify-center space-x-2">
+
+                                <svg class="add-img-post bg-blue-100 h-9 p-1.5 rounded-full text-blue-600 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <svg class="add-video-post text-red-600 h-9 p-1.5 rounded-full bg-red-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"> </path>
+                                </svg>
+                            </div>
                         </div>
                     </div>
+                    <div class="flex items-center w-full justify-between border-t p-3">
 
-                </div>
+                        <select class="selectpicker mt-2 story" name="post_role">
+                            <option value="1">Mọi người</option>
+                            <option value="0">Chỉ mình tôi</option>
+                        </select>
 
-                <div class="bsolute bottom-0 p-4 space-x-4 w-full">
-                    <div class="flex bg-gray-50 border border-purple-100 rounded-2xl p-2 shadow-sm items-center">
-                        <div class="lg:block hidden ml-1"> Thêm vào bài viết </div>
-                        <div class="flex flex-1 items-center lg:justify-end justify-center space-x-2">
-
-                            <svg class="add-img-post bg-blue-100 h-9 p-1.5 rounded-full text-blue-600 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                            <svg class="add-video-post text-red-600 h-9 p-1.5 rounded-full bg-red-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"> </path>
-                            </svg>
+                        <div class="flex space-x-2">
+                            <button type="submit" class="share-post bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
+                                Đăng </button>
                         </div>
+
                     </div>
-                </div>
-                <div class="flex items-center w-full justify-between border-t p-3">
-
-                    <select class="selectpicker mt-2 story" name="post_role">
-                        <option value="1">Mọi người</option>
-                        <option value="0">Chỉ mình tôi</option>
-                    </select>
-
-                    <div class="flex space-x-2">
-                        <button type="submit" class="share-post bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
-                            Đăng </button>
-                    </div>
-
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
 
 
-    <!-- Create new album -->
 
-    <div id="offcanvas-create" uk-offcanvas="flip: true; overlay: true">
-        <div class="uk-offcanvas-bar lg:w-4/12 w-full dark:bg-gray-700 dark:text-gray-300 p-0 bg-white flex flex-col justify-center">
-
-            <button class="uk-offcanvas-close absolute" type="button" uk-close></button>
-
-            <!-- notivication header -->
-            <div class="-mb-1 border-b font-semibold px-5 py-5 text-lg">
-                <h4> Create album </h4>
-            </div>
-
-            <div class="p-6 space-y-3 flex-1">
-                <div>
-                    <label> Album Name </label>
-                    <input type="text" class="with-border" placeholder="">
-                </div>
-                <div>
-                    <label> Visibilty </label>
-                    <select id="" name="" class="shadow-none selectpicker with-border">
-                        <option data-icon="uil-bullseye"> Private </option>
-                        <option data-icon="uil-chat-bubble-user">My Following</option>
-                        <option data-icon="uil-layer-group-slash">Unlisted</option>
-                        <option data-icon="uil-globe" selected>Puplic</option>
-                    </select>
-                </div>
-                <div uk-form-custom class="w-full py-3">
-                    <div class="bg-gray-100 border-2 border-dashed flex flex-col h-32 items-center justify-center relative w-full rounded-lg dark:bg-gray-800 dark:border-gray-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-12">
-                            <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                        </svg>
-                    </div>
-                    <input type="file">
-                </div>
-
-            </div>
-            <div class="p-5">
-                <button type="button" class="button w-full">
-                    Create Now
-                </button>
-            </div>
-
-
-        </div>
-    </div>
-
-
-    <!-- For Night mode -->
-    <script>
-        (function(window, document, undefined) {
-            'use strict';
-            if (!('localStorage' in window)) return;
-            var nightMode = localStorage.getItem('gmtNightMode');
-            if (nightMode) {
-                document.documentElement.className += ' night-mode';
-            }
-        })(window, document);
-
-        (function(window, document, undefined) {
-
-            'use strict';
-
-            // Feature test
-            if (!('localStorage' in window)) return;
-
-            // Get our newly insert toggle
-            var nightMode = document.querySelector('#night-mode');
-            if (!nightMode) return;
-
-            // When clicked, toggle night mode on or off
-            nightMode.addEventListener('click', function(event) {
-                event.preventDefault();
-                document.documentElement.classList.toggle('dark');
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('gmtNightMode', true);
-                    return;
+        <!-- For Night mode -->
+        <script>
+            (function(window, document, undefined) {
+                'use strict';
+                if (!('localStorage' in window)) return;
+                var nightMode = localStorage.getItem('gmtNightMode');
+                if (nightMode) {
+                    document.documentElement.className += ' night-mode';
                 }
-                localStorage.removeItem('gmtNightMode');
-            }, false);
+            })(window, document);
 
-        })(window, document);
-    </script>
+            (function(window, document, undefined) {
 
-    <!-- Javascript
+                'use strict';
+
+                // Feature test
+                if (!('localStorage' in window)) return;
+
+                // Get our newly insert toggle
+                var nightMode = document.querySelector('#night-mode');
+                if (!nightMode) return;
+
+                // When clicked, toggle night mode on or off
+                nightMode.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    document.documentElement.classList.toggle('dark');
+                    if (document.documentElement.classList.contains('dark')) {
+                        localStorage.setItem('gmtNightMode', true);
+                        return;
+                    }
+                    localStorage.removeItem('gmtNightMode');
+                }, false);
+
+            })(window, document);
+        </script>
+
+        <!-- Javascript
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="../../app/js/js-home/tippy.all.min.js"></script>
@@ -1041,163 +1035,163 @@
     <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
     <script src="../../app/ajax/delete-post.js"></script>
 
-    <!-- Ajax load
+        <!-- Ajax load
     ============================================= -->
-    <script src="../../app/ajax/loadMessUser.js"></script>
+        <script src="../../app/ajax/loadMessUser.js"></script>
 
-    <!-- script them video -->
-    <script>
-        $(function() {
-            $('.upload-video-file').on('change', function() {
-                if (isVideo($(this).val())) {
-                    $('.video-preview').attr('src', URL.createObjectURL(this.files[0]));
-                    $('.video-prev').show();
-                } else {
-                    $('.upload-video-file').val('');
-                    $('.video-prev').hide();
+        <!-- script them video -->
+        <script>
+            $(function() {
+                $('.upload-video-file').on('change', function() {
+                    if (isVideo($(this).val())) {
+                        $('.video-preview').attr('src', URL.createObjectURL(this.files[0]));
+                        $('.video-prev').show();
+                    } else {
+                        $('.upload-video-file').val('');
+                        $('.video-prev').hide();
+                    }
+                });
+            });
+
+            // If user tries to upload videos other than these extension , it will throw error.
+            function isVideo(filename) {
+                var ext = getExtension(filename);
+                switch (ext.toLowerCase()) {
+                    case 'm4v':
+                    case 'avi':
+                    case 'mp4':
+                    case 'mov':
+                    case 'mpg':
+                    case 'mpeg':
+                        // etc
+                        return true;
                 }
-            });
-        });
-
-        // If user tries to upload videos other than these extension , it will throw error.
-        function isVideo(filename) {
-            var ext = getExtension(filename);
-            switch (ext.toLowerCase()) {
-                case 'm4v':
-                case 'avi':
-                case 'mp4':
-                case 'mov':
-                case 'mpg':
-                case 'mpeg':
-                    // etc
-                    return true;
+                return false;
             }
-            return false;
-        }
 
-        function getExtension(filename) {
-            var parts = filename.split('.');
-            return parts[parts.length - 1];
-        }
-    </script>
+            function getExtension(filename) {
+                var parts = filename.split('.');
+                return parts[parts.length - 1];
+            }
+        </script>
 
-    <!-- them anh  -->
-    <script>
-        document.getElementsByClassName('add-img-post')[0].onclick = () => {
-            document.getElementsByClassName('add-img')[0].style.display = 'block';
-            document.getElementsByClassName('add-video')[0].style.display = 'none';
-            document.querySelector('.upload-video-file').value = '';
+        <!-- them anh  -->
+        <script>
+            document.getElementsByClassName('add-img-post')[0].onclick = () => {
+                document.getElementsByClassName('add-img')[0].style.display = 'block';
+                document.getElementsByClassName('add-video')[0].style.display = 'none';
+                document.querySelector('.upload-video-file').value = '';
 
-        }
-        document.getElementsByClassName('add-video-post')[0].onclick = () => {
-            document.getElementsByClassName('add-video')[0].style.display = 'block';
-            document.getElementsByClassName('add-img')[0].style.display = 'none';
+            }
+            document.getElementsByClassName('add-video-post')[0].onclick = () => {
+                document.getElementsByClassName('add-video')[0].style.display = 'block';
+                document.getElementsByClassName('add-img')[0].style.display = 'none';
 
-            var img = document.querySelector('#myImg');
-            img.src = '';
-            let inputImg = document.querySelector(".file_img");
-            inputImg.value = '';
+                var img = document.querySelector('#myImg');
+                img.src = '';
+                let inputImg = document.querySelector(".file_img");
+                inputImg.value = '';
 
-        }
-        window.addEventListener('load', function() {
-            document.querySelector('input[type="file"]').addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    var img = document.querySelector('#myImg');
-                    img.onload = () => {
-                        URL.revokeObjectURL(img.src); // no longer needed, free memory
+            }
+            window.addEventListener('load', function() {
+                document.querySelector('input[type="file"]').addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        var img = document.querySelector('#myImg');
+                        img.onload = () => {
+                            URL.revokeObjectURL(img.src); // no longer needed, free memory
+                        };
+
+                        img.src = URL.createObjectURL(this.files[0]); // set src to blob url
                     };
-
-                    img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-                };
+                });
             });
-        });
-    </script>
+        </script>
 
-    <script src="../../app/ajax/last-activity.js"></script>
-    <!-- FILE SAVER -->
-    <script src="../../vendor/FileSaver/FileSaver.js"></script>
+        <script src="../../app/ajax/last-activity.js"></script>
+        <!-- FILE SAVER -->
+        <script src="../../vendor/FileSaver/FileSaver.js"></script>
 
-    <script>
-        let start = 5;
-        let soluong = 0;
-        (function() {
-            // Biến dùng kiểm tra nếu đang gửi ajax thì ko thực hiện gửi thêm
-            var is_busy = false;
+        <script>
+            let start = 5;
+            let soluong = 0;
+            (function() {
+                // Biến dùng kiểm tra nếu đang gửi ajax thì ko thực hiện gửi thêm
+                var is_busy = false;
 
-            // Biến lưu trữ trang hiện tại
+                // Biến lưu trữ trang hiện tại
 
-            let quantity = 5;
+                let quantity = 5;
 
-            let check = true;
-            $(document).ready(function() {
-                // Khi kéo scroll thì xử lý
-                if (check) {
+                let check = true;
+                $(document).ready(function() {
+                    // Khi kéo scroll thì xử lý
+                    if (check) {
 
-                    $(window).scroll(function() {
-                        // Element append nội dung
-                        $element = $('#container-feed-content');
+                        $(window).scroll(function() {
+                            // Element append nội dung
+                            $element = $('#container-feed-content');
 
-                        // ELement hiển thị chữ loadding
-
-
-                        // Nếu màn hình đang ở dưới cuối thẻ thì thực hiện ajax
-                        if ($(window).scrollTop() + $(window).height() >= $element.height()) {
-                            // Nếu đang gửi ajax thì ngưng
-                            if (is_busy == true) {
-                                return false;
-                            }
+                            // ELement hiển thị chữ loadding
 
 
+                            // Nếu màn hình đang ở dưới cuối thẻ thì thực hiện ajax
+                            if ($(window).scrollTop() + $(window).height() >= $element.height()) {
+                                // Nếu đang gửi ajax thì ngưng
+                                if (is_busy == true) {
+                                    return false;
+                                }
 
-                            // Thiết lập đang gửi ajax
-                            is_busy = true;
 
 
-                            // Hiển thị loadding
+                                // Thiết lập đang gửi ajax
+                                is_busy = true;
 
 
-                            // Gửi Ajax
-                            if (!check) {
-                                return;
-                            }
-                            $.ajax({
-                                    type: 'get',
-                                    dataType: 'json',
-                                    url: '../../back-end/load-post-timeline.php',
-                                    data: {
-                                        start: start,
-                                        quantity: quantity,
-                                        timeline_id: <?= $timeline_id ?>
-                                    },
-                                    success: function(result) {
+                                // Hiển thị loadding
 
-                                        if (result['status']) {
-                                            soluong = result['soluong'];
-                                            $element.append(result['data']);
-                                            start += 5;
-                                        } else {
-                                            let runOutOfPost = `<div class='flex justify-center mt-6'>
+
+                                // Gửi Ajax
+                                if (!check) {
+                                    return;
+                                }
+                                $.ajax({
+                                        type: 'get',
+                                        dataType: 'json',
+                                        url: '../../back-end/load-post-timeline.php',
+                                        data: {
+                                            start: start,
+                                            quantity: quantity,
+                                            timeline_id: <?= $timeline_id ?>
+                                        },
+                                        success: function(result) {
+
+                                            if (result['status']) {
+                                                soluong = result['soluong'];
+                                                $element.append(result['data']);
+                                                start += 5;
+                                            } else {
+                                                let runOutOfPost = `<div class='flex justify-center mt-6'>
                                                                         <a id='loading-content' class='bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white'>
                                                                             Không còn bài viết nữa</a>
                                                                     </div>`;
-                                            $element.append(runOutOfPost);
-                                            check = false;
+                                                $element.append(runOutOfPost);
+                                                check = false;
+                                            }
+
                                         }
+                                    })
+                                    .always(function() {
+                                        // Sau khi thực hiện xong ajax thì ẩn hidden và cho trạng thái gửi ajax = false
 
-                                    }
-                                })
-                                .always(function() {
-                                    // Sau khi thực hiện xong ajax thì ẩn hidden và cho trạng thái gửi ajax = false
-
-                                    is_busy = false;
-                                });
-                            return false;
-                        }
-                    });
-                }
-            });
-        })()
-    </script>
+                                        is_busy = false;
+                                    });
+                                return false;
+                            }
+                        });
+                    }
+                });
+            })()
+        </script>
 
 </body>
 

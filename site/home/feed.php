@@ -937,10 +937,14 @@
                         <h3 class="text-xl font-semibold"> Liên lạc </h3>
 
                         <div class="" uk-sticky="offset:80">
-
+                        <?php 
+                            $sql= "select count(*) as total from users";
+                            $res = pdo_get_one_row($sql);
+                        
+                        ?>
                             <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                                 <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">
-                                    <li class="uk-active"><a class="active" href="#0"> Người dùng <span> 310 </span> </a></li>
+                                    <li class="uk-active"><a class="active" href="#0"> Người dùng <span><?php echo $res['total']?></span> </a></li>
                                     <li><a href="#0">Nhóm</a></li>
                                 </ul>
                             </nav>
