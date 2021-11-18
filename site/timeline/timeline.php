@@ -234,38 +234,26 @@
                 </a>
 
                 <h3 class="side-title"> Liên Hệ </h3>
+                <div class="contact-list my-2 ml-1">
+                <?php
+                    $sql="SELECT * FROM users WHERE role = 1";
+                    $admin = pdo_get_all_rows($sql);
 
-                <!-- <div class="contact-list my-2 ml-1">
-
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                            <span class="user_status status_online"></span>
+                    foreach ($admin as $item) {
+                       extract($item);
+                       if ($user_status == "Đang hoạt động") $status ="user_status status_online";
+                      echo "
+                      <a href='?timeline_id={$unique_id}'>
+                        <div class='contact-avatar'>
+                            <img src='../../images/user/$img' >
+                            <span class='user_status $status '></span>
                         </div>
-                        <div class="contact-username"> Dennis Han</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                            <span class="user_status"></span>
-                        </div>
-                        <div class="contact-username"> Erica Jones</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-7.jpg" alt="">
-                        </div>
-                        <div class="contact-username">Stella Johnson</div>
-                    </a>
-                    <a href="chats-friend.html">
-                        <div class="contact-avatar">
-                            <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                        </div>
-                        <div class="contact-username"> Alex Dolgove</div>
-                    </a>
-
-                </div> -->
-
+                        <div class='contact-username'>$fname $lname </div>
+                    </a>     
+                      ";
+                    }
+                    ?>
+                </div>
 
                 <div class="footer-links">
                     <a href="#">About</a>
