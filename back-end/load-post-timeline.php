@@ -66,6 +66,14 @@ foreach ($feedList as $item) {
         ";
     }
 
+    $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
+    $res3 = pdo_get_all_rows($sql3, $post_id);
+    $moreCmt = "";
+    if (count($res3) > 2) {
+        $moreCmt = "  <a data='{$post_id}' class='more-cmt'> Xem thêm bình luận</a>";
+    }
+
+
     $message = "
     <div class='flex items-center' >
                 <img src='../../images/post/like-icon.png' alt='' class='w-6 h-6 rounded-full border-2 border-white dark:border-gray-900'>
@@ -184,7 +192,7 @@ foreach ($feedList as $item) {
 
             </div>
 
-            <a data='{$post_id}' class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>
+            {$moreCmt}
 
             <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
                 <input data='{$post_id}'  placeholder='Add your Comment..' class='  bg-transparent max-h-10 shadow-none px-5 add-cmt'>
@@ -316,7 +324,7 @@ foreach ($feedList as $item) {
 
         </div>
 
-        <a data='{$post_id}'  class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>
+        {$moreCmt}
 
         <div class='bg-gray-100 rounded-full relative dark:bg-gray-800 border-t'>
             <input  data='{$post_id}'  placeholder='Add your Comment..' class='bg-transparent max-h-10 shadow-none px-5 add-cmt'>

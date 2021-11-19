@@ -539,11 +539,11 @@
                             <span class='user_status $status'></span>
                         </div>
                         <div class='contact-username'>$fname $lname </div>
-                    </a>     
+                    </a>
                       ";
                     }
                     ?>
-                               
+
 
                 </div>
 
@@ -647,12 +647,12 @@
                             </div>
                                 ";
                             }
-                            
+
                             $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
                             $res3 = pdo_get_all_rows($sql3, $post_id);
                             $moreCmt = "";
                             if (count($res3) > 2) {
-                                $moreCmt = "  <a data='{$post_id}' class='hover:text-blue-600 hover:underline more-cmt'> Xem thêm bình luận</a>";
+                                $moreCmt = "  <a data='{$post_id}' class='more-cmt'> Xem thêm bình luận</a>";
                             }
 
                             $message = "
@@ -937,10 +937,10 @@
                         <h3 class="text-xl font-semibold"> Liên lạc </h3>
 
                         <div class="" uk-sticky="offset:80">
-                        <?php 
+                        <?php
                             $sql= "select count(*) as total from users";
                             $res = pdo_get_one_row($sql);
-                        
+
                         ?>
                             <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                                 <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">

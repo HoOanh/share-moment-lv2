@@ -10277,3 +10277,10 @@ header .header_inner .left_side #logo img.logo_mobile {
 .space-y-1 li {
   cursor: pointer;
 }
+.more-cmt {
+  cursor: pointer;
+}
+.more-cmt:hover {
+  text-decoration: underline !important;
+  color: #0056b3 !important;
+}

@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-     <link href="../../images/header/logo-mobile.png" rel="icon" type="image/png">
+    <link href="../../images/header/logo-mobile.png" rel="icon" type="image/png">
+
+
+    <!-- FONT AWESOME CDNJS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 
     <!-- Basic Page Needs
         ================================================== -->
@@ -15,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
 
-    
+
     <!-- CSS
     ================================================== -->
     <link rel="stylesheet" href="../../app/css/css-home/uikit.min.css">
@@ -97,9 +103,9 @@
                             <!-- avatar -->
                             <?php
 
-                         $sql = "SELECT * from users where unique_id = ?";
-                         $UserSet = pdo_get_one_row($sql, $_SESSION['unique_id']);
-                         extract($UserSet);
+                            $sql = "SELECT * from users where unique_id = ?";
+                            $UserSet = pdo_get_one_row($sql, $_SESSION['unique_id']);
+                            extract($UserSet);
                             ?>
                             <a href="#">
                                 <img src="../../images/user/<?= $img ?>" class="is_avatar" alt="">
@@ -156,7 +162,7 @@
         </header>
 
         <!-- sidebar -->
- <div class="sidebar">
+        <div class="sidebar">
 
             <div class="sidebar_inner" data-simplebar>
 
@@ -225,14 +231,14 @@
 
                 <h3 class="side-title"> Liên Hệ </h3>
                 <div class="contact-list my-2 ml-1">
-                <?php
-                    $sql="SELECT * FROM users WHERE role = 1";
+                    <?php
+                    $sql = "SELECT * FROM users WHERE role = 1";
                     $admin = pdo_get_all_rows($sql);
 
                     foreach ($admin as $item) {
-                       extract($item);
-                       if ($user_status == "Đang hoạt động") $status ="user_status status_online";
-                      echo "
+                        extract($item);
+                        if ($user_status == "Đang hoạt động") $status = "user_status status_online";
+                        echo "
                       <a href='?timeline_id={$unique_id}'>
                         <div class='contact-avatar'>
                             <img src='../../images/user/$img' >
@@ -275,103 +281,102 @@
                         </ul>
                     </nav>
                 </div>
-                <form class="form" method="post" >
-                <div class="grid lg:grid-cols-3 mt-12 gap-8">
-                    <!-- <div>
+                <form class="form" method="post">
+                    <div class="grid lg:grid-cols-3 mt-12 gap-8">
+                        <!-- <div>
                         <h3 class="text-xl mb-2 font-semibold"> Basic</h3>
                         <p> Lorem ipsum dolor sit amet nibh consectetuer adipiscing elit</p>
                     </div> -->
 
-                    <div class="bg-white rounded-md lg:shadow-md shadow col-span-2 lg:mx-16">
-                        <?php
-                        $sql="SELECT * FROM users WHERE unique_id = ?";
-                        $infor = pdo_get_one_row($sql, $_SESSION['unique_id']);
-                        extract($infor);
-                        ?>
+                        <div class="bg-white rounded-md lg:shadow-md shadow col-span-2 lg:mx-16">
+                            <?php
+                            $sql = "SELECT * FROM users WHERE unique_id = ?";
+                            $infor = pdo_get_one_row($sql, $_SESSION['unique_id']);
+                            extract($infor);
+                            ?>
 
-                        <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                            <div>
-                                <label for=""> Họ</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" value="<?=$fname?>" name="fname">
-                            </div>
-                            <div>
-                                <label for=""> Tên</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" value="<?=$lname?>" name="lname">
-                            </div>
-                            <div>
-                                <label for=""> Giới Tính </label>
-                                <select id="relationship" name="gender" class="shadow-none selectpicker with-border ">
-                                <?php if($gender == 1){
-                                echo '
+                            <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                                <div>
+                                    <label for=""> Họ</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" value="<?= $fname ?>" name="fname">
+                                </div>
+                                <div>
+                                    <label for=""> Tên</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" value="<?= $lname ?>" name="lname">
+                                </div>
+                                <div>
+                                    <label for=""> Giới Tính </label>
+                                    <select id="relationship" name="gender" class="shadow-none selectpicker with-border ">
+                                        <?php if ($gender == 1) {
+                                            echo '
                                         <option value="1">Nam</option>
                                         <option value="0">Nữ</option>
                                         <option value="2">Khác</option>
                                         ';
-                                 } else if($gender == 0){
-                                    echo '
+                                        } else if ($gender == 0) {
+                                            echo '
                                     <option value="0">Nữ</option>
                                     <option value="1">Nam</option>
 
                                     <option value="2">Khác</option>
                                     ';
-
-                                }else{
-                                    echo '
+                                        } else {
+                                            echo '
                                     <option value="2">Khác</option>
                                     <option value="1">Nam</option>
                                     <option value="0">Nữ</option>
 
                                     ';
-                                }?>
+                                        } ?>
 
 
-                               </select>
-                            </div>
-                            <div class="col-span-2">
-                                <label for="">Số điện thoại</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" value="<?=$phone?>" name="phone">
-                            </div>
-                            <div class="col-span-2">
-                                <label for=""> Email</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" value="<?=$email?>" name="email" readonly>
-                            </div>
-                            <div class="col-span-2">
-                                <label for="">Tên đăng nhập</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" value="<?=$user_name?>" name="user_name" readonly>
-                            </div>
-                            <div class="col-span-2">
-                                <label for=""> Mật khẩu</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" value="<?=$pass?>" name="pass" >
-                            </div>
+                                    </select>
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="">Số điện thoại</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" value="<?= $phone ?>" name="phone">
+                                </div>
+                                <div class="col-span-2">
+                                    <label for=""> Email</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" value="<?= $email ?>" name="email" readonly>
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="">Tên đăng nhập</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" value="<?= $user_name ?>" name="user_name" readonly>
+                                </div>
+                                <div class="col-span-2">
+                                    <label for=""> Mật khẩu</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" value="<?= $pass ?>" name="pass">
+                                </div>
 
-                            <div class="col-span-2">
-                                <label for="about">Ngày sinh của bạn</label>
-                                <input type="date" placeholder="" class="shadow-none with-border" name="user_bd" value="<?=$user_bd?>">
-                            </div>
+                                <div class="col-span-2">
+                                    <label for="about">Ngày sinh của bạn</label>
+                                    <input type="date" placeholder="" class="shadow-none with-border" name="user_bd" value="<?= $user_bd ?>">
+                                </div>
 
-                            <div class="col-span-2">
-                                <label for="">Bạn đến từ đâu</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" name="user_from" value="<?=$user_from?>">
-                            </div>
-                            <div class="col-span-2">
-                                <label for="about">Nơi ở hiện tại</label>
-                                <input type="text" placeholder="" class="shadow-none with-border" name="user_now" value="<?=$user_now?>">
-                            </div>
+                                <div class="col-span-2">
+                                    <label for="">Bạn đến từ đâu</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" name="user_from" value="<?= $user_from ?>">
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="about">Nơi ở hiện tại</label>
+                                    <input type="text" placeholder="" class="shadow-none with-border" name="user_now" value="<?= $user_now ?>">
+                                </div>
 
-                            <div>
-                                <label for=""> Bạn đang làm gì </label>
-                                <select id="relationship"  class="shadow-none selectpicker with-border " name="user_job">
+                                <div>
+                                    <label for=""> Bạn đang làm gì </label>
+                                    <select id="relationship" class="shadow-none selectpicker with-border " name="user_job">
 
-                                <?php if($user_job == "Học sinh"){
-                                echo '
+                                        <?php if ($user_job == "Học sinh") {
+                                            echo '
                                 <option value="Học sinh">Học sinh</option>
                                 <option value="Sinh viên">Sinh viên</option>
                                 <option value="Công việc tự do">Công việc tự do</option>
                                 <option value="Nhân viên">Nhân viên</option>
                                 <option value="Khác">Khác</option>
                                         ';
-                                 } else if($user_job == "Công việc tự do"){
-                                    echo '
+                                        } else if ($user_job == "Công việc tự do") {
+                                            echo '
                                     <option value="Công việc tự do">Công việc tự do</option>
                                     <option value="Học sinh">Học sinh</option>
                                     <option value="Sinh viên">Sinh viên</option>
@@ -379,9 +384,8 @@
                                     <option value="Nhân viên">Nhân viên</option>
                                     <option value="Khác">Khác</option>
                                     ';
-
-                                }else if($user_job == "Sinh viên"){
-                                    echo '
+                                        } else if ($user_job == "Sinh viên") {
+                                            echo '
                                     <option value="Sinh viên">Sinh viên</option>
                                     <option value="Học sinh">Học sinh</option>
 
@@ -389,9 +393,8 @@
                                  <option value="Nhân viên">Nhân viên</option>
                                  <option value="Khác">Khác</option>
                                     ';
-
-                                }else if($user_job == "Nhân viên"){
-                                    echo '
+                                        } else if ($user_job == "Nhân viên") {
+                                            echo '
                                     <option value="Nhân viên">Nhân viên</option>
                                     <option value="Học sinh">Học sinh</option>
                                     <option value="Sinh viên">Sinh viên</option>
@@ -399,9 +402,8 @@
 
                                     <option value="Khác">Khác</option>
                                     ';
-
-                                }else{
-                                    echo '
+                                        } else {
+                                            echo '
                                     <option value="Khác">Khác</option>
                                     <option value="Học sinh">Học sinh</option>
                                     <option value="Sinh viên">Sinh viên</option>
@@ -410,40 +412,38 @@
 
 
                                     ';
-                                }?>
+                                        } ?>
 
-                               </select>
-                            </div>
-                            <div>
-                                <label for=""> Tình trạng quan hệ </label>
-                                <select id="relationship"  class="shadow-none selectpicker with-border " name="user_qh">
-                                <?php if($user_qh == "Độc thân"){
-                                echo '
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for=""> Tình trạng quan hệ </label>
+                                    <select id="relationship" class="shadow-none selectpicker with-border " name="user_qh">
+                                        <?php if ($user_qh == "Độc thân") {
+                                            echo '
                                 <option value="Độc thân">Độc thân</option>
                                 <option value="Hẹn hò">Hẹn hò</option>
                                 <option value="Phức tạp">Phức tạp</option>
                                 <option value="Đã kết hôn">Đã kết hôn</option>
                                         ';
-                                 } else if($user_qh == "Hẹn hò"){
-                                    echo '
+                                        } else if ($user_qh == "Hẹn hò") {
+                                            echo '
                                     <option value="Hẹn hò">Hẹn hò</option>
                                     <option value="Độc thân">Độc thân</option>
 
                                     <option value="Phức tạp">Phức tạp</option>
                                     <option value="Đã kết hôn">Đã kết hôn</option>
                                     ';
-
-                                }else if($user_qh == "Phức tạp"){
-                                    echo '
+                                        } else if ($user_qh == "Phức tạp") {
+                                            echo '
                                     <option value="Phức tạp">Phức tạp</option>
                                     <option value="Độc thân">Độc thân</option>
                                     <option value="Hẹn hò">Hẹn hò</option>
 
                                     <option value="Đã kết hôn">Đã kết hôn</option>
                                     ';
-
-                                }else{
-                                    echo '
+                                        } else {
+                                            echo '
                                     <option value="Đã kết hôn">Đã kết hôn</option>
                                     <option value="Độc thân">Độc thân</option>
                                     <option value="Hẹn hò">Hẹn hò</option>
@@ -452,28 +452,28 @@
 
 
                                     ';
-                                }?>
+                                        } ?>
 
 
-                               </select>
+                                    </select>
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="about">Giới thiệu về bạn</label>
+                                    <textarea id="about" name="about" rows="3" class="with-border" value=""><?= $user_about ?></textarea>
+                                </div>
                             </div>
-                            <div class="col-span-2">
-                                <label for="about">Giới thiệu về bạn</label>
-                                <textarea id="about" name="about" rows="3" class="with-border" value=""><?=$user_about?></textarea>
+
+                            <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                                <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
+                                <button type="submit" class="change button bg-blue-700"> Save </button>
                             </div>
+
                         </div>
 
-                        <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                            <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
-                            <button type="submit" class="change button bg-blue-700"> Save </button>
-                        </div>
+
+
 
                     </div>
-
-
-
-
-                </div>
                 </form>
             </div>
         </div>
