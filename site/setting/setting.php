@@ -15,11 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
 
-    <!-- icons
-    ================================================== -->
-    <link rel="stylesheet" href="assets/css/icons.css">
-
-    <!-- CSS 
+    
+    <!-- CSS
     ================================================== -->
     <link rel="stylesheet" href="../../app/css/css-home/uikit.min.css">
     <link rel="stylesheet" href="../../app/css/css-home/style.min.css">
@@ -99,7 +96,7 @@
 
                             <!-- avatar -->
                             <?php
-                         
+
                          $sql = "SELECT * from users where unique_id = ?";
                          $UserSet = pdo_get_one_row($sql, $_SESSION['unique_id']);
                          extract($UserSet);
@@ -242,7 +239,7 @@
                             <span class='user_status $status '></span>
                         </div>
                         <div class='contact-username'>$fname $lname </div>
-                    </a>     
+                    </a>
                       ";
                     }
                     ?>
@@ -274,7 +271,7 @@
                     <nav class="responsive-nav border-b md:m-0 -mx-4">
                         <ul uk-switcher="connect: #form-type; animation: uk-animation-fade">
                             <li><a href="#" class="lg:px-2"> Profile</a></li>
-                           
+
                         </ul>
                     </nav>
                 </div>
@@ -284,7 +281,7 @@
                         <h3 class="text-xl mb-2 font-semibold"> Basic</h3>
                         <p> Lorem ipsum dolor sit amet nibh consectetuer adipiscing elit</p>
                     </div> -->
-                   
+
                     <div class="bg-white rounded-md lg:shadow-md shadow col-span-2 lg:mx-16">
                         <?php
                         $sql="SELECT * FROM users WHERE unique_id = ?";
@@ -304,30 +301,30 @@
                             <div>
                                 <label for=""> Giới Tính </label>
                                 <select id="relationship" name="gender" class="shadow-none selectpicker with-border ">
-                                <?php if($gender == 1){ 
+                                <?php if($gender == 1){
                                 echo '
-                                        <option value="1">Nam</option> 
+                                        <option value="1">Nam</option>
                                         <option value="0">Nữ</option>
                                         <option value="2">Khác</option>
                                         ';
-                                 } else if($gender == 0){ 
+                                 } else if($gender == 0){
                                     echo '
                                     <option value="0">Nữ</option>
-                                    <option value="1">Nam</option> 
-                                    
+                                    <option value="1">Nam</option>
+
                                     <option value="2">Khác</option>
                                     ';
 
                                 }else{
                                     echo '
                                     <option value="2">Khác</option>
-                                    <option value="1">Nam</option> 
+                                    <option value="1">Nam</option>
                                     <option value="0">Nữ</option>
-                                   
+
                                     ';
                                 }?>
-                                
-                                 
+
+
                                </select>
                             </div>
                             <div class="col-span-2">
@@ -351,7 +348,7 @@
                                 <label for="about">Ngày sinh của bạn</label>
                                 <input type="date" placeholder="" class="shadow-none with-border" name="user_bd" value="<?=$user_bd?>">
                             </div>
-                            
+
                             <div class="col-span-2">
                                 <label for="">Bạn đến từ đâu</label>
                                 <input type="text" placeholder="" class="shadow-none with-border" name="user_from" value="<?=$user_from?>">
@@ -360,12 +357,12 @@
                                 <label for="about">Nơi ở hiện tại</label>
                                 <input type="text" placeholder="" class="shadow-none with-border" name="user_now" value="<?=$user_now?>">
                             </div>
-                            
+
                             <div>
                                 <label for=""> Bạn đang làm gì </label>
                                 <select id="relationship"  class="shadow-none selectpicker with-border " name="user_job">
 
-                                <?php if($user_job == "Học sinh"){ 
+                                <?php if($user_job == "Học sinh"){
                                 echo '
                                 <option value="Học sinh">Học sinh</option>
                                 <option value="Sinh viên">Sinh viên</option>
@@ -373,33 +370,33 @@
                                 <option value="Nhân viên">Nhân viên</option>
                                 <option value="Khác">Khác</option>
                                         ';
-                                 } else if($user_job == "Công việc tự do"){ 
+                                 } else if($user_job == "Công việc tự do"){
                                     echo '
                                     <option value="Công việc tự do">Công việc tự do</option>
                                     <option value="Học sinh">Học sinh</option>
                                     <option value="Sinh viên">Sinh viên</option>
-                               
+
                                     <option value="Nhân viên">Nhân viên</option>
                                     <option value="Khác">Khác</option>
                                     ';
 
-                                }else if($user_job == "Sinh viên"){ 
+                                }else if($user_job == "Sinh viên"){
                                     echo '
                                     <option value="Sinh viên">Sinh viên</option>
                                     <option value="Học sinh">Học sinh</option>
-                               
+
                                  <option value="Công việc tự do">Công việc tự do</option>
                                  <option value="Nhân viên">Nhân viên</option>
                                  <option value="Khác">Khác</option>
                                     ';
 
-                                }else if($user_job == "Nhân viên"){ 
+                                }else if($user_job == "Nhân viên"){
                                     echo '
                                     <option value="Nhân viên">Nhân viên</option>
                                     <option value="Học sinh">Học sinh</option>
                                     <option value="Sinh viên">Sinh viên</option>
                                     <option value="Công việc tự do">Công việc tự do</option>
-                                    
+
                                     <option value="Khác">Khác</option>
                                     ';
 
@@ -410,38 +407,38 @@
                                     <option value="Sinh viên">Sinh viên</option>
                                     <option value="Công việc tự do">Công việc tự do</option>
                                     <option value="Nhân viên">Nhân viên</option>
-                                  
-                                   
+
+
                                     ';
                                 }?>
-                                 
+
                                </select>
                             </div>
                             <div>
                                 <label for=""> Tình trạng quan hệ </label>
                                 <select id="relationship"  class="shadow-none selectpicker with-border " name="user_qh">
-                                <?php if($user_qh == "Độc thân"){ 
+                                <?php if($user_qh == "Độc thân"){
                                 echo '
                                 <option value="Độc thân">Độc thân</option>
                                 <option value="Hẹn hò">Hẹn hò</option>
                                 <option value="Phức tạp">Phức tạp</option>
                                 <option value="Đã kết hôn">Đã kết hôn</option>
                                         ';
-                                 } else if($user_qh == "Hẹn hò"){ 
+                                 } else if($user_qh == "Hẹn hò"){
                                     echo '
                                     <option value="Hẹn hò">Hẹn hò</option>
                                     <option value="Độc thân">Độc thân</option>
-                                   
+
                                     <option value="Phức tạp">Phức tạp</option>
                                     <option value="Đã kết hôn">Đã kết hôn</option>
                                     ';
 
-                                }else if($user_qh == "Phức tạp"){ 
+                                }else if($user_qh == "Phức tạp"){
                                     echo '
                                     <option value="Phức tạp">Phức tạp</option>
                                     <option value="Độc thân">Độc thân</option>
                                     <option value="Hẹn hò">Hẹn hò</option>
-                                  
+
                                     <option value="Đã kết hôn">Đã kết hôn</option>
                                     ';
 
@@ -451,13 +448,13 @@
                                     <option value="Độc thân">Độc thân</option>
                                     <option value="Hẹn hò">Hẹn hò</option>
                                     <option value="Phức tạp">Phức tạp</option>
-                                   
-                                  
-                                   
+
+
+
                                     ';
                                 }?>
-                               
-                                 
+
+
                                </select>
                             </div>
                             <div class="col-span-2">
@@ -472,9 +469,9 @@
                         </div>
 
                     </div>
-                    
 
-               
+
+
 
                 </div>
                 </form>
@@ -485,7 +482,7 @@
 
 
 
-   
+
 
     <!-- For Night mode -->
     <script>
@@ -536,7 +533,7 @@
     <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
     <script src="../../app/ajax/loadMessUser.js"></script>
     <script src="../../app/ajax/setting.js"></script>
-  
+
 
 </body>
 

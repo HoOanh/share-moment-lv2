@@ -249,7 +249,7 @@
                             <span class='user_status $status '></span>
                         </div>
                         <div class='contact-username'>$fname $lname </div>
-                    </a>     
+                    </a>
                       ";
                     }
                     ?>
@@ -302,7 +302,7 @@
 
                         <div class="profile_info">
                             <h1> <?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?> </h1>
-                            <p> Family , Food , Fashion , Fourever </p>
+                            <p> <?= $timeline_user['user_about'] ?></p>
                         </div>
 
                     </div>
@@ -339,11 +339,7 @@
                             <!-- more drowpdown -->
                             <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
                                 <ul class="space-y-1">
-                                    <li>
-                                        <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                            <i class="far fa-edit mr-1"></i> Cài đặt tài khoản
-                                        </a>
-                                    </li>
+
                                     <li>
                                         <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                                             <i class="far fa-bell-slash mr-1"></i> Ẩn thông báo
@@ -749,33 +745,38 @@
                                 <h4 class="text-lg font-semibold"> Giới thiệu </h4>
                                 <ul class="text-gray-600 space-y-3 mt-3">
                                     <li class="flex items-center space-x-2">
-                                        <i class="fas fa-home rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Đang sống ở: <strong> Cairo , Eygept </strong>
+                                        <i class="fas fa-globe-europe rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đến Từ: <strong> <?php if ($timeline_user['user_from']) echo $timeline_user['user_from'];
+                                                            else echo 'Chưa cập nhật';  ?> </strong>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i class="fas fa-globe-europe rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Đến Từ: <strong> Aden , Yemen </strong>
+                                        <i class="fas fa-home rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đang sống ở: <strong> <?php if ($timeline_user['user_now']) echo $timeline_user['user_now'];
+                                                                else echo 'Chưa cập nhật'; ?> </strong>
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <i class="fas fa-envelope rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
                                         Email: <strong> <?= $timeline_user['email'] ?> </strong>
                                     </li>
+                                    <?php if ($timeline_user['user_qh']) echo "<li class=\"flex items-center space-x-2\">
+                                        <i class=\"fas  fa-heart rounded-full bg-gray-200 p-1 mr-3 md hydrated\"></i>
+                                        <strong> {$timeline_user['user_qh']}</strong>
+                                    </li>" ?>
+                                    <?php if ($timeline_user['user_job']) echo "<li class=\"flex items-center space-x-2\">
+                                        <i class=\"fas fa-briefcase rounded-full bg-gray-200 p-1 mr-3 md hydrated\"></i>
+                                        Nghề nghiệp: <strong> {$timeline_user['user_job']}</strong>
+                                    </li>" ?>
                                     <li class="flex items-center space-x-2">
                                         <i class="fas fa-birthday-cake rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Sinh Nhật: <strong> Chưa cập nhật </strong>
+                                        Sinh Nhật: <strong> <?php if (!$timeline_user['user_bd']) echo  "Chưa cập nhật";
+                                                            else  echo implode("-", array_reverse(explode("-", $timeline_user['user_bd']))); ?> </strong>
                                     </li>
 
                                 </ul>
                                 <div class="gap-3 grid grid-cols-3 mt-4">
                                     <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="object-cover rounded-lg col-span-full">
-                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
-                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
-                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
-                                    <!-- <img src="assets/images/avatars/avatar-2.jpg" alt="" class="rounded-lg">
-                                    <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-lg">
-                                    <img src="assets/images/avatars/avatar-5.jpg" alt="" class="rounded-lg"> -->
                                 </div>
-                                <!-- <a href="#" class="button gray mt-3 w-full"> Chỉnh sửa </a> -->
+
                             </div>
 
                             <?php
@@ -859,7 +860,7 @@
                                        <img src='../../images/post/{$img['img_post']}' class='w-full h-full absolute object-cover inset-0'>
                                         <!-- overly-->
                                         <div class='-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full'></div>
-                                        
+
                                     </div>
                                 </div>";
                             }
@@ -869,7 +870,7 @@
 
                         </div>
 
-                       
+
                     </div>
 
 
@@ -892,14 +893,14 @@
                         <h2 class="text-xl font-semibold"> Video</h2>
                         <nav class="responsive-nav border-b">
                             <ul>
-                                <li class="active"><a href="#" class="lg:px-2"> Có <span><?php echo count($allVideos)?> videos</span> </a></li>
+                                <li class="active"><a href="#" class="lg:px-2"> Có <span><?php echo count($allVideos) ?> videos</span> </a></li>
                             </ul>
                         </nav>
 
                         <div class='grid md:grid-cols-3 grid-cols-2  gap-x-2 gap-y-4 mt-3'>
-                            <?php 
-                            
-                            foreach($allVideos as $video){
+                            <?php
+
+                            foreach ($allVideos as $video) {
                                 echo " <div>
                                 <!-- <a href='video-watch.html' class='w-full h-36 overflow-hidden rounded-lg relative block'>
                                     <img src='assets/images/video/img-1.png'  class='w-full h-full absolute inset-0 object-cover'>
@@ -909,10 +910,10 @@
                                 <video controls src=\"../../video/post/{$video['post_video']}\"></video>
                             </div>";
                             }
-                            
+
                             ?>
-                           
-                            
+
+
                         </div>
 
                     </div>
@@ -1025,15 +1026,15 @@
 
         <!-- Javascript
     ================================================== -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="../../app/js/js-home/tippy.all.min.js"></script>
-    <script src="../../app/js/js-home/uikit.min.js"></script>
-    <script src="../../app/js/js-home/simplebar.min.js"></script>
-    <script src="../../app/js/js-home/custom.min.js"></script>
-    <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
-    <script src="../../app/ajax/create-post.js"></script>
-    <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
-    <script src="../../app/ajax/delete-post.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="../../app/js/js-home/tippy.all.min.js"></script>
+        <script src="../../app/js/js-home/uikit.min.js"></script>
+        <script src="../../app/js/js-home/simplebar.min.js"></script>
+        <script src="../../app/js/js-home/custom.min.js"></script>
+        <script src="../../app/js/js-home/bootstrap-select.min.js"></script>
+        <script src="../../app/ajax/create-post.js"></script>
+        <script src="../../app/ajax/ajax-search-User-In-Home.js"></script>
+        <script src="../../app/ajax/delete-post.js"></script>
 
         <!-- Ajax load
     ============================================= -->

@@ -7939,6 +7939,7 @@ header .header_inner .right_side {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 0%;
   flex: 1 1 0%;
+  text-align: center;
 }
 
 .profile .profiles_content .profile_info h1 {
@@ -8018,7 +8019,6 @@ header .header_inner .right_side {
   font-size: 30px;
   margin-bottom: 7px;
   margin-top: 10px;
-  text-align: center;
 }
 
 .profile.user-profile .profiles_content .profile_info p {
