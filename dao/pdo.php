@@ -1,4 +1,4 @@
-<?php 
+<?php
     function pdo_get_connection(){
         $host = 'localhost';
         $username = 'root';
@@ -11,7 +11,7 @@
             $conn = new PDO($dsn,$username,$password);
 
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
+
             return $conn;
         }
         catch(PDOException $e){
@@ -29,7 +29,7 @@
             $conn = pdo_get_connection();
             $stmt = $conn->prepare($sql);
             return $stmt->execute($sql_args);
-            
+
         }
         catch(PDOException $e){
             throw $e;
@@ -42,7 +42,7 @@
 
     //query all rows
     function pdo_get_all_rows($sql) {
-        $sql_args = array_slice(func_get_args(),1); 
+        $sql_args = array_slice(func_get_args(),1);
         try{
             $conn = pdo_get_connection();
             $stmt = $conn->prepare($sql);
@@ -59,12 +59,12 @@
     }
     //query one rows
     function pdo_get_one_row($sql) {
-        $sql_args = array_slice(func_get_args(),1); 
+        $sql_args = array_slice(func_get_args(),1);
         try{
             $conn = pdo_get_connection();
             $stmt = $conn->prepare($sql);
             $stmt->execute($sql_args);
-            
+
             return $stmt->fetch(PDO::FETCH_ASSOC);
 
         }
@@ -77,7 +77,7 @@
     }
     // get value: count(), sum(),...
     function pdo_get_value($sql) {
-        $sql_args = array_slice(func_get_args(),1); 
+        $sql_args = array_slice(func_get_args(),1);
         try{
             $conn = pdo_get_connection();
             $stmt = $conn->prepare($sql);
@@ -92,4 +92,8 @@
         }
     }
 
-?>
+
+function exist_param($fieldName)
+{
+    return array_key_exists($fieldName, $_REQUEST);
+}

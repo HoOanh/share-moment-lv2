@@ -127,7 +127,7 @@
                                 </a>
                                 <hr>
 
-                                <a href="page-setting.html">
+                                <a href="../setting/">
                                     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
                                     </svg>
@@ -249,7 +249,7 @@
                             <span class='user_status $status '></span>
                         </div>
                         <div class='contact-username'>$fname $lname </div>
-                    </a>     
+                    </a>
                       ";
                     }
                     ?>
@@ -302,7 +302,7 @@
 
                         <div class="profile_info">
                             <h1> <?= $timeline_user['fname'] . " " . $timeline_user['lname'] ?> </h1>
-                            <p> Family , Food , Fashion , Fourever </p>
+                            <p> <?= $timeline_user['user_about'] ?></p>
                         </div>
 
                     </div>
@@ -339,11 +339,7 @@
                             <!-- more drowpdown -->
                             <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
                                 <ul class="space-y-1">
-                                    <li>
-                                        <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                                            <i class="far fa-edit mr-1"></i> Cài đặt tài khoản
-                                        </a>
-                                    </li>
+
                                     <li>
                                         <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                                             <i class="far fa-bell-slash mr-1"></i> Ẩn thông báo
@@ -761,33 +757,38 @@
                                 <h4 class="text-lg font-semibold"> Giới thiệu </h4>
                                 <ul class="text-gray-600 space-y-3 mt-3">
                                     <li class="flex items-center space-x-2">
-                                        <i class="fas fa-home rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Đang sống ở: <strong> Cairo , Eygept </strong>
+                                        <i class="fas fa-globe-europe rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đến Từ: <strong> <?php if ($timeline_user['user_from']) echo $timeline_user['user_from'];
+                                                            else echo 'Chưa cập nhật';  ?> </strong>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i class="fas fa-globe-europe rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Đến Từ: <strong> Aden , Yemen </strong>
+                                        <i class="fas fa-home rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
+                                        Đang sống ở: <strong> <?php if ($timeline_user['user_now']) echo $timeline_user['user_now'];
+                                                                else echo 'Chưa cập nhật'; ?> </strong>
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <i class="fas fa-envelope rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
                                         Email: <strong> <?= $timeline_user['email'] ?> </strong>
                                     </li>
+                                    <?php if ($timeline_user['user_qh']) echo "<li class=\"flex items-center space-x-2\">
+                                        <i class=\"fas  fa-heart rounded-full bg-gray-200 p-1 mr-3 md hydrated\"></i>
+                                        <strong> {$timeline_user['user_qh']}</strong>
+                                    </li>" ?>
+                                    <?php if ($timeline_user['user_job']) echo "<li class=\"flex items-center space-x-2\">
+                                        <i class=\"fas fa-briefcase rounded-full bg-gray-200 p-1 mr-3 md hydrated\"></i>
+                                        Nghề nghiệp: <strong> {$timeline_user['user_job']}</strong>
+                                    </li>" ?>
                                     <li class="flex items-center space-x-2">
                                         <i class="fas fa-birthday-cake rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Sinh Nhật: <strong> Chưa cập nhật </strong>
+                                        Sinh Nhật: <strong> <?php if (!$timeline_user['user_bd']) echo  "Chưa cập nhật";
+                                                            else  echo implode("-", array_reverse(explode("-", $timeline_user['user_bd']))); ?> </strong>
                                     </li>
 
                                 </ul>
                                 <div class="gap-3 grid grid-cols-3 mt-4">
                                     <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="object-cover rounded-lg col-span-full">
-                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
-                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
-                                    <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class="rounded-lg">
-                                    <!-- <img src="assets/images/avatars/avatar-2.jpg" alt="" class="rounded-lg">
-                                    <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-lg">
-                                    <img src="assets/images/avatars/avatar-5.jpg" alt="" class="rounded-lg"> -->
                                 </div>
-                                <!-- <a href="#" class="button gray mt-3 w-full"> Chỉnh sửa </a> -->
+
                             </div>
 
                             <?php
@@ -871,7 +872,7 @@
                                        <img src='../../images/post/{$img['img_post']}' class='w-full h-full absolute object-cover inset-0'>
                                         <!-- overly-->
                                         <div class='-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full'></div>
-                                        
+
                                     </div>
                                 </div>";
                             }

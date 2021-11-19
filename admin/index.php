@@ -1,1 +1,1 @@
-<h1>Admin nè</h1>
+<?php header("location: dashboard");
