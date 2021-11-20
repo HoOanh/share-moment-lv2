@@ -1,9 +1,12 @@
+<?php
+$sql = 'SELECT * FROM users ORDER BY user_id DESC';
+$usersList = pdo_get_all_rows($sql);
+?>
 <!-- oder details list -->
-<div class="recentOrder">
+<div class="recentOrder list">
     <div class="cardHeader">
         <h2>Manage Users</h2>
         <div class="ctl">
-            <a href="?btn_add" class="ad-btn">Add new Type</a>
             <a href="?btn_viewAll" class="ad-btn">View All</a>
         </div>
     </div>
@@ -11,22 +14,46 @@
     <table>
         <thead>
             <tr>
-                <td>Name</td>
+                <td>STT</td>
+                <td>ID Đặc Biệt</td>
+                <td>Họ</td>
+                <td>Tên</td>
                 <td>Email</td>
-                <td>Role</td>
+                <td>Giới Tính</td>
+                <td>Số Điện Thoại</td>
+                <td>Ngày Gia Nhập</td>
+                <td>Vai Trò</td>
+                <td>Ẩn Hiện</td>
                 <td>Control</td>
             </tr>
         </thead>
         <tbody>
             <?php
-            foreach ($userList as $item) { ?>
+            foreach ($usersList as $item) { ?>
                 <tr>
-                    <td><?= $item['fullName'] ?></td>
+                    <td><?= $item['user_id'] ?></td>
+                    <td><?= $item['unique_id'] ?></td>
+                    <td><?= $item['fname'] ?></td>
+                    <td><?= $item['lname'] ?></td>
                     <td><?= $item['email'] ?></td>
-                    <td><?= $item['role'] == 0 ? 'Client' : 'Admin' ?></td>
+                    <td><?php switch ($item['gender']) {
+                            case '0':
+                                echo "Nữ";
+                                break;
+                            case '1':
+                                echo "Nam";
+                                break;
+                            case '2':
+                                echo "Khác";
+                                break;
+                        } ?></td>
+                    <td><?= $item['phone'] ?></td>
+                    <td><?= $item['date_join'] == NULL ? 'Không Xác Định' : $item['date_join'] ?></td>
+                    <td><?= $item['role'] == 0 ? 'Người Dùng' : 'Admin' ?></td>
+                    <td><?= $item['anhien'] == 0 ? 'Ẩn' : 'Hiện' ?></td>
                     <td>
-                        <a href="?btn_edit&idUs=<?= $item['idUser'] ?>" class="status edit"> Edit </a>
-                        <a href="?btn_del&idUs=<?= $item['idUser'] ?>" class="status delete" onclick="return confirm('Bạn đã chắc chắn muốn xóa chưa?')"> Delete </a>
+                        <a href="?btn_edit&box_id=<?= $item['unique_id'] ?>" class="status edit"> Edit </a>
+                        <a href="?btn_del&box_id=<?= $item['unique_id'] ?>" class="status delete" onclick="return confirm('Bạn đã chắc chắn muốn xóa chưa?')"> Delete </a>
                     </td>
                 </tr>
             <?php }

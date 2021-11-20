@@ -11,43 +11,28 @@ $page_size = 10;
 
 if (exist_param("btn_add")) {
     $VIEW_NAME = "new.php";
-} else if (exist_param("btn_insert")) {
-    //lấy dữ liệu
-    $name = $_POST['fullName'];
-    $username = $_POST['username'];
-    $pass = $_POST['pass'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $gender = $_POST['gender'];
-    $role = $_POST['role'];
-
-    //Thêm dữ liệu mới
-
-    $VIEW_NAME = "list.php";
-
-    // chỉnh sữa danh mục
 } else if (exist_param("btn_edit")) {
-    $idUser = $_REQUEST['idUs'];
-    extract($userInfo);
+    $box_id = $_REQUEST['box_id'];
+    $sql = 'SELECT * FROM users where unique_id = ?';
+    $user = pdo_get_one_row($sql, $box_id);
+    extract($user);
     $VIEW_NAME = "edit.php";
 
     // update
-} else if (exist_param("btn_update")) {
-    $idUser = $_POST['idUser'];
-    $name = $_POST['fullName'];
-    $username = $_POST['username'];
-    $pass = $_POST['pass'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $gender = $_POST['gender'];
-    $role = $_POST['role'];
-
-
-    // Show danh sách các danh mục
-
+} else if (exist_param("btn_ban")) {
+    $box_id = $_GET['box_id'];
+    $anhien = 0;
+    $sql = "UPDATE users SET anhien = ? WHERE unique_id = ?";
+    pdo_execute($sql, $anhien, $box_id);
 
     $VIEW_NAME = "list.php";
+} else if (exist_param("btn_unban")) {
+    $box_id = $_GET['box_id'];
+    $anhien = 1;
+    $sql = "UPDATE users SET anhien = ? WHERE unique_id = ?";
+    pdo_execute($sql, $anhien, $box_id);
 
+    $VIEW_NAME = "list.php";
     //======= xóa danh mục ============
 } else if (exist_param("btn_del")) {
     $idUser = $_REQUEST['idUs'];
