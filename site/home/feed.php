@@ -610,7 +610,7 @@
                             $sql = "Select count(*) as total from likes where post_id = ? ";
                             $res = pdo_get_one_row($sql, $post_id);
 
-                            $sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc limit 2";
+                            $sql2 = "Select * from cmt where post_id = ? and showHide = 1 order by cmt_id desc limit 2";
                             $res2 = pdo_get_all_rows($sql2, $post_id);
 
 
@@ -648,7 +648,7 @@
                                 ";
                             }
 
-                            $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
+                            $sql3 = "Select * from cmt where post_id = ? and showHide = 1 order by cmt_id desc";
                             $res3 = pdo_get_all_rows($sql3, $post_id);
                             $moreCmt = "";
                             if (count($res3) > 2) {
@@ -945,11 +945,11 @@
                         <h3 class="text-xl font-semibold"> Liên lạc </h3>
 
                         <div class="" uk-sticky="offset:80">
-                        <?php
-                            $sql= "select count(*) as total from users";
+                            <?php
+                            $sql = "select count(*) as total from users";
                             $res = pdo_get_one_row($sql);
 
-                        ?>
+                            ?>
                             <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                                 <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">
                                     <li class="uk-active"><a class="active" href="#0"> Người dùng <span><?php echo $res['total'] ?></span> </a></li>

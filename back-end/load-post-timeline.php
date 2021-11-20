@@ -27,7 +27,7 @@ foreach ($feedList as $item) {
     $sql = "Select count(*) as total from likes where post_id = ? ";
     $res = pdo_get_one_row($sql, $post_id);
 
-    $sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc limit 2";
+    $sql2 = "Select * from cmt where post_id = ? and showHide = 1 order by cmt_id desc limit 2";
     $res2 = pdo_get_all_rows($sql2, $post_id);
 
     $sql3 = "Select * from likes where unique_id = ? and post_id = ?";
@@ -66,7 +66,7 @@ foreach ($feedList as $item) {
         ";
     }
 
-    $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
+    $sql3 = "Select * from cmt where post_id = ? and showHide = 1 order by cmt_id desc";
     $res3 = pdo_get_all_rows($sql3, $post_id);
     $moreCmt = "";
     if (count($res3) > 2) {
@@ -134,7 +134,7 @@ foreach ($feedList as $item) {
                 </li>";
 
         if ($unique_id === $_SESSION['unique_id']) {
-            $output['data'] .= "  
+            $output['data'] .= "
                 <li>
                     <hr class='-mx-2 my-2 dark:border-gray-800'>
                 </li>

@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="nav__link">
-            <a href="../category/">
+            <a href="../cmt/">
                 <span class="icon"><i class="fas fa-boxes"></i></span>
                 <span class="title">Category</span>
             </a>
