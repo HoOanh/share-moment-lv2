@@ -1,5 +1,3 @@
-
-
 <nav class="nav">
     <ul class="nav__list">
         <li class="nav__link">
@@ -11,19 +9,19 @@
         <li class="nav__link">
             <a href="../dashboard/">
                 <span class="icon"><i class="fas fa-home"></i></span>
-                <span class="title">Dashboard</span>
+                <span class="title">Bản điều khiển</span>
+            </a>
+        </li>
+        <li class="nav__link">
+            <a href="../post/">
+                <span class="icon"><i class="fas fa-boxes"></i></span>
+                <span class="title">Bài viết</span>
             </a>
         </li>
         <li class="nav__link">
             <a href="../cmt/">
-                <span class="icon"><i class="fas fa-boxes"></i></span>
-                <span class="title">Post</span>
-            </a>
-        </li>
-        <li class="nav__link">
-            <a href="../productType/">
                 <span class="icon"><i class="fas fa-clone"></i></span>
-                <span class="title">Types</span>
+                <span class="title">Bình luận</span>
             </a>
         </li>
         <li class="nav__link">
