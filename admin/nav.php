@@ -17,7 +17,7 @@
         <li class="nav__link">
             <a href="../cmt/">
                 <span class="icon"><i class="fas fa-boxes"></i></span>
-                <span class="title">Category</span>
+                <span class="title">Post</span>
             </a>
         </li>
         <li class="nav__link">
