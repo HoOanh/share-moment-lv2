@@ -34,13 +34,7 @@
                     <i class="fas fa-bars"></i>
                 </div>
 
-                <!-- search -->
-                <div class="search">
-                    <label for="">
-                        <input type="text" name="search" placeholder="Search here....." />
-                        <i class="fas fa-search"></i>
-                    </label>
-                </div>
+               
 
                 <!-- userImg -->
                 <?php 

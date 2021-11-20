@@ -9,7 +9,7 @@
         $res = pdo_get_one_row($sql,$start,$end);
         array_push($output,$res['total']);
     }
-
+    
    $day = [
    ['2021-01-01','2021-01-31'],
    ['2021-02-01','2021-02-29'],
