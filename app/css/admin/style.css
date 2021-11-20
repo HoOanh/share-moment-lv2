@@ -1653,6 +1653,15 @@ span.form-message {
   background: #5d74f4;
 }
 
+.cardHeader .back {
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1.6em;
+  color: #fff;
+  background: #5d74f4;
+}
+
 .status {
   padding: 3px 5px;
   color: #fff;
@@ -1704,7 +1713,7 @@ span.form-message {
   background: #5d74f4;
   color: #fff;
 }
-.recentCustomers table tr:hover h4 span {
+.recentCustomers table tr:hover td > * {
   color: #fff;
 }
 .recentCustomers table tr td {
@@ -1718,6 +1727,10 @@ span.form-message {
 .recentCustomers table tr td h4 span {
   font-size: 1.4rem;
   color: #999;
+}
+.recentCustomers table tr td a {
+  font-size: 1.5rem;
+  color: #000;
 }
 
 /*============== Themes ===============*/
