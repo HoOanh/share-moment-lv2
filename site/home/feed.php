@@ -422,12 +422,23 @@
                                     </svg>
                                     Tài khoản
                                 </a>
-                                <a href="groups.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+                                <?php
+
+                                $sql = "select * from users where unique_id = ? and role =1 ";
+
+                                $isAdmin = pdo_get_one_row($sql, $_SESSION['unique_id']);
+
+                                if ($isAdmin != []) {
+                                    echo "<a href='../../admin/'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'>
+                                        <path fill-rule='evenodd' d='M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z' clip-rule='evenodd' />
                                     </svg>
                                     Thiết lập trang
-                                </a>
+                                </a>";
+                                }
+
+                                ?>
+                                
                                 <a href="#" id="night-mode" class="btn-night-mode">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
@@ -610,7 +621,7 @@
                             $sql = "Select count(*) as total from likes where post_id = ? ";
                             $res = pdo_get_one_row($sql, $post_id);
 
-                            $sql2 = "Select * from cmt where post_id = ?  order by cmt_id desc limit 2";
+                            $sql2 = "Select * from cmt where post_id = ? and showHide = 1 order by cmt_id desc limit 2";
                             $res2 = pdo_get_all_rows($sql2, $post_id);
 
 
@@ -648,7 +659,7 @@
                                 ";
                             }
 
-                            $sql3 = "Select * from cmt where post_id = ?  order by cmt_id desc";
+                            $sql3 = "Select * from cmt where post_id = ? and showHide = 1 order by cmt_id desc";
                             $res3 = pdo_get_all_rows($sql3, $post_id);
                             $moreCmt = "";
                             if (count($res3) > 2) {
@@ -945,11 +956,11 @@
                         <h3 class="text-xl font-semibold"> Liên lạc </h3>
 
                         <div class="" uk-sticky="offset:80">
-                        <?php
-                            $sql= "select count(*) as total from users";
+                            <?php
+                            $sql = "select count(*) as total from users";
                             $res = pdo_get_one_row($sql);
 
-                        ?>
+                            ?>
                             <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                                 <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">
                                     <li class="uk-active"><a class="active" href="#0"> Người dùng <span><?php echo $res['total'] ?></span> </a></li>

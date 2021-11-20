@@ -2,26 +2,26 @@
     <ul class="nav__list">
         <li class="nav__link">
             <a href="../../site/home/">
-                <span class="icon"><i class="fab fa-quinscape"></i></span>
+                <span><img src="../../images/header/logo-mobile.png" style="width: 50px; height:50px; object-fit:cover;margin:10px 10px;"></span>
                 <span class="title">Sharemoment Admin</span>
             </a>
         </li>
         <li class="nav__link">
             <a href="../dashboard/">
                 <span class="icon"><i class="fas fa-home"></i></span>
-                <span class="title">Dashboard</span>
+                <span class="title">Bản điều khiển</span>
             </a>
         </li>
         <li class="nav__link">
-            <a href="../category/">
+            <a href="../post/">
                 <span class="icon"><i class="fas fa-boxes"></i></span>
-                <span class="title">Category</span>
+                <span class="title">Bài viết</span>
             </a>
         </li>
         <li class="nav__link">
-            <a href="../productType/">
+            <a href="../cmt/">
                 <span class="icon"><i class="fas fa-clone"></i></span>
-                <span class="title">Types</span>
+                <span class="title">Bình luận</span>
             </a>
         </li>
         <li class="nav__link">

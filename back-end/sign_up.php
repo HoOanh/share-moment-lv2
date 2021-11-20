@@ -24,6 +24,7 @@ $phone = trim(strip_tags($phone));
 
 
 
+
 if (!empty($fname) && !empty($lname) && !empty($email) && !empty($pass) && !empty($phone) && !empty($user_name)) {
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Kiểm tra số điện thoại có hợp lệ hay không

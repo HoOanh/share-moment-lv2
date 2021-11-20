@@ -53,12 +53,26 @@
                 <p>Tài Khoản</p>
               </a>
             </li>
-            <li>
-              <a href="" class="">
-                <i class="fas fa-flag"></i>
+
+
+
+            <?php
+
+            $sql = "select * from users where unique_id = ? and role =1 ";
+
+            $isAdmin = pdo_get_one_row($sql, $_SESSION['unique_id']);
+
+            if ($isAdmin != []) {
+                        echo "<li>
+              <a href='../../admin/' >
+                <i class='fas fa-flag'></i>
                 <p>Thiết Lập Trang</p>
               </a>
-            </li>
+            </li>";
+            }
+
+            ?>
+
             <!-- <li>
               <a href="" class="">
                 <i class="fas fa-moon"></i>

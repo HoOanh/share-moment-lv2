@@ -18,8 +18,8 @@ function checkUsername($user_name)
 
 function addUser($random_id, $fname, $lname, $email, $pass, $final_img, $user_status, $gender, $phone, $user_name)
 {
-    $sql = " INSERT INTO users (unique_id, fname, lname, email, pass, img, user_status,gender,  phone, user_name)
-            VALUE ({$random_id}, '{$fname}','{$lname}','{$email}','{$pass}','{$final_img}','{$user_status}' , '{$gender}' ,'{$phone}','{$user_name}' )";
+    $sql = " INSERT INTO users (unique_id, fname, lname, email, pass, img, user_status,gender,  phone, user_name, date_join)
+            VALUE ({$random_id}, '{$fname}','{$lname}','{$email}','{$pass}','{$final_img}','{$user_status}' , '{$gender}' ,'{$phone}','{$user_name}' , now())";
     return pdo_execute($sql);
 }
 
