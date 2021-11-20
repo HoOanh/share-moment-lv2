@@ -1,52 +1,34 @@
-<!-- oder details list -->
-
-<div class="recentOrder">
-    <div class="cardHeader">
-        <h2>Recent Orders</h2>
-        <a href="#" class="ad-btn">View All</a>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Payment</td>
-                <td>Status</td>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($invoiceList as $item) { ?>
-                <tr>
-                    <td><?= $item['nameProduct'] ?></td>
-                    <td><?= $item['Price'] ?></td>
-                    <td>Paid</td>
-                    <td><span class="status <?= $item['status'] ?>"><?= $item['status'] ?></span></td>
-                </tr>
-            <?php }
-            ?>
-        </tbody>
-    </table>
-</div>
 
 <!-- New Customers -->
+<?php 
+        $sql = "select * from users where (TIMESTAMPDIFF ( second,date_join, now() ) < 3600*24*30) and (role = 0)";
+
+        $newUsers = pdo_get_all_rows($sql);
+    
+    ?>
 <div class="recentCustomers">
     <div class="cardHeader">
-        <h2>Recent Customers</h2>
+        <h2><?=count($newUsers)?> người dùng đăng ký mới trong 1 tháng gần đây</h2>
     </div>
+    
     <table>
-        <?php foreach ($clientList as $client) { ?>
-            <tr>
-                <td width="60px">
-                    <div class="imgBx">
-                        <img src="<?= $ASSETS_URL ?>/images/products/product-1.webp" alt="" />
+        <?php 
+            foreach($newUsers as $user){
+                echo "<tr>
+                <td width='60px'>
+                    <div class='imgBx'>
+                        <img src=\"../../images/user/{$user['img']}\"/>
                     </div>
                 </td>
                 <td>
-                    <h4><?= $client['fullName'] ?> <br /><span><?= $client['email'] ?></span></h4>
+                    <h4>{$user['fname']} {$user['lname']}<br/><span>{$user['email']}</span></h4>
                 </td>
-            </tr>
-        <?php } ?>
+            </tr>";
+            }
+        
+        
+        ?>
+            
+       
     </table>
 </div>

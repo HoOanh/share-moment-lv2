@@ -1,8 +1,10 @@
+
+
 <nav class="nav">
     <ul class="nav__list">
         <li class="nav__link">
             <a href="../../site/home/">
-                <span class="icon"><i class="fab fa-quinscape"></i></span>
+                <span><img src="../../images/header/logo-mobile.png" style="width: 50px; height:50px; object-fit:cover;margin:10px 10px;"></span>
                 <span class="title">Sharemoment Admin</span>
             </a>
         </li>
