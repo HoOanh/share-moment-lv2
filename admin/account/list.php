@@ -1,7 +1,3 @@
-<?php
-$sql = 'SELECT * FROM users ORDER BY user_id DESC';
-$usersList = pdo_get_all_rows($sql);
-?>
 <!-- oder details list -->
 <div class="recentOrder list">
     <div class="cardHeader">

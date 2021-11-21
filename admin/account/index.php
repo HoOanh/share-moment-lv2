@@ -6,7 +6,8 @@ $VIEW_NAME = 'list.php';
 extract($_REQUEST);
 
 $page_size = 10;
-
+$sql = 'SELECT * FROM users ORDER BY user_id DESC';
+$usersList = pdo_get_all_rows($sql);
 // ======== thêm danh mục =========
 
 if (exist_param("btn_add")) {
