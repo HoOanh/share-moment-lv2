@@ -1,15 +1,19 @@
 <?php
 session_start();
 require '../../dao/pdo.php';
+require '../../dao/pdo_admin_cmt.php';
 
 $VIEW_NAME = 'list.php';
 
 extract($_REQUEST);
 
-$sql = "SELECT * from post";
-$listPost = pdo_get_all_rows($sql);
+$page_size = 5;
+$page_num = 1;
+if (isset($_GET['page_num'])) $page_num = $_GET['page_num'] + 0;
+if ($page_num <= 0) $page_num = 1;
 
-
+$listPost = getCmt($page_num, $page_size);
+$total_rows = countPost();
 
 if (exist_param("btn_list_cmt")) { // danh sách cmt
     $VIEW_NAME = "list_cmt.php";
