@@ -35,8 +35,9 @@ if (exist_param("btn_add")) {
     $VIEW_NAME = "list.php";
     //======= xóa danh mục ============
 } else if (exist_param("btn_del")) {
-    $idUser = $_REQUEST['idUs'];
-
+    $box_id = $_REQUEST['box_id'];
+    $sql = "DELETE FROM users where unique_id = ?";
+    pdo_execute($sql, $box_id);
 
     // hiển thị lại danh sách các danh mục
     $VIEW_NAME = "list.php";
