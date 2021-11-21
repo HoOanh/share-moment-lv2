@@ -8,7 +8,7 @@
         </li>
         <li class="nav__link">
             <a href="../dashboard/">
-                <span class="icon"><i class="fas fa-home"></i></span>
+                <span class="icon"><i class="fas fa-chart-line"></i></i></span>
                 <span class="title">Bản điều khiển</span>
             </a>
         </li>
@@ -31,9 +31,9 @@
             </a>
         </li>
         <li class="nav__link">
-            <a href="../setting/">
-                <span class="icon"><i class="fas fa-cogs"></i></span>
-                <span class="title">Cài đặt</span>
+            <a href="../../site/home/">
+                <span class="icon"><i class="fas fa-home"></i></span>
+                <span class="title">Về trang chủ</span>
             </a>
         </li>
         <li class="nav__link">

@@ -1,5 +1,5 @@
 .detail {
-  grid-template-columns: 2fr;
+  overflow-x: scroll;
 }
 .post-img {
   width: 300px;
