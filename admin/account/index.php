@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../../dao/pdo.php';
 
 $VIEW_NAME = 'list.php';
