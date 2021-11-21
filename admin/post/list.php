@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../../app/css/admin/post.css">
 <div class="recentOrder">
     <div class="cardHeader">
-        <h2>Manage Users</h2>
+        <h2>Chỉnh Sửa Bài Viết</h2>
         <!-- <div class="ctl">
             <a href="?btn_add" class="ad-btn">Add new Type</a>
 
@@ -12,13 +12,13 @@
     <table>
         <thead>
             <tr>
-                <td>Post_id</td>
-                <td>User</td>
-                <td>Caption</td>
-                <td>Images</td>
+                <td>ID Bài Viết</td>
+                <td>Người Đăng</td>
+                <td>Nội Dung</td>
+                <td>Ảnh</td>
                 <td>Video</td>
                 <td>Trạng Thái</td>
-                <td>Control</td>
+                <td>Lựa Chọn</td>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@
                     <td class="post-control">
                         <a href="?btn_an&post_id=<?= $item['post_id'] ?>" onclick="return An('<?php echo $item['post_id']; ?>')">Ẩn</a>
                         <a href="?btn_hien&post_id=<?= $item['post_id'] ?>" onclick="return Hien('<?php echo $item['post_id']; ?>')">Hiện</a>
-                        <a href="?btn_del&post_id=<?= $item['post_id'] ?>" onclick="return Del('<?php echo $item['post_id']; ?>')">Delete</a>
+                        <a href="?btn_del&post_id=<?= $item['post_id'] ?>" onclick="return Del('<?php echo $item['post_id']; ?>')">Xóa</a>
                     </td>
 
                 </tr>
