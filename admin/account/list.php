@@ -1,8 +1,3 @@
-<style>
-    .detail {
-        overflow-x: scroll;
-    }
-</style>
 <!-- oder details list -->
 <div class="recentOrder list">
     <div class="cardHeader">
