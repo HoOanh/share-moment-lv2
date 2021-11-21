@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="../../app/css/css-home/uikit.min.css">
     <link rel="stylesheet" href="../../app/css/css-home/style.min.css">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="../../app/css/toast.css">
 
 </head>
 
@@ -35,7 +35,7 @@
 
 
 
-
+<div id="show-msg"></div>
     <div id="wrapper">
 
         <!-- Header -->
