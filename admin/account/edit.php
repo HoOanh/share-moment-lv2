@@ -80,8 +80,8 @@
         <div class="button">
 
             <button type="submit" id="user-button" class="btn sm-btn">Thay Đổi Vai Trò</button>
-            <a href="?btn_ban&box_id=<?= $unique_id ?>" class="btn sm-btn">Ban</a>
-            <a href="?btn_unban&box_id=<?= $unique_id ?>" class="btn sm-btn">Unban</a>
+            <a href="?btn_ban&box_id=<?= $unique_id ?>" class="btn sm-btn">Chặn</a>
+            <a href="?btn_unban&box_id=<?= $unique_id ?>" class="btn sm-btn">Bỏ Chặn</a>
             <a href="../account/" class="btn sm-btn">Về Danh Sách</a>
         </div>
     </form>

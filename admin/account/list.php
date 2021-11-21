@@ -1,9 +1,8 @@
 <!-- oder details list -->
 <div class="recentOrder list">
     <div class="cardHeader">
-        <h2>Manage Users</h2>
+        <h2>Chỉnh Sửa Người Dùng</h2>
         <div class="ctl">
-            <a href="?btn_viewAll" class="ad-btn">View All</a>
         </div>
     </div>
 
@@ -19,8 +18,8 @@
                 <td>Số Điện Thoại</td>
                 <td>Ngày Gia Nhập</td>
                 <td>Vai Trò</td>
-                <td>Ẩn Hiện</td>
-                <td>Control</td>
+                <td>Trạng Thái</td>
+                <td>Lựa Chọn</td>
             </tr>
         </thead>
         <tbody>
@@ -46,10 +45,10 @@
                     <td><?= $item['phone'] ?></td>
                     <td><?= $item['date_join'] == NULL ? 'Không Xác Định' : $item['date_join'] ?></td>
                     <td><?= $item['role'] == 0 ? 'Người Dùng' : 'Admin' ?></td>
-                    <td><?= $item['anhien'] == 0 ? 'Ẩn' : 'Hiện' ?></td>
+                    <td><?= $item['anhien'] == 0 ? 'Bị Chặn' : 'Bình Thường' ?></td>
                     <td>
-                        <a href="?btn_edit&box_id=<?= $item['unique_id'] ?>" class="status edit"> Edit </a>
-                        <a href="?btn_del&box_id=<?= $item['unique_id'] ?>" class="status delete" onclick="return confirm('Bạn đã chắc chắn muốn xóa chưa?')"> Delete </a>
+                        <a href="?btn_edit&box_id=<?= $item['unique_id'] ?>" class="status edit"> Sửa </a>
+                        <a href="?btn_del&box_id=<?= $item['unique_id'] ?>" class="status delete" onclick="return confirm('Bạn đã chắc chắn muốn xóa chưa?')"> Xóa </a>
                     </td>
                 </tr>
             <?php }

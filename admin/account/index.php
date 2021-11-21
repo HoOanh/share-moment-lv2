@@ -27,14 +27,14 @@ if (exist_param("btn_add")) {
     $sql = "UPDATE users SET anhien = ? WHERE unique_id = ?";
     pdo_execute($sql, $anhien, $box_id);
 
-    $VIEW_NAME = "list.php";
+    header('location:../account');
 } else if (exist_param("btn_unban")) {
     $box_id = $_GET['box_id'];
     $anhien = 1;
     $sql = "UPDATE users SET anhien = ? WHERE unique_id = ?";
     pdo_execute($sql, $anhien, $box_id);
 
-    $VIEW_NAME = "list.php";
+    header('location:../account'); 
     //======= xóa danh mục ============
 } else if (exist_param("btn_del")) {
     $box_id = $_REQUEST['box_id'];
