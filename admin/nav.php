@@ -27,19 +27,19 @@
         <li class="nav__link">
             <a href="../account/">
                 <span class="icon"><i class="fas fa-user-cog"></i></span>
-                <span class="title">Tài Khoản</span>
+                <span class="title">Tài khoản</span>
             </a>
         </li>
         <li class="nav__link">
             <a href="../setting/">
                 <span class="icon"><i class="fas fa-cogs"></i></span>
-                <span class="title"> Chỉnh Sửa </span>
+                <span class="title">Cài đặt</span>
             </a>
         </li>
         <li class="nav__link">
-            <a href="../../site/">
+            <a href="../../site/chat/process.php?logout">
                 <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                <span class="title">Đăng Xuất</span>
+                <span class="title">Đăng xuất</span>
             </a>
         </li>
     </ul>
