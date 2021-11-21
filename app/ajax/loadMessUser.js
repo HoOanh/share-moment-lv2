@@ -1,6 +1,16 @@
 let userContainer = document.querySelector("#messageUserContainer");
 let searchInput = document.querySelector(".uk-input");
 
+setInterval(() => {
+  userContainer.onmouseover = () => {
+    searchInput.classList.add("active");
+  };
+
+  userContainer.onmouseout = () => {
+    searchInput.classList.remove("active");
+  };
+}, 1000);
+
 searchInput.onkeyup = () => {
   let searchValue = searchInput.value;
   if (searchValue != "") {
