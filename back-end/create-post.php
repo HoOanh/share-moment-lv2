@@ -4,7 +4,7 @@ require '../dao/pdo.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 
-$output = ['data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => '', 'post_role' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
+$output = ['type'=>'','msg'=>'','data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => '', 'post_role' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
 
 
 $sql = 'Select * from users where unique_id = ?';
@@ -148,6 +148,8 @@ if ($check) {
         else $role = "<i class='fas fa-user-lock ml-1'></i>";
 
         $output['data']['post_role'] = $role;
+        $output['type'] = 'success';
+        $output['msg'] = 'Đăng bài viết thành công!';
     }
 }
 

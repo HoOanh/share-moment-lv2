@@ -293,12 +293,12 @@ share.onclick = () => {
                     //   ajax nút like nha
                     //   ================================================================
 
-                    (function () {
+                    (function() {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
                             const likeBtns = e.querySelector(".like-btn");
-                            likeBtns.addEventListener("click", function () {
+                            likeBtns.addEventListener("click", function() {
                                 likeBtns.classList.toggle("active");
                                 let postId = likeBtns.getAttribute("data");
                                 let likeContainer =
@@ -339,7 +339,7 @@ share.onclick = () => {
                     })();
 
                     // ajax com men
-                    (function () {
+                    (function() {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
@@ -382,14 +382,14 @@ share.onclick = () => {
                     })();
 
                     // Tải ảnh
-                    (function () {
+                    (function() {
                         const allContainer = document.querySelectorAll("#new-post>div");
 
                         allContainer.forEach((e) => {
                             const downloadBtn = e.querySelector(".ajax-download-btn");
                             if (downloadBtn) {
 
-                                downloadBtn.addEventListener("click", function () {
+                                downloadBtn.addEventListener("click", function() {
                                     const img = e.querySelector(".ajax-image");
 
                                     let imgUrl = img.getAttribute("src");
@@ -401,7 +401,7 @@ share.onclick = () => {
                     })();
 
                     // Xóa ảnh
-                    (function () {
+                    (function() {
                         let deleteBtn = document.querySelectorAll('.deleteBtn');
 
                         deleteBtn.forEach(item => {
@@ -409,7 +409,7 @@ share.onclick = () => {
                             if (item.getAttribute('listener') !== "true") {
                                 item.setAttribute('listener', 'true');
 
-                                item.addEventListener('click', function () {
+                                item.addEventListener('click', function() {
 
                                     let post_id = item.getAttribute('post_id'); //Data bao gồm post_id và unique_id người đăng
                                     let unique_id = item.getAttribute('unique_id');
@@ -424,7 +424,7 @@ share.onclick = () => {
                                             if (http.readyState === XMLHttpRequest.DONE) {
                                                 if (http.status === 200) {
                                                     var data = http.response;
-                                                    
+
                                                     if (data == "Xóa thành công") {
                                                         item.parentNode.parentNode.parentNode.parentNode.parentNode.remove(item);
                                                     }
@@ -446,6 +446,38 @@ share.onclick = () => {
                 } else {
                     alert(data["data"]);
                 }
+
+                if (data['type'] === 'success') {
+                    let msg = data['msg'];
+                    document.querySelector('#show-msg').innerHTML += `
+                    <div class='alert alert--success show'>
+                    <i class='fas fa-check'></i>
+                    <span class='msg'>${msg}</span>
+                    <span class='close-btn'>
+                    <span class='fas fa-times'></span>
+                    </span>
+                    </div>
+                    `;
+
+                };
+
+                (function() {
+                    setTimeout(function() {
+                        document.querySelector(".alert").classList.remove("show");
+                        document.querySelector(".alert").classList.add("hide");
+
+                        setTimeout(function() {
+                            document.querySelector('#show-msg').innerHTML = '';
+                        }, 1500);
+                    }, 5000)
+                    document.querySelector(".close-btn").addEventListener("click", function() {
+                        document.querySelector(".alert").classList.remove("show");
+                        document.querySelector(".alert").classList.add("hide");
+                        setTimeout(function() {
+                            document.querySelector('#show-msg').innerHTML = '';
+                        }, 1500)
+                    })
+                })();
             }
         }
     };

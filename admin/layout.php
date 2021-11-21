@@ -5,9 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sharemoment || Admin</title>
+    <title>Sharemoment | Admin</title>
+    <!-- Favicon -->
+    <link href="../../images/header/logo-mobile.png" rel="icon" type="image/png">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- style link -->
     <link rel="stylesheet" href="../../app/css/admin/style.css">
     <script src="../../app/js/js-admin/jQuery/jquery-3.6.0.min.js"></script>

@@ -1,7 +1,7 @@
 <!-- oder details list -->
 <div class="recentOrder list">
     <div class="cardHeader">
-        <h2>Chỉnh Sửa Người Dùng</h2>
+        <h2>Quản lý người dùng</h2>
         <div class="ctl">
         </div>
     </div>
