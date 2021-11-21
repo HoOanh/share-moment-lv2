@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500&display=swap');
+body {
+    overflow-x: hidden;
+}
+
+.alert {
+    padding: 20px 40px;
+    min-width: 420px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+@keyframes show_slide {
+    0% {
+        transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(-10%);
+    }
+    80% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+
+@keyframes hide_slide {
+    0% {
+        transform: translateX(-10px);
+    }
+    40% {
+        transform: translateX(10%);
+    }
+    80% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.alert.show {
+    animation: show_slide 1s ease forwards;
+}
+
+.alert.hide {
+    animation: hide_slide 1s ease forwards;
+}
+
+.alert>i {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 30px;
+}
+
+.alert .msg {
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.alert .close-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 20px 18px;
+}
+
+.alert .close-btn:hover {
+    cursor: pointer;
+}
+
+.alert .close-btn .fa-times {
+    font-size: 22px;
+    line-height: 40px;
+}
+
+
+/* modifier */
+
+
+/* Success */
+
+.alert--success {
+    background-color: #25a18e;
+    border-left: 8px solid #226f54;
+}
+
+.alert--success>i {
+    color: #226f54;
+}
+
+.alert--success .msg {
+    color: #fff;
+}
+
+.alert--success .close-btn {
+    background-color: #31ad82;
+}
+
+.alert--success .close-btn:hover {
+    background-color: #245242;
+}
+
+.alert--success .close-btn .fa-times {
+    color: #035e3e;
+}
+
+
+/* Warning */
+
+.alert--warning {
+    background-color: #ffdb9b;
+    border-left: 8px solid #ffa502;
+}
+
+.alert--warning>i {
+    color: #ce8500;
+}
+
+.alert--warning .msg {
+    color: #fff;
+}
+
+.alert--warning .close-btn {
+    background-color: #ffd080;
+}
+
+.alert--warning .close-btn:hover {
+    background-color: #ffc766;
+}
+
+.alert--warning .close-btn .fa-times {
+    color: #ce8500;
+}
