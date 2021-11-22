@@ -31,7 +31,7 @@ if (isset($_FILES["img-bg"])) {
             
             $changeAvatar = changeBg($final_img,$_SESSION['unique_id']);
             if ($changeAvatar) {
-                if($$oldAvatar['bg_user'] != 'non-bg.jpg'){
+                if($oldAvatar['bg_user'] != 'non-bg.jpg'){
                     unlink($oldAvatarUrl);
                 }
                 $output["res_status"] = "success";

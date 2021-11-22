@@ -350,17 +350,24 @@
                             <!-- more drowpdown -->
                             <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
                                 <ul class="space-y-1">
-                                    <li>
-                                        <form enctype="multipart/form-data" id='form-change-avatar'>
-                                            <input type="file" id='change-avatar' name='img'>
+                                    <?php 
+                                    
+                                    if(!isset($_GET['timeline_id'])){
+                                        echo " <li>
+                                        <form enctype='multipart/form-data' id='form-change-avatar'>
+                                            <input type='file' id='change-avatar' name='img'>
                                         </form>
                                     </li>
                                     <li>
-                                        <form enctype="multipart/form-data" id='form-change-bg'>
-                                            <input type="file" id='change-bg' name='img-bg'>
+                                        <form enctype='multipart/form-data' id='form-change-bg'>
+                                            <input type='file' id='change-bg' name='img-bg'>
                                         </form>
                                     </li>
-
+";
+                                    }
+                                    
+                                    ?>
+                                   
                                     <script>
                                         const changeAvatarBtn = document.querySelector("#change-avatar");
                                         const formChangeAvatar = document.querySelector("#form-change-avatar");
