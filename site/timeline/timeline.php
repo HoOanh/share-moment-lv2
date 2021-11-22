@@ -41,7 +41,7 @@
 
 <body>
 
-<div id="show-msg"></div>
+    <div id="show-msg"></div>
     <div id="wrapper">
 
         <!-- Header -->
@@ -113,13 +113,13 @@
                             extract($userMain);
                             ?>
                             <a href="#">
-                                <img src="../../images/user/<?= $img ?>" class="is_avatar" alt="">
+                                <img src="../../images/user/<?= $img ?>" class="is_avatar oldAvatar" alt="">
                             </a>
                             <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 
                                 <a href="../timeline/" class="user">
                                     <div class="user_avatar">
-                                        <img src="../../images/user/<?= $img ?>" style="width:100%; height:100%">
+                                        <img src="../../images/user/<?= $img ?>" style="width:100%; height:100%" class="oldAvatar">
                                     </div>
                                     <div class="user_name">
                                         <div> <?php echo $fname . " " . $lname ?> </div>
@@ -291,7 +291,7 @@
                 <div class="profile user-profile">
 
                     <div class="profiles_banner">
-                        <img src="../../images/background/<?= $timeline_user['bg_user'] ?>" alt="">
+                        <img src="../../images/background/<?= $timeline_user['bg_user'] ?>" class="oldBg">
                         <!-- <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
                             <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
                                 <i class="far fa-edit"></i>
@@ -303,7 +303,7 @@
 
                         <div class="profile_avatar">
                             <div class="profile_avatar_holder">
-                                <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="">
+                                <img src="../../images/user/<?= $timeline_user['img'] ?>" alt="" class='oldAvatar'>
                             </div>
                             <div class="user_status <?php if ($timeline_user['user_status'] != 'Offline') echo 'status_online' ?>"></div>
                             <div class="icon_change_photo" hidden>
@@ -350,6 +350,162 @@
                             <!-- more drowpdown -->
                             <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
                                 <ul class="space-y-1">
+                                    <li>
+                                        <form enctype="multipart/form-data" id='form-change-avatar'>
+                                            <input type="file" id='change-avatar' name='img'>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form enctype="multipart/form-data" id='form-change-bg'>
+                                            <input type="file" id='change-bg' name='img-bg'>
+                                        </form>
+                                    </li>
+
+                                    <script>
+                                        const changeAvatarBtn = document.querySelector("#change-avatar");
+                                        const formChangeAvatar = document.querySelector("#form-change-avatar");
+                                        changeAvatarBtn.addEventListener('change', function() {
+                                            let http = new XMLHttpRequest();
+
+                                            http.open("post", "../../back-end/change-avatar.php");
+
+                                            http.onload = function() {
+                                                if (http.readyState === XMLHttpRequest.DONE) {
+                                                    if (http.status === 200) {
+                                                        // Add toast
+                                                        let data = JSON.parse(http.response);
+                                                        
+
+
+                                                        if (data['res_status'] === 'success') {
+                                                            let msg = data['msg'];
+                                                            document.querySelector('#show-msg').innerHTML += `
+                                                            <div class='alert alert--success show'>
+                                                            <i class='fas fa-check'></i>
+                                                            <span class='msg'>${msg}</span>
+                                                            <span class='close-btn'>
+                                                            <span class='fas fa-times'></span>
+                                                            </span>
+                                                            </div>
+                                                            `;
+                                                            document.querySelectorAll(".oldAvatar").forEach(e=>{
+                                                                e.setAttribute("src","../../images/user/" + data['newAvatar']);
+                                                            });
+
+                                                        };
+
+                                                        if (data['res_status'] === 'error') {
+                                                            let msg = data['data'];
+                                                            document.querySelector('#show-msg').innerHTML += `
+                                                            <div class='alert alert--error show'>
+                                                            <i class='fas fa-exclamation-circle'></i>
+                                                            <span class='msg'>${msg}</span>
+                                                            <span class='close-btn'>
+                                                            <span class='fas fa-times'></span>
+                                                            </span>
+                                                            </div>
+                                                            `;
+                                                        }
+
+                                                        (function() {
+                                                            setTimeout(function() {
+                                                                document.querySelector(".alert").classList.remove("show");
+                                                                document.querySelector(".alert").classList.add("hide");
+
+                                                                setTimeout(function() {
+                                                                    document.querySelector('#show-msg').innerHTML = '';
+                                                                }, 1500);
+                                                            }, 5000)
+                                                            document.querySelector(".close-btn").addEventListener("click", function() {
+                                                                document.querySelector(".alert").classList.remove("show");
+                                                                document.querySelector(".alert").classList.add("hide");
+                                                                setTimeout(function() {
+                                                                    document.querySelector('#show-msg').innerHTML = '';
+                                                                }, 1500)
+                                                            })
+                                                        })();
+                                                    }
+                                                }
+                                            }
+
+
+                                            let formData = new FormData(formChangeAvatar);
+                                            console.log(formData);
+                                            http.send(formData);
+                                        })
+                                        const changeBgBtn = document.querySelector("#change-bg");
+                                        const formChangeBg = document.querySelector("#form-change-bg");
+                                        changeBgBtn.addEventListener('change', function() {
+                                            let http = new XMLHttpRequest();
+
+                                            http.open("post", "../../back-end/change-bg.php");
+
+                                            http.onload = function() {
+                                                if (http.readyState === XMLHttpRequest.DONE) {
+                                                    if (http.status === 200) {
+                                                        // Add toast
+                                                        let data = JSON.parse(http.response);
+                                                        
+
+
+                                                        if (data['res_status'] === 'success') {
+                                                            let msg = data['msg'];
+                                                            document.querySelector('#show-msg').innerHTML += `
+                                                            <div class='alert alert--success show'>
+                                                            <i class='fas fa-check'></i>
+                                                            <span class='msg'>${msg}</span>
+                                                            <span class='close-btn'>
+                                                            <span class='fas fa-times'></span>
+                                                            </span>
+                                                            </div>
+                                                            `;
+                                                            document.querySelectorAll(".oldBg").forEach(e=>{
+                                                                e.setAttribute("src","../../images/background/" + data['newAvatar']);
+                                                            });
+
+                                                        };
+
+                                                        if (data['res_status'] === 'error') {
+                                                            let msg = data['data'];
+                                                            document.querySelector('#show-msg').innerHTML += `
+                                                            <div class='alert alert--error show'>
+                                                            <i class='fas fa-exclamation-circle'></i>
+                                                            <span class='msg'>${msg}</span>
+                                                            <span class='close-btn'>
+                                                            <span class='fas fa-times'></span>
+                                                            </span>
+                                                            </div>
+                                                            `;
+                                                        }
+
+                                                        (function() {
+                                                            setTimeout(function() {
+                                                                document.querySelector(".alert").classList.remove("show");
+                                                                document.querySelector(".alert").classList.add("hide");
+
+                                                                setTimeout(function() {
+                                                                    document.querySelector('#show-msg').innerHTML = '';
+                                                                }, 1500);
+                                                            }, 5000)
+                                                            document.querySelector(".close-btn").addEventListener("click", function() {
+                                                                document.querySelector(".alert").classList.remove("show");
+                                                                document.querySelector(".alert").classList.add("hide");
+                                                                setTimeout(function() {
+                                                                    document.querySelector('#show-msg').innerHTML = '';
+                                                                }, 1500)
+                                                            })
+                                                        })();
+                                                    }
+                                                }
+                                            }
+
+
+                                            let formData = new FormData(formChangeBg);
+                                          
+                                            http.send(formData);
+                                        })
+                                    </script>
+
 
                                     <li>
                                         <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
