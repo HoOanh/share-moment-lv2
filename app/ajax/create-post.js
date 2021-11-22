@@ -443,11 +443,9 @@ share.onclick = () => {
                         })
                     })()
 
-                } else {
-                    alert(data["data"]);
                 }
 
-                if (data['type'] === 'success') {
+                if (data['res_status'] === 'success') {
                     let msg = data['msg'];
                     document.querySelector('#show-msg').innerHTML += `
                     <div class='alert alert--success show'>
@@ -460,6 +458,19 @@ share.onclick = () => {
                     `;
 
                 };
+
+                if (data['res_status'] === 'warning') {
+                    let msg = data['data'];
+                    document.querySelector('#show-msg').innerHTML += `
+                    <div class='alert alert--warning show'>
+                    <i class='fas fa-exclamation-circle'></i>
+                    <span class='msg'>${msg}</span>
+                    <span class='close-btn'>
+                    <span class='fas fa-times'></span>
+                    </span>
+                    </div>
+                    `;
+                }
 
                 (function() {
                     setTimeout(function() {

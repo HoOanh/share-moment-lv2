@@ -31,7 +31,7 @@ $user_job = trim(strip_tags($user_job));
 $user_qh = trim(strip_tags($user_qh));
 $user_about = trim(strip_tags($user_about));
 
-$output = ["data" => "", "status" => 'false'];
+$output = ["data" => "", "status" => ''];
 
 if (!empty($fname) && !empty($lname)) {
     if (!empty($email)) {
@@ -55,25 +55,25 @@ if (!empty($fname) && !empty($lname)) {
                 $done =  pdo_execute($sql, $fname, $lname, $gender, $phone, $email, $user_name, $pass, $user_bd, $user_from, $user_now, $user_job, $user_qh, $user_about, $_SESSION['unique_id']);
                 if ($done) {
                     $output['data'] = 'Thay đổi thành công';
-                    $output['status'] = 'succes';
+                    $output['status'] = 'success';
                 } else {
                     $output['data'] = 'Thay đổi không thành công';
-                    $output['status'] = 'false';
+                    $output['status'] = 'warning';
                 }
             } else {
                 $output['data'] = 'Cần có mật khẩu';
-                $output['status'] = 'false';
+                $output['status'] = 'warning';
             }
         } else {
             $output['data'] = 'Cần có tên đăng nhập';
-            $output['status'] = 'false';
+            $output['status'] = 'warning';
         }
     } else {
         $output['data'] = 'Cần có email';
-        $output['status'] = 'false';
+        $output['status'] = 'warning';
     }
 } else {
     $output['data'] = 'Cần có họ và tên';
-    $output['status'] = 'false';
+    $output['status'] = 'warning';
 }
 die(json_encode($output));
