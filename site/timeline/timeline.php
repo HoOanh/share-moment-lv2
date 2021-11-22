@@ -419,8 +419,8 @@
                             <div id='new-post'>
                             </div>
                             <?php
-                            if (isset($_GET['timeline_id'])) $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.unique_id = ?) and (post.post_role = 1)  ORDER BY post_id DESC LIMIT 5 ";
-                            else $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.unique_id = ?) ORDER BY post_id DESC LIMIT 5 ";
+                            if (isset($_GET['timeline_id'])) $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.unique_id = ?) and (post.post_role = 1) and (post.post_status = 1)  ORDER BY post_id DESC LIMIT 5 ";
+                            else $sql2 = "Select * FROM post INNER JOIN users ON (users.unique_id = post.unique_id) and (post.unique_id = ?) and (post.post_status = 1) ORDER BY post_id DESC LIMIT 5 ";
                             $feedList = pdo_get_all_rows($sql2, $timeline_id);
                             foreach ($feedList as $item) {
                                 extract($item);
