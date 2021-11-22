@@ -1,8 +1,8 @@
 .detail {
-  overflow-x: scroll;
+  grid-template-columns: 2fr;
 }
 .post-img {
-  width: 300px;
+  max-width: 300px;
   height: 200px;
   text-align: center;
 }
@@ -21,7 +21,6 @@
   width: 180px;
   display: flex;
   justify-content: space-around;
- 
 }
 .post-control a:first-child {
   width: 40%;
@@ -29,7 +28,7 @@
   background-color: yellow;
   margin: 5px;
   text-align: center;
-padding-top: 5px;
+  padding-top: 5px;
   border-radius: 15px;
   color: black;
   font-weight: bold;
@@ -65,14 +64,14 @@ padding-top: 5px;
   margin-top: 75px;
 }
 
-.tr-post td:nth-child(5){
+.tr-post td:nth-child(5) {
   width: 5%;
 }
-.tr-post td:nth-child(4){
-  width:25%;
+.tr-post td:nth-child(4) {
+  width: 25%;
 }
 
-.tr-post td:nth-child(3){
+.tr-post td:nth-child(3) {
   min-width: 200px;
   max-width: 400px;
 }

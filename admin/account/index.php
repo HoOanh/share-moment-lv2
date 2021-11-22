@@ -1,14 +1,19 @@
 <?php
 session_start();
-require '../../dao/pdo.php';
+require '../../dao/pdo_admin_account.php';
 
 $VIEW_NAME = 'list.php';
 
 extract($_REQUEST);
 
 $page_size = 10;
-$sql = 'SELECT * FROM users ORDER BY user_id DESC';
-$usersList = pdo_get_all_rows($sql);
+$page_num = 1;
+if (isset($_GET['page_num'])) $page_num = $_GET['page_num'] + 0;
+if ($page_num <= 0) $page_num = 1;
+
+$total_rows = countUsers();
+$usersList = getUsers($page_num, $page_size);
+
 // ======== thêm danh mục =========
 
 if (exist_param("btn_add")) {
@@ -34,7 +39,7 @@ if (exist_param("btn_add")) {
     $sql = "UPDATE users SET anhien = ? WHERE unique_id = ?";
     pdo_execute($sql, $anhien, $box_id);
 
-    header('location:../account'); 
+    header('location:../account');
     //======= xóa danh mục ============
 } else if (exist_param("btn_del")) {
     $box_id = $_REQUEST['box_id'];

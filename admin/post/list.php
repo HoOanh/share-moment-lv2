@@ -1,6 +1,6 @@
 <!-- oder details list -->
 <link rel="stylesheet" href="../../app/css/admin/post.css">
-<div class="recentOrder list">
+<div class="recentOrder">
     <div class="cardHeader">
         <h2>Quản lý bài viết</h2>
         <!-- <div class="ctl">
@@ -26,34 +26,34 @@
 
                     <td><?= $item['post_id'] ?></td>
                     <td><?= $item['fname'] ?> <?= $item['lname'] ?></td>
-                    
+
                     <td class="post-capton">
                         <?php
-                        if($item['caption']== null){
+                        if ($item['caption'] == null) {
                             echo "Trống";
-                        }else{
+                        } else {
                             echo  $item['caption'];
                         }
-                        ?>    
-                   </td>
+                        ?>
+                    </td>
                     <td class="post-img" colspan="2">
-                    <?php
-                     $rt ='';
-                        if($item['img_post']== null && $item['post_video']== null){
-                            echo  $rt.="Trống";
-                        }else if($item['img_post'] != null){
-                            echo   $rt.="
+                        <?php
+                        $rt = '';
+                        if ($item['img_post'] == null && $item['post_video'] == null) {
+                            echo  $rt .= "Trống";
+                        } else if ($item['img_post'] != null) {
+                            echo   $rt .= "
                             <img src='../../images/post/$item[img_post]' />
                             ";
-                        }else if($item['post_video'] != null){
-                            echo   $rt.="
+                        } else if ($item['post_video'] != null) {
+                            echo   $rt .= "
                             <video controls src='../../video/post/$item[post_video]'></video>
                             ";
                         }
-                        ?> 
-                        
+                        ?>
+
                     </td>
-                  
+
                     <td class="post-video">
                         <?php if ($item['post_status'] == 1) {
                             echo "Hiện";
@@ -71,10 +71,10 @@
                 </tr>
             <?php } ?>
         </tbody>
-
-
-
-
+        <?php
+        $base_url = "?list";
+        echo buildLinkBreakPage($base_url, $total_rows, $page_num, $page_size);
+        ?>
     </table>
     <script>
         function Del(name) {

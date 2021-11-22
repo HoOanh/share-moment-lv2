@@ -1,12 +1,16 @@
 <?php
 session_start();
-require '../../dao/admin_post.php';
+require '../../dao/pdo_admin_post.php';
 
-$list = getAll();
-// $list = get();
+$page_size = 5;
+$page_num = 1;
+if (isset($_GET['page_num'])) $page_num = $_GET['page_num'] + 0;
+if ($page_num <= 0) $page_num = 1;
+
+$list = getListPost($page_num, $page_size);
+$total_rows = CountPost();
 
 $VIEW_NAME = 'list.php';
-
 
 
 // ======== thêm danh mục =========
