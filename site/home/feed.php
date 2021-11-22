@@ -36,11 +36,44 @@
     #new-post>div:not(:last-child) {
         margin-bottom: 40px;
     }
+
+    body.preloading {
+        overflow: hidden;
+    }
+
+    .loading {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100000;
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-self: center; */
+        background-color: #fff;
+        /* position: relative; */
+    }
+
+    .loading img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(.3);
+    }
 </style>
 
-<body>
+<body class="preloading">
+    <div class="loading">
+        <img src="../../images/loading.gif" alt="">
+    </div>
 
-<div id="show-msg"></div>
+
+
+    <div id="show-msg"></div>
 
     <div id="wrapper">
 
@@ -439,7 +472,7 @@
                                 }
 
                                 ?>
-                                
+
                                 <a href="#" id="night-mode" class="btn-night-mode">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
@@ -1253,6 +1286,15 @@
                 }
             });
         })()
+    </script>
+
+    <script>
+        $(window).on('load', function(event) {
+            
+            // $('.load').delay(1000).fadeOut('fast');
+            $('.loading').delay(500).fadeOut('fast');
+            $('body').removeClass('preloading');
+        });
     </script>
 </body>
 
