@@ -402,7 +402,7 @@
                                                         };
 
                                                         if (data['res_status'] === 'error') {
-                                                            let msg = data['data'];
+                                                            let msg = data['msg'];
                                                             document.querySelector('#show-msg').innerHTML += `
                                                             <div class='alert alert--error show'>
                                                             <i class='fas fa-exclamation-circle'></i>
@@ -452,7 +452,7 @@
                                                     if (http.status === 200) {
                                                         // Add toast
                                                         let data = JSON.parse(http.response);
-                                                        
+                                                        console.log(data);
 
 
                                                         if (data['res_status'] === 'success') {
@@ -473,7 +473,7 @@
                                                         };
 
                                                         if (data['res_status'] === 'error') {
-                                                            let msg = data['data'];
+                                                            let msg = data['msg'];
                                                             document.querySelector('#show-msg').innerHTML += `
                                                             <div class='alert alert--error show'>
                                                             <i class='fas fa-exclamation-circle'></i>
