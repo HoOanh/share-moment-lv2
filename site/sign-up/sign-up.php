@@ -94,17 +94,18 @@
     <footer>
         <div class="footer_wrap-form">
             <ul class="footer_box-menu">
-                <li><a href="">ABOUT</a></li>
-                <li><a href="">HELP</a></li>
-                <li><a href="">TERMS</a></li>
-                <li><a href="">PRIVACY</a></li>
+                <li><a href="https://www.facebook.com/duythenights" target="_blank">Duy</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=100010560571719" target="_blank">Linh</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=100035398038966" target="_blank">Oanh</a></li>
+                <li><a href="https://www.facebook.com/sang.caoquang.191102" target="_blank">Sang</a></li>
             </ul>
-            <div class="footer_box-copyright">© Copyright 2020 by Socialite</div>
+            <div class="footer_box-copyright">© Copyright 2021 Team 1 Gà Chọi</div>
         </div>
     </footer>
 
 
     <script src="../../app/js/pass-show-hide.js"></script>
+    <script src="../../app/ajax/send-mail-verif.js"></script>
     <script src="../../app/ajax/sign_up.js"></script>
 </body>
 

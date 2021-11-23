@@ -650,6 +650,10 @@
                                 else $role = "<i class='fas fa-user-lock ml-1'></i>";
 
                                 if ($post_video != '') {
+                                    $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
+                                $hm = implode(':',array_slice(explode(":",explode(" ",$time)[1]),0,2));
+                                
+                                $time = $hm . " " .$dmy;
                                     echo "
                                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
                                             <div class='flex justify-between items-center lg:p-4 p-2.5'>
@@ -778,6 +782,10 @@
 
                                         </div>";
                                 } else {
+                                    $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
+                                $hm = implode(':',array_slice(explode(":",explode(" ",$time)[1]),0,2));
+                                
+                                $time = $hm . " " .$dmy;
                                     echo "
                                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
 

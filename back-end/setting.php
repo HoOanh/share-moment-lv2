@@ -29,9 +29,10 @@ $user_from = trim(strip_tags($user_from));
 $user_now = trim(strip_tags($user_now));
 $user_job = trim(strip_tags($user_job));
 $user_qh = trim(strip_tags($user_qh));
-$user_about = trim(strip_tags($user_about));
+$user_about = nl2br(trim(strip_tags($user_about)));
 
 $output = ["data" => "", "status" => ''];
+
 
 if (!empty($fname) && !empty($lname)) {
     if (!empty($email)) {

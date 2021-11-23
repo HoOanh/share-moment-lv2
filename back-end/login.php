@@ -17,6 +17,16 @@ if (!empty($pass) && !empty($user_name)) {
     $result = login($user_name, $pass);
     if($result){
         extract($result);
+
+        if($isVerify != '1'){
+            $output['data'] = 'Tài khoản của bạn chưa được kích hoạt email!';
+            die(json_encode($output));
+        }
+        if($anhien != '1'){
+            $output['data'] = 'Tài khoản của bạn đã bị cấm bởi admin!';
+            die(json_encode($output));
+        }
+
         $_SESSION['unique_id'] = $unique_id;
         $output["data"] = "success";
         if($role){

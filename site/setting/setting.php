@@ -469,7 +469,7 @@
                                 </div>
                                 <div class="col-span-2">
                                     <label for="about">Giới thiệu về bạn</label>
-                                    <textarea id="about" name="about" rows="3" class="with-border" value=""><?= $user_about ?></textarea>
+                                    <textarea maxlength="30" id="about" name="about" rows="3" class="with-border" value=""><?= $user_about ?></textarea>
                                 </div>
                             </div>
 

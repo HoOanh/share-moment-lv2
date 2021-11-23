@@ -13,6 +13,10 @@
             
             $VIEW_NAME = "inputPass.php";
         }
+        if($_GET['action'] == "verify"){
+            
+            $VIEW_NAME = "verify.php";
+        }
     }
 
     include "../index.php";
