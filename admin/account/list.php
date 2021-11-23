@@ -54,5 +54,9 @@
             <?php }
             ?>
         </tbody>
+        <?php
+        $base_url = "?list";
+        echo buildLinkBreakPage($base_url, $total_rows, $page_num, $page_size);
+        ?>
     </table>
 </div>

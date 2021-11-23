@@ -140,3 +140,31 @@ body {
 .alert--warning .close-btn .fa-times {
     color: #ce8500;
 }
+
+
+/*  error */
+
+.alert--error {
+    background-color: #ef233c;
+    border-left: 8px solid #d90429;
+}
+
+.alert--error>i {
+    color: #fff;
+}
+
+.alert--error .msg {
+    color: #fff;
+}
+
+.alert--error .close-btn {
+    background-color: #9e2a2b;
+}
+
+.alert--error .close-btn:hover {
+    background-color: #e5383b;
+}
+
+.alert--error .close-btn .fa-times {
+    color: #d90429;
+}
