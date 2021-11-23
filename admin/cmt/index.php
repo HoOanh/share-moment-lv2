@@ -1,5 +1,12 @@
 <?php
 session_start();
+if (!isset($_SESSION['unique_id'])) {
+    $sql1 = "SELECT * FROM users where unique_id = ? ";
+    $user = pdo_execute($sql, $_SESSION['unique_id']);
+    if ($user['role'] == 0) {
+        header("location: ../../site/login");
+    }
+}
 require '../../dao/pdo.php';
 require '../../dao/pdo_admin_cmt.php';
 
