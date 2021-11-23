@@ -350,24 +350,26 @@
                             <!-- more drowpdown -->
                             <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700" uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
                                 <ul class="space-y-1">
-                                    <?php 
-                                    
-                                    if(!isset($_GET['timeline_id'])){
+                                    <?php
+
+                                    if (!isset($_GET['timeline_id'])) {
                                         echo " <li>
                                         <form enctype='multipart/form-data' id='form-change-avatar'>
                                             <input type='file' id='change-avatar' name='img'>
+                                            <i class='fas fa-image'></i>
                                         </form>
                                     </li>
                                     <li>
                                         <form enctype='multipart/form-data' id='form-change-bg'>
-                                            <input type='file' id='change-bg' name='img-bg'>
+                                        <input type='file' id='change-bg' name='img-bg'>
+                                        <i class='fas fa-camera-retro'></i>
                                         </form>
                                     </li>
 ";
                                     }
-                                    
+
                                     ?>
-                                   
+
                                     <script>
                                         const changeAvatarBtn = document.querySelector("#change-avatar");
                                         const formChangeAvatar = document.querySelector("#form-change-avatar");
@@ -381,7 +383,7 @@
                                                     if (http.status === 200) {
                                                         // Add toast
                                                         let data = JSON.parse(http.response);
-                                                        
+
 
 
                                                         if (data['res_status'] === 'success') {
@@ -395,8 +397,8 @@
                                                             </span>
                                                             </div>
                                                             `;
-                                                            document.querySelectorAll(".oldAvatar").forEach(e=>{
-                                                                e.setAttribute("src","../../images/user/" + data['newAvatar']);
+                                                            document.querySelectorAll(".oldAvatar").forEach(e => {
+                                                                e.setAttribute("src", "../../images/user/" + data['newAvatar']);
                                                             });
 
                                                         };
@@ -466,8 +468,8 @@
                                                             </span>
                                                             </div>
                                                             `;
-                                                            document.querySelectorAll(".oldBg").forEach(e=>{
-                                                                e.setAttribute("src","../../images/background/" + data['newAvatar']);
+                                                            document.querySelectorAll(".oldBg").forEach(e => {
+                                                                e.setAttribute("src", "../../images/background/" + data['newAvatar']);
                                                             });
 
                                                         };
@@ -508,7 +510,7 @@
 
 
                                             let formData = new FormData(formChangeBg);
-                                          
+
                                             http.send(formData);
                                         })
                                     </script>
@@ -553,8 +555,8 @@
                                 echo "
                                         <div class='card lg:mx-0 p-4' uk-toggle='target: #create-post-modal'>
                                             <div class='flex space-x-3'>
-                                                <img src='../../images/user/$img' class='w-10 h-10 rounded-full'>
-                                                <input placeholder='Bạn đang nghĩ gì vậy? $lname!' class='bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full'>
+                                                <img src=\"../../images/user/{$timeline_user['img']}\" class='w-10 h-10 rounded-full'>
+                                                <input placeholder='Bạn đang nghĩ gì vậy? {$timeline_user['lname']}!' class='bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full'>
                                             </div>
                                             <div class='grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm'>
                                                 <div class='hover:bg-gray-100 flex items-center p-1.5 rounded-md cursor-pointer'>
