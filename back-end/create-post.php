@@ -4,7 +4,7 @@ require '../dao/pdo.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 
-$output = ['res_status'=>'warning','msg'=>'','data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => '', 'post_role' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
+$output = ['res_status' => 'warning', 'msg' => '', 'data' => ['post_id' => '', 'caption' => '', 'post_img' => '', 'post_video' => '', 'post_time' => '', 'post_role' => ''], 'status' => false, 'type' => '', 'user' => ['img' => '', 'fname' => '', 'lname' => '']];
 
 
 $sql = 'Select * from users where unique_id = ?';
@@ -71,9 +71,9 @@ if ($videoCheck) {
 
     $video_ext = strtolower(end($video_explode)); // lay phan mo rong cua file upload
     $duoi_cua_video = ['mp4', 'mpeg', 'mpg', 'mov'];
-    if ($video_size >= (1024 * 30000)) {
+    if ($video_size >= (1024 * 16000)) {
         $check = false;
-        $output["data"] = "Video chỉ được dưới 30MB";
+        $output["data"] = "Video chỉ được dưới 16MB";
     } else {
         if (in_array($video_ext, $duoi_cua_video) === true) {
             $time = time();

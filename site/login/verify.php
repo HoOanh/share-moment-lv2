@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -35,8 +35,8 @@
     </div>
     <div class="right">
         <div class="right-contaner">
-           
-            <?php 
+
+            <?php
                 require "../../dao/pdo.php";
                 $token = $_GET['token'];
                 $sql = "Select email from users";
@@ -52,9 +52,9 @@
                         break;
                     }
                 }
-                                
+
                 if($check){
-                    
+
                     $msg = 'Kích hoạt tài khoản thành công!';
                     echo "
                     <script>
@@ -68,14 +68,14 @@
                         </span>
                         </div>
                         `;
-                        
+
                     </script>
                     ";
                 }else{
                     $msg = "Tụi em web sinh viên, anh hacker tha em";
                     echo "
                         <script>
-                    
+
                         document.querySelector('#show-msg').innerHTML += `
                         <div class='alert alert--error show'>
                         <i class='fas fa-exclamation-circle'></i>
@@ -85,7 +85,7 @@
                         </span>
                         </div>
                         `;
-                    
+
                         </script>
                     ";
                 }
@@ -110,7 +110,7 @@
                     })
                 })();
                 </script>";
-            
+
             ?>
 
             <div class="btn btn-signup">

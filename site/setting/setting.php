@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,7 @@
 
 
 
-<div id="show-msg"></div>
+    <div id="show-msg"></div>
     <div id="wrapper">
 
         <!-- Header -->
@@ -123,7 +123,7 @@
                                 </a>
                                 <hr>
 
-                                <a href="page-setting.html">
+                                <a href="../setting/">
                                     <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
                                     </svg>
@@ -262,13 +262,10 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="#">About</a>
-                    <a href="#">Blog </a>
-                    <a href="#">Careers</a>
-                    <a href="#">Support</a>
-                    <a href="#">Contact Us </a>
-                    <a href="#">Developer</a>
-                    <a href="#">Terms of service</a>
+                    <a href="https://www.facebook.com/duythenights/">Duy The Nights</a>
+                    <a href="https://www.facebook.com/profile.php?id=100010560571719">Linh The Noons </a> <br>
+                    <a href="https://www.facebook.com/profile.php?id=100035398038966">Oanh The Afternoons</a>
+                    <a href="https://www.facebook.com/sang.caoquang.191102">Sang The Mornings</a>
                 </div>
 
             </div>
@@ -283,10 +280,10 @@
             <div class="mcontainer">
 
                 <div class="mb-6">
-                    <h2 class="text-2xl font-semibold"> Setting </h2>
+                    <h2 class="text-2xl font-semibold"> Cài đặt </h2>
                     <nav class="responsive-nav border-b md:m-0 -mx-4">
                         <ul uk-switcher="connect: #form-type; animation: uk-animation-fade">
-                            <li><a href="#" class="lg:px-2"> Profile</a></li>
+                            <li><a href="#" class="lg:px-2"> Thông tin cá nhân</a></li>
 
                         </ul>
                     </nav>
@@ -377,94 +374,23 @@
                                     <label for=""> Bạn đang làm gì </label>
                                     <select id="relationship" class="shadow-none selectpicker with-border " name="user_job">
 
-                                        <?php if ($user_job == "Học sinh") {
-                                            echo '
-                                <option value="Học sinh">Học sinh</option>
-                                <option value="Sinh viên">Sinh viên</option>
-                                <option value="Công việc tự do">Công việc tự do</option>
-                                <option value="Nhân viên">Nhân viên</option>
-                                <option value="Khác">Khác</option>
-                                        ';
-                                        } else if ($user_job == "Công việc tự do") {
-                                            echo '
-                                    <option value="Công việc tự do">Công việc tự do</option>
-                                    <option value="Học sinh">Học sinh</option>
-                                    <option value="Sinh viên">Sinh viên</option>
-
-                                    <option value="Nhân viên">Nhân viên</option>
-                                    <option value="Khác">Khác</option>
-                                    ';
-                                        } else if ($user_job == "Sinh viên") {
-                                            echo '
-                                    <option value="Sinh viên">Sinh viên</option>
-                                    <option value="Học sinh">Học sinh</option>
-
-                                 <option value="Công việc tự do">Công việc tự do</option>
-                                 <option value="Nhân viên">Nhân viên</option>
-                                 <option value="Khác">Khác</option>
-                                    ';
-                                        } else if ($user_job == "Nhân viên") {
-                                            echo '
-                                    <option value="Nhân viên">Nhân viên</option>
-                                    <option value="Học sinh">Học sinh</option>
-                                    <option value="Sinh viên">Sinh viên</option>
-                                    <option value="Công việc tự do">Công việc tự do</option>
-
-                                    <option value="Khác">Khác</option>
-                                    ';
-                                        } else {
-                                            echo '
-                                    <option value="Khác">Khác</option>
-                                    <option value="Học sinh">Học sinh</option>
-                                    <option value="Sinh viên">Sinh viên</option>
-                                    <option value="Công việc tự do">Công việc tự do</option>
-                                    <option value="Nhân viên">Nhân viên</option>
-
-
-                                    ';
-                                        } ?>
+                                        <option value="">Chưa cập nhật</option>
+                                        <option value="Học sinh" <?php if ($user_qh == "Học sinh") echo ' selected ' ?>>Học sinh</option>
+                                        <option value="Sinh viên" <?php if ($user_qh == "Sinh viên") echo ' selected ' ?>>Sinh viên</option>
+                                        <option value="Công việc tự do" <?php if ($user_qh == "Công việc tự do") echo ' selected ' ?>>Công việc tự do</option>
+                                        <option value="Nhân viên" <?php if ($user_qh == "Nhân viên") echo ' selected ' ?>>Nhân viên</option>
+                                        <option value="Khác" <?php if ($user_qh == "Khác") echo ' selected ' ?>>Khác</option>
 
                                     </select>
                                 </div>
                                 <div>
                                     <label for=""> Tình trạng quan hệ </label>
                                     <select id="relationship" class="shadow-none selectpicker with-border " name="user_qh">
-                                        <?php if ($user_qh == "Độc thân") {
-                                            echo '
-                                <option value="Độc thân">Độc thân</option>
-                                <option value="Hẹn hò">Hẹn hò</option>
-                                <option value="Phức tạp">Phức tạp</option>
-                                <option value="Đã kết hôn">Đã kết hôn</option>
-                                        ';
-                                        } else if ($user_qh == "Hẹn hò") {
-                                            echo '
-                                    <option value="Hẹn hò">Hẹn hò</option>
-                                    <option value="Độc thân">Độc thân</option>
-
-                                    <option value="Phức tạp">Phức tạp</option>
-                                    <option value="Đã kết hôn">Đã kết hôn</option>
-                                    ';
-                                        } else if ($user_qh == "Phức tạp") {
-                                            echo '
-                                    <option value="Phức tạp">Phức tạp</option>
-                                    <option value="Độc thân">Độc thân</option>
-                                    <option value="Hẹn hò">Hẹn hò</option>
-
-                                    <option value="Đã kết hôn">Đã kết hôn</option>
-                                    ';
-                                        } else {
-                                            echo '
-                                    <option value="Đã kết hôn">Đã kết hôn</option>
-                                    <option value="Độc thân">Độc thân</option>
-                                    <option value="Hẹn hò">Hẹn hò</option>
-                                    <option value="Phức tạp">Phức tạp</option>
-
-
-
-                                    ';
-                                        } ?>
-
-
+                                        <option value="">Chưa cập nhật</option>
+                                        <option value="Độc thân" <?php if ($user_qh == "Độc thân") echo ' selected ' ?>>Độc thân</option>
+                                        <option value="Hẹn hò" <?php if ($user_qh == "Hẹn hò") echo ' selected ' ?>>Hẹn hò</option>
+                                        <option value="Phức tạp" <?php if ($user_qh == "Phức tạp") echo ' selected ' ?>>Phức tạp</option>
+                                        <option value="Đã kết hôn" <?php if ($user_qh == "Đã kết hôn") echo ' selected ' ?>>Đã kết hôn</option>
                                     </select>
                                 </div>
                                 <div class="col-span-2">
@@ -474,8 +400,7 @@
                             </div>
 
                             <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                                <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
-                                <button type="submit" class="change button bg-blue-700"> Save </button>
+                                <button type="submit" class="change button bg-blue-700"> Lưu lại </button>
                             </div>
 
                         </div>

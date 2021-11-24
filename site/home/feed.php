@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -112,7 +112,7 @@
 
                         <div class="header_widgets">
 
-                            
+
 
                             <!-- Message -->
                             <a href="#" class="is_icon" uk-tooltip="title: Tin nhắn">
@@ -224,7 +224,7 @@
                             </svg>
                             <span> Bảng tin </span> </a>
                     </li>
-                    <li><a href="pages.html">
+                    <li><a href="../404.php">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-yellow-500">
                                 <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path>
                             </svg>
@@ -237,25 +237,25 @@
                             </svg>
                             <span> Tin Nhắn </span> </a>
                     </li>
-                    <li><a href="videos.html">
+                    <li><a href="../404.php">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-red-500">
                                 <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm3 2h6v4H7V5zm8 8v2h1v-2h-1zm-2-2H7v4h6v-4zm2 0h1V9h-1v2zm1-4V5h-1v2h1zM5 5v2H4V5h1zm0 4H4v2h1V9zm-1 4h1v2H4v-2z" clip-rule="evenodd" />
                             </svg>
                             <span> Video</span></a>
                     </li>
-                    <li><a href="groups.html">
+                    <li><a href="../404.php">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-500">
                                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                             </svg><span> Nhóm </span></a>
                     </li>
-                    <li id="more-veiw" hidden><a href="blogs.html">
+                    <li id="more-veiw" hidden><a href="../404.php">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-pink-500">
                                 <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd" />
                                 <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
                             </svg>
                             <span> Blog</span></a>
                     </li>
-                    <li id="more-veiw" hidden><a href="forums.html">
+                    <li id="more-veiw" hidden><a href="../404.php">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-500">
                                 <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
                                 <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
@@ -307,13 +307,10 @@
 
 
                 <div class="footer-links">
-                    <a href="#">About</a>
-                    <a href="#">Blog </a>
-                    <a href="#">Careers</a>
-                    <a href="#">Support</a>
-                    <a href="#">Contact Us </a>
-                    <a href="#">Developer</a>
-                    <a href="#">Terms of service</a>
+                    <a href="https://www.facebook.com/duythenights/">Duy The Nights</a>
+                    <a href="https://www.facebook.com/profile.php?id=100010560571719">Linh The Noons </a> <br>
+                    <a href="https://www.facebook.com/profile.php?id=100035398038966">Oanh The Afternoons</a>
+                    <a href="https://www.facebook.com/sang.caoquang.191102">Sang The Mornings</a>
                 </div>
 
             </div>
@@ -338,7 +335,7 @@
                         ?>
                         <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
                             <div class="flex space-x-3">
-                                <img src="../../images/user/<?=$userM['img'] ?>" class="w-10 h-10 rounded-full">
+                                <img src="../../images/user/<?= $userM['img'] ?>" class="w-10 h-10 rounded-full">
                                 <input placeholder="Bạn đang nghĩ gì vậy? <?= $userM['lname'] ?>!" class="bg-gray-100 hover:bg-gray-200 flex-1 h-10 px-6 rounded-full">
                             </div>
                             <div class="grid grid-flow-col pt-3 -mx-1 -mb-1 font-semibold text-sm">
@@ -427,11 +424,11 @@
                             }
 
                             if ($post_video != '') {
-                                $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
-                                $hm = implode(':',array_slice(explode(":",explode(" ",$time)[1]),0,2));
-                                
-                                $time = $hm . " " .$dmy;
-                                
+                                $dmy = implode('-', array_reverse(explode('-', explode(" ", $time)[0])));
+                                $hm = implode(':', array_slice(explode(":", explode(" ", $time)[1]), 0, 2));
+
+                                $time = $hm . " " . $dmy;
+
 
                                 echo "
                                 <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
@@ -452,26 +449,15 @@
                                         <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                             <ul class='space-y-1'>
-
                                                 <li>
                                                     <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='fas fa-share-alt mr-1'></i> Share
+                                                    <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='far fa-edit mr-1'></i> Chỉnh sửa
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='uil-comment-slash mr-1'></i> Tắt bình luận
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                        <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
-                                                    </a>
+                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                                    <i class='far fa-edit mr-1'></i> Chỉnh sửa
+                                                </a>
                                                 </li>";
 
                                 if ($unique_id === $_SESSION['unique_id']) {
@@ -559,10 +545,16 @@
 
                             </div>";
                             } else {
-                                $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
-                                $hm = implode(":",array_slice(explode(":",explode(" ",$time)[1]),0,2));
-                                
-                                $time = $hm . " " .$dmy;
+                                $dmy = implode('-', array_reverse(explode('-', explode(" ", $time)[0])));
+                                $hm = implode(":", array_slice(explode(":", explode(" ", $time)[1]), 0, 2));
+
+                                $time = $hm . " " . $dmy;
+                                if ($img_post != '') $saveImg = " <li class='ajax-download-btn'>
+                                                                    <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                                                        <i class='fas fa-download mr-1'></i> Tải ảnh
+                                                                    </a>
+                                                                </li>";
+                                    else $saveImg = '';
                                 echo "
                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
 
@@ -584,31 +576,18 @@
                                     <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                         <ul class='space-y-1'>
-                                            <li class='ajax-download-btn'>
-                                                <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='fas fa-download mr-1'></i> Tải ảnh
-                                                </a>
-                                            </li>
+                                            $saveImg
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                                       <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                                                 </a>
                                             </li>
+
                                             <li>
                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                                     <i class='far fa-edit mr-1'></i> Chỉnh sửa
                                                 </a>
-                                            </li>
-                                            <li>
-                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='uil-comment-slash mr-1'></i> Tắt bình luận
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
-                                                </a>
-                                                </li>";
+                                            </li>";
                                 if ($unique_id === $_SESSION['unique_id']) {
                                     echo "
                                                 <li>
@@ -724,8 +703,8 @@
                             ?>
                             <nav class="responsive-nav border-b extanded mb-2 -mt-2">
                                 <ul uk-switcher="connect: #group-details; animation: uk-animation-fade">
-                                    <li class="uk-active"><a class="active" href="#0"> Người dùng <span><?php echo $res['total'] ?></span> </a></li>
-                                    <li><a href="#0">Nhóm</a></li>
+                                    <li class="uk-active"><a class="active" href="#0"> Người dùng <span><?php echo $res['total'] - 1 ?></span> </a></li>
+
                                 </ul>
                             </nav>
 
@@ -1017,7 +996,7 @@
 
     <script>
         $(window).on('load', function(event) {
-            
+
             // $('.load').delay(1000).fadeOut('fast');
             $('.loading').delay(500).fadeOut('fast');
             $('body').removeClass('preloading');

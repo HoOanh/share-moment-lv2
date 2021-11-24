@@ -1,13 +1,19 @@
 <?php
 session_start();
-if (!isset($_SESSION['unique_id'])) {
-    $sql1 = "SELECT * FROM users where unique_id = ? ";
-    $user = pdo_execute($sql, $_SESSION['unique_id']);
-    if ($user['role'] == 0) {
-        header("location: ../../site/login");
-    }
-}
+require '../../dao/pdo.php';
 require '../../dao/pdo_admin_account.php';
+
+if (!isset($_SESSION['unique_id'])) {
+    header("location: ../../site/login");
+}
+
+$sql = "select * from users where unique_id = ? and role =1 ";
+
+$isAdmin = pdo_get_one_row($sql, $_SESSION['unique_id']);
+
+if ($isAdmin == []) {
+    header("location: ../../site/home");
+}
 
 $VIEW_NAME = 'list.php';
 

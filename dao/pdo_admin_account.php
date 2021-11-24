@@ -1,6 +1,4 @@
 <?php
-require 'pdo.php';
-
 function countUsers()
 {
     $sql = "SELECT * FROM users";

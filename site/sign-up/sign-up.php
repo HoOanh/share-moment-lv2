@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -40,11 +40,11 @@
                 <div class="name-detail">
                     <div class="field">
                         <label>Họ</label>
-                        <input type="text" placeholder="Tên" name="fname" required>
+                        <input type="text" placeholder="Họ" name="fname" required>
                     </div>
                     <div class="field">
                         <label>Tên</label>
-                        <input type="text" placeholder="Họ" name="lname" required>
+                        <input type="text" placeholder="Tên" name="lname" required>
                     </div>
                 </div>
                 <div class="field">

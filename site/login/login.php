@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -60,15 +60,15 @@
 
 
     <script src="../../app/ajax/login.js"></script>
-    
+
     <?php
-    
+
         if(isset($_GET['status'])){
             $msg = $_GET['msg'];
             if($_GET['status'] == 'success'){
                 echo "<script>
-             
-                  
+
+
                     document.querySelector('#show-msg').innerHTML += `
                                                                     <div class='alert alert--success show'>
                                                                     <i class='fas fa-check'></i>
@@ -82,7 +82,7 @@
                     setTimeout(function() {
                         document.querySelector('.alert').classList.remove('show');
                         document.querySelector('.alert').classList.add('hide');
-        
+
                         setTimeout(function() {
                             document.querySelector('#show-msg').innerHTML = '';
                         }, 1500);
@@ -98,11 +98,11 @@
             </script>";
             }
         }
-    
-    
-    
+
+
+
     ?>
-    
+
 </body>
 
 </html>

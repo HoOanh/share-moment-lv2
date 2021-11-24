@@ -92,7 +92,7 @@
             <?php
             $sql = "select * from cmt join users on cmt.unique_id = users.unique_id order by cmt_time desc";
             $listAllCmt = pdo_get_all_rows($sql);
-            $filterRegex = "(cặc|Lồn|lozz|địt|đỉ|fuck)";
+            $filterRegex = "(cặc|lồn|lozz|địt|đỉ|fuck)";
             foreach ($listAllCmt as $cmt) {
                 extract($cmt);
                 if (preg_match($filterRegex, mb_strtolower($content, 'UTF-8'), $masss)) {

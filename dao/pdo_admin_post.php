@@ -1,6 +1,4 @@
 <?php
-require 'pdo.php';
-
 function getPost($id)
 {
     $sql = "SELECT * FROM post INNER JOIN users ON post.unique_id = users.unique_id AND post_id = $id ";

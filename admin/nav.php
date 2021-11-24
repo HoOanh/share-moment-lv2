@@ -27,13 +27,7 @@
         <li class="nav__link">
             <a href="../account/">
                 <span class="icon"><i class="fas fa-user-cog"></i></span>
-                <span class="title">Account</span>
-            </a>
-        </li>
-        <li class="nav__link">
-            <a href="../products/">
-                <span class="icon"><i class="fab fa-dropbox"></i></span>
-                <span class="title">Products</span>
+                <span class="title">Tài khoản</span>
             </a>
         </li>
         <li class="nav__link">
@@ -43,9 +37,9 @@
             </a>
         </li>
         <li class="nav__link">
-            <a href="../../site/">
+            <a href="../../site/chat/process.php?logout">
                 <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                <span class="title">Sign Out</span>
+                <span class="title">Đăng xuất</span>
             </a>
         </li>
     </ul>

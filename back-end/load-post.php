@@ -78,10 +78,11 @@ foreach ($feedList as $item) {
     }
 
     if ($post_video != '') {
-        $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
-                                $hm = implode(':',array_slice(explode(":",explode(" ",$time)[1]),0,2));
-                                
-                                $time = $hm . " " .$dmy;
+        $dmy = implode('-', array_reverse(explode('-', explode(" ", $time)[0])));
+        $hm = implode(':', array_slice(explode(":", explode(" ", $time)[1]), 0, 2));
+
+        $time = $hm . " " . $dmy;
+
 
         $output['data'] .=  "
         <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
@@ -102,26 +103,12 @@ foreach ($feedList as $item) {
                 <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                 <ul class='space-y-1'>
-                <li class='ajax-download-btn'>
-                    <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                        <i class='fas fa-download mr-1'></i> Tải ảnh
-                    </a>
-                </li>
                 <li>
                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                           <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                     </a>
                 </li>
-                <li>
-                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                        <i class='far fa-edit mr-1'></i> Chỉnh sửa
-                    </a>
-                </li>
-                <li>
-                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                        <i class='uil-comment-slash mr-1'></i> Tắt bình luận
-                    </a>
-                </li>
+
                 <li>
                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                         <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
@@ -213,10 +200,16 @@ foreach ($feedList as $item) {
 
     </div>";
     } else {
-        $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
-                                $hm = implode(':',array_slice(explode(":",explode(" ",$time)[1]),0,2));
-                                
-                                $time = $hm . " " .$dmy;
+        $dmy = implode('-', array_reverse(explode('-', explode(" ", $time)[0])));
+        $hm = implode(':', array_slice(explode(":", explode(" ", $time)[1]), 0, 2));
+
+        $time = $hm . " " . $dmy;
+        if ($img_post != '') $saveImg = " <li class='ajax-download-btn'>
+                                                <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                                    <i class='fas fa-download mr-1'></i> Tải ảnh
+                                                </a>
+                                            </li>";
+        else $saveImg = '';
         $output['data'] .= "
     <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
 
@@ -238,26 +231,13 @@ foreach ($feedList as $item) {
             <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
             <ul class='space-y-1'>
-            <li class='ajax-download-btn'>
-                <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                    <i class='fas fa-download mr-1'></i> Tải ảnh
-                </a>
-            </li>
+           $saveImg
             <li>
                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                       <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                 </a>
             </li>
-            <li>
-                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                    <i class='far fa-edit mr-1'></i> Chỉnh sửa
-                </a>
-            </li>
-            <li>
-                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                    <i class='uil-comment-slash mr-1'></i> Tắt bình luận
-                </a>
-            </li>
+
             <li>
                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                     <i class='uil-favorite mr-1'></i> Thêm vào yêu thích

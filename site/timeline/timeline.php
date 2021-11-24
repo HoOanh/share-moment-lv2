@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -267,13 +267,10 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="#">About</a>
-                    <a href="#">Blog </a>
-                    <a href="#">Careers</a>
-                    <a href="#">Support</a>
-                    <a href="#">Contact Us </a>
-                    <a href="#">Developer</a>
-                    <a href="#">Terms of service</a>
+                    <a href="https://www.facebook.com/duythenights/">Duy The Nights</a>
+                    <a href="https://www.facebook.com/profile.php?id=100010560571719">Linh The Noons </a> <br>
+                    <a href="https://www.facebook.com/profile.php?id=100035398038966">Oanh The Afternoons</a>
+                    <a href="https://www.facebook.com/sang.caoquang.191102">Sang The Mornings</a>
                 </div>
 
             </div>
@@ -650,10 +647,10 @@
                                 else $role = "<i class='fas fa-user-lock ml-1'></i>";
 
                                 if ($post_video != '') {
-                                    $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
-                                $hm = implode(':',array_slice(explode(":",explode(" ",$time)[1]),0,2));
-                                
-                                $time = $hm . " " .$dmy;
+                                    $dmy = implode('-', array_reverse(explode('-', explode(" ", $time)[0])));
+                                    $hm = implode(':', array_slice(explode(":", explode(" ", $time)[1]), 0, 2));
+
+                                    $time = $hm . " " . $dmy;
                                     echo "
                                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
                                             <div class='flex justify-between items-center lg:p-4 p-2.5'>
@@ -684,16 +681,7 @@
                                                                     <i class='far fa-edit mr-1'></i> Chỉnh sửa
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                                    <i class='uil-comment-slash mr-1'></i> Tắt bình luận
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                                    <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
-                                                                </a>
-                                                                </li>";
+                                                           ";
 
                                     if ($unique_id === $_SESSION['unique_id']) {
                                         echo "
@@ -782,10 +770,16 @@
 
                                         </div>";
                                 } else {
-                                    $dmy = implode('-',array_reverse(explode('-',explode(" ",$time)[0])));
-                                $hm = implode(':',array_slice(explode(":",explode(" ",$time)[1]),0,2));
-                                
-                                $time = $hm . " " .$dmy;
+                                    $dmy = implode('-', array_reverse(explode('-', explode(" ", $time)[0])));
+                                    $hm = implode(':', array_slice(explode(":", explode(" ", $time)[1]), 0, 2));
+
+                                    $time = $hm . " " . $dmy;
+                                    if ($img_post != '') $saveImg = " <li class='ajax-download-btn'>
+                                                                    <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                                                        <i class='fas fa-download mr-1'></i> Tải ảnh
+                                                                    </a>
+                                                                </li>";
+                                    else $saveImg = '';
                                     echo "
                                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
 
@@ -806,11 +800,7 @@
                                                     <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                                                         <ul class='space-y-1'>
-                                                            <li class='ajax-download-btn'>
-                                                                <a class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                                    <i class='fas fa-download mr-1'></i> Tải ảnh
-                                                                </a>
-                                                            </li>
+                                                            $saveImg
                                                             <li>
                                                                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                                                     <i class='fas fa-share-alt mr-1'></i> Chia sẻ
@@ -821,16 +811,7 @@
                                                                     <i class='far fa-edit mr-1'></i> Chỉnh sửa
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                                    <i class='uil-comment-slash mr-1'></i> Tắt bình luận
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                                    <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
-                                                                </a>
-                                                                </li>";
+                                                            ";
 
                                     if ($unique_id === $_SESSION['unique_id']) {
                                         echo "
@@ -964,7 +945,7 @@
                                     </li>" ?>
                                     <li class="flex items-center space-x-2">
                                         <i class="fas fa-birthday-cake rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Sinh Nhật: <strong> <?php if (!$timeline_user['user_bd']) echo  "Chưa cập nhật";
+                                        Sinh Nhật: <strong> <?php if ($timeline_user['user_bd'] == '0000-00-00') echo  "Chưa cập nhật";
                                                             else  echo implode("-", array_reverse(explode("-", $timeline_user['user_bd']))); ?> </strong>
                                     </li>
 
@@ -1291,7 +1272,8 @@
 
             }
             window.addEventListener('load', function() {
-                document.querySelector('input[type="file"]').addEventListener('change', function() {
+                document.querySelector('.add-img input').addEventListener('change', function() {
+
                     if (this.files && this.files[0]) {
                         var img = document.querySelector('#myImg');
                         img.onload = () => {
