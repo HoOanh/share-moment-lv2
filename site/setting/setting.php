@@ -16,7 +16,7 @@
 
     <!-- Basic Page Needs
         ================================================== -->
-    <title>Socialite Template</title>
+    <title>Sharemoment | Cài đặt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Socialite is - Professional A unique and beautiful collection of UI elements">
@@ -395,7 +395,7 @@
                                 </div>
                                 <div class="col-span-2">
                                     <label for="about">Giới thiệu về bạn</label>
-                                    <textarea maxlength="30" id="about" name="about" rows="3" class="with-border" value=""><?= $user_about ?></textarea>
+                                    <textarea maxlength="50" id="about" name="about" rows="3" class="with-border" value=""><?= $user_about ?></textarea>
                                 </div>
                             </div>
 
