@@ -1,7 +1,7 @@
 <?php
 
 $email = $_POST['email'];
-$output = ["data"=>""];
+$output = ["data" => ""];
 require "../vendor/phpmailer/Exception.php";
 require "../vendor/phpmailer/PHPMailer.php";
 require "../vendor/phpmailer/SMTP.php";
@@ -25,7 +25,7 @@ $mail->Subject = "Kich hoat tai khoan";
 $mail->setFrom("sharemoment.offical@gmail.com");
 $mail->isHTML(true);
 
-$mail->Body = "<h1 style='color:#10b981'>Xin chào, đây là Sharemoment!</h1><a style='color:#000' href='https://localhost/share-moment-lv2/site/login/?action=verify&token=$encode_mail'>Nhấp vào đây để kích hoạt tài khoản</a>";
+$mail->Body = "<h1 style='color:#10b981'>Xin chào, đây là Sharemoment!</h1><a style='color:#000' href='https://localhost/share-moment/site/login/?action=verify&token=$encode_mail'>Nhấp vào đây để kích hoạt tài khoản</a>";
 $mail->addAddress($email);
 
 if ($mail->Send()) {
