@@ -109,11 +109,7 @@ foreach ($feedList as $item) {
                     </a>
                 </li>
 
-                <li>
-                    <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                        <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
-                    </a>
-                </li>";
+                ";
 
         if ($unique_id === $_SESSION['unique_id']) {
             $output['data'] .= "
@@ -238,11 +234,7 @@ foreach ($feedList as $item) {
                 </a>
             </li>
 
-            <li>
-                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                    <i class='uil-favorite mr-1'></i> Thêm vào yêu thích
-                </a>
-            </li>";
+           ";
 
         if ($unique_id === $_SESSION['unique_id']) {
             $output['data'] .= "

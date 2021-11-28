@@ -677,7 +677,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                                                <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                                                     <i class='far fa-edit mr-1'></i> Chỉnh sửa
                                                                 </a>
                                                             </li>
@@ -807,7 +807,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                                                <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                                                                     <i class='far fa-edit mr-1'></i> Chỉnh sửa
                                                                 </a>
                                                             </li>

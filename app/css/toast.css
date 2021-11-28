@@ -109,6 +109,10 @@ body {
     background-color: #245242;
 }
 
+.alert--success .close-btn:hover .fa-times {
+    color: #fff;
+}
+
 .alert--success .close-btn .fa-times {
     color: #035e3e;
 }

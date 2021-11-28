@@ -454,11 +454,7 @@
                                                     <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                                                     </a>
                                                 </li>
-                                                <li>
-                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='far fa-edit mr-1'></i> Chỉnh sửa
-                                                </a>
-                                                </li>";
+                                               ";
 
                                 if ($unique_id === $_SESSION['unique_id']) {
                                     echo "
@@ -554,7 +550,7 @@
                                                                         <i class='fas fa-download mr-1'></i> Tải ảnh
                                                                     </a>
                                                                 </li>";
-                                    else $saveImg = '';
+                                else $saveImg = '';
                                 echo "
                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
 
@@ -583,11 +579,7 @@
                                                 </a>
                                             </li>
 
-                                            <li>
-                                                <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                    <i class='far fa-edit mr-1'></i> Chỉnh sửa
-                                                </a>
-                                            </li>";
+                                           ";
                                 if ($unique_id === $_SESSION['unique_id']) {
                                     echo "
                                                 <li>
