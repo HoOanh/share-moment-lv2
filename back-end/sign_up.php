@@ -22,7 +22,10 @@ $gender = trim(strip_tags($gender));
 $user_name = trim(strip_tags($user_name));
 $phone = trim(strip_tags($phone));
 
-
+if (strlen($pass) < 8) {
+    $output['data'] = "Mật khẩu phải có ít nhất 8 ký tự!";
+    die(json_encode($output));
+}
 
 
 if (!empty($fname) && !empty($lname) && !empty($email) && !empty($pass) && !empty($phone) && !empty($user_name)) {

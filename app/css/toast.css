@@ -130,7 +130,7 @@ body {
 }
 
 .alert--warning .msg {
-    color: #fff;
+    color: #000;
 }
 
 .alert--warning .close-btn {

@@ -10,6 +10,12 @@ $allEmails = pdo_get_all_rows($sql);
 
 $output = ['data' => 'Token không đúng'];
 
+if (strlen($pass) < 8) {
+    $output['data'] = 'Mật khẩu phải có ít nhất 8 ký tự!';
+    die(json_encode($output));
+}
+
+
 foreach ($allEmails as $item) {
     extract($item);
     if (sha1($email) === $token) {
