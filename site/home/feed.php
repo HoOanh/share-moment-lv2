@@ -385,6 +385,12 @@
 
                                 $sql = "SELECT * FROM users WHERE unique_id = ?";
                                 $getUserCmt = pdo_get_one_row($sql, $unique_id);
+
+                                $dmy = implode('-', array_reverse(explode('-', explode(" ", $cmt_time)[0])));
+                                $hm = implode(':', array_slice(explode(":", explode(" ", $cmt_time)[1]), 0, 2));
+
+                                $cmt_time = $hm . " " . $dmy;
+
                                 $allCmt .= "
                                 <div class='flex'>
                                 <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
@@ -399,7 +405,7 @@
                                     </div>
                                     <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
                                         <a href='#' class='text-red-600'> <i class='far fa-heart mr-1'></i>Love </a>
-                                        <a href='#'> Replay </a>
+                                        <a href='#'> Trả lời </a>
                                         <span> {$cmt_time} </span>
                                     </div>
                                 </div>

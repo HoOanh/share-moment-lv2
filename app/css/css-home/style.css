@@ -10329,3 +10329,7 @@ header .header_inner .left_side #logo img.logo_mobile {
   text-decoration: underline !important;
   color: #0056b3 !important;
 }
+
+.edit-input {
+  margin-left: 0;
+}

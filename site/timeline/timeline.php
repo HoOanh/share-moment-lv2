@@ -289,12 +289,6 @@
 
                     <div class="profiles_banner">
                         <img src="../../images/background/<?= $timeline_user['bg_user'] ?>" class="oldBg">
-                        <!-- <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
-                            <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
-                                <i class="far fa-edit"></i>
-                                <span> Chỉnh sửa </span>
-                            </a>
-                        </div> -->
                     </div>
                     <div class="profiles_content">
 
@@ -606,6 +600,12 @@
 
                                     $sql = "SELECT * FROM users WHERE unique_id = ?";
                                     $getUserCmt = pdo_get_one_row($sql, $unique_id);
+
+                                    $dmy = implode('-', array_reverse(explode('-', explode(" ", $cmt_time)[0])));
+                                    $hm = implode(':', array_slice(explode(":", explode(" ", $cmt_time)[1]), 0, 2));
+
+                                    $cmt_time = $hm . " " . $dmy;
+
                                     $allCmt .= "
                                         <div class='flex'>
                                             <div class='w-10 h-10 rounded-full relative flex-shrink-0'>
@@ -620,7 +620,7 @@
                                                 </div>
                                                 <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
                                                     <a href='#' class='text-red-600'> <i class='far fa-heart mr-1'></i>Love </a>
-                                                    <a href='#'> Replay </a>
+                                                    <a href='#'> Trả lời </a>
                                                     <span> {$cmt_time} </span>
                                                 </div>
                                             </div>
@@ -646,11 +646,20 @@
                                 if ($post_role) $role = "<i class='fas fa-user-friends ml-1'></i>";
                                 else $role = "<i class='fas fa-user-lock ml-1'></i>";
 
+                                if (!isset($_GET['timeline_id'])) $edit = "
+                                <li>
+                                    <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                                        <i class='far fa-edit mr-1'></i> Chỉnh sửa
+                                    </a>
+                                </li>
+                                ";
+
                                 if ($post_video != '') {
                                     $dmy = implode('-', array_reverse(explode('-', explode(" ", $time)[0])));
                                     $hm = implode(':', array_slice(explode(":", explode(" ", $time)[1]), 0, 2));
 
                                     $time = $hm . " " . $dmy;
+
                                     echo "
                                             <div class='card lg:mx-0 uk-animation-slide-bottom-small'>
                                             <div class='flex justify-between items-center lg:p-4 p-2.5'>
@@ -676,11 +685,7 @@
                                                                 <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                                    <i class='far fa-edit mr-1'></i> Chỉnh sửa
-                                                                </a>
-                                                            </li>
+                                                            $edit
                                                            ";
 
                                     if ($unique_id === $_SESSION['unique_id']) {
@@ -806,11 +811,7 @@
                                                                     <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                                                                    <i class='far fa-edit mr-1'></i> Chỉnh sửa
-                                                                </a>
-                                                            </li>
+                                                           $edit
                                                             ";
 
                                     if ($unique_id === $_SESSION['unique_id']) {
@@ -945,7 +946,7 @@
                                     </li>" ?>
                                     <li class="flex items-center space-x-2">
                                         <i class="fas fa-birthday-cake rounded-full bg-gray-200 p-1 mr-3 md hydrated"></i>
-                                        Sinh Nhật: <strong> <?php if ($timeline_user['user_bd'] == '0000-00-00') echo  "Chưa cập nhật";
+                                        Sinh Nhật: <strong> <?php if ($timeline_user['user_bd'] == '0000-00-00' || $timeline_user['user_bd'] == NULL) echo  "Chưa cập nhật";
                                                             else  echo implode("-", array_reverse(explode("-", $timeline_user['user_bd']))); ?> </strong>
                                     </li>
 
@@ -1253,7 +1254,7 @@
             }
         </script>
 
-        <!-- them anh  -->
+        <!-- thêm ảnh  -->
         <script>
             document.getElementsByClassName('add-img-post')[0].onclick = () => {
                 document.getElementsByClassName('add-img')[0].style.display = 'block';

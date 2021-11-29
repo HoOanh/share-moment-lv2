@@ -324,10 +324,7 @@
                 </div>
                 <form class="form" method="post" id='formEdit'>
                     <div class="grid lg:grid-cols-3 mt-12 gap-8">
-                        <!-- <div>
-                        <h3 class="text-xl mb-2 font-semibold"> Basic</h3>
-                        <p> Lorem ipsum dolor sit amet nibh consectetuer adipiscing elit</p>
-                    </div> -->
+
 
                         <div class="bg-white rounded-md lg:shadow-md shadow col-span-2 lg:mx-16">
                             <?php
@@ -367,7 +364,7 @@
                                             echo '
                                         <option value="1">Mọi người</option>
                                         <option value="0">Chỉ mình tôi</option>
-                                       
+
                                         ';
                                         } else if ($post_role == 0) {
                                             echo '
@@ -378,15 +375,16 @@
 
                                     </select>
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-2 edit-input <?php if ($post_video != '') echo 'add-video';
+                                                                    else echo 'add-img' ?>">
                                     <label for="">Tài ngyên đi kèm</label>
                                     <?php
                                     if ($post_video != '') {
-                                        echo "<video controls src='../../video/post/{$post_video}'></video>
-                                        <input type='file' class='shadow-none with-border' name='video'>";
+                                        echo "<video class='video-preview' controls src='../../video/post/{$post_video}'></video>
+                                        <input type='file'  class='shadow-none with-border upload-video-file' name='video'>";
                                     } else if ($img_post != '') {
-                                        echo "<img  src='../../images/post/{$img_post}' >
-                                        <input type='file' class='shadow-none with-border' name='img'>";
+                                        echo "<img id='myImg' src='../../images/post/{$img_post}' >
+                                        <input type='file' class='shadow-none with-border file_img' name='img'>";
                                     }
 
                                     ?>
@@ -534,6 +532,74 @@
         })();
     </script>
 
+    <!-- script them video -->
+    <script>
+        $(function() {
+            $('.upload-video-file').on('change', function() {
+                if (isVideo($(this).val())) {
+                    $('.video-preview').attr('src', URL.createObjectURL(this.files[0]));
+                    $('.video-prev').show();
+                } else {
+                    $('.upload-video-file').val('');
+                    $('.video-prev').hide();
+                }
+            });
+        });
+
+        // If user tries to upload videos other than these extension , it will throw error.
+        function isVideo(filename) {
+            var ext = getExtension(filename);
+            switch (ext.toLowerCase()) {
+                case 'm4v':
+                case 'avi':
+                case 'mp4':
+                case 'mov':
+                case 'mpg':
+                case 'mpeg':
+                    // etc
+                    return true;
+            }
+            return false;
+        }
+
+        function getExtension(filename) {
+            var parts = filename.split('.');
+            return parts[parts.length - 1];
+        }
+    </script>
+
+    <!-- thêm ảnh  -->
+    <script>
+        document.getElementsByClassName('add-img-post')[0].onclick = () => {
+            document.getElementsByClassName('add-img')[0].style.display = 'block';
+            document.getElementsByClassName('add-video')[0].style.display = 'none';
+            document.querySelector('.upload-video-file').value = '';
+
+        }
+        document.getElementsByClassName('add-video-post')[0].onclick = () => {
+            document.getElementsByClassName('add-video')[0].style.display = 'block';
+            document.getElementsByClassName('add-img')[0].style.display = 'none';
+
+            var img = document.querySelector('#myImg');
+            img.src = '';
+            let inputImg = document.querySelector(".file_img");
+            inputImg.value = '';
+
+        }
+        window.addEventListener('load', function() {
+            document.querySelector('.add-img input').addEventListener('change', function() {
+
+                if (this.files && this.files[0]) {
+                    var img = document.querySelector('#myImg');
+                    img.onload = () => {
+                        URL.revokeObjectURL(img.src); // no longer needed, free memory
+                    };
+
+                    img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+                };
+            });
+        });
+    </script>
 
 
 

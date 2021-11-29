@@ -6,15 +6,19 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $post_id = $_POST['post_id'];
 $cmt_content = $_POST['cmt_content'];
 $cmt_time = date('Y/m/d H:i:s', time());
-$output = ['data'=>''];
+$output = ['data' => ''];
 $sql = "INSERT INTO cmt (content,unique_id,post_id,cmt_time)
         VALUES (?,?,?,?)";
-$cmtSS = pdo_execute($sql,$cmt_content,$_SESSION['unique_id'],$post_id,$cmt_time);
-if($cmtSS){
+$cmtSS = pdo_execute($sql, $cmt_content, $_SESSION['unique_id'], $post_id, $cmt_time);
+if ($cmtSS) {
 
     $sql = "SELECT * FROM users where unique_id = ?";
     $getUserCmt = pdo_get_one_row($sql, $_SESSION['unique_id']);
     extract($getUserCmt);
+    $dmy = implode('-', array_reverse(explode('/', explode(" ", $cmt_time)[0])));
+    $hm = implode(':', array_slice(explode(":", explode(" ", $cmt_time)[1]), 0, 2));
+
+    $cmt_time = $hm . " " . $dmy;
 
     $output['data'] = "
     <div class='flex'>
@@ -30,7 +34,7 @@ if($cmtSS){
             </div>
             <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
                 <a href='#' class='text-red-600'> <i class='far fa-heart mr-1'></i> Love </a>
-                <a href='#'> Replay </a>
+                <a href='#'> Trả lời </a>
                 <span> {$cmt_time} </span>
             </div>
         </div>
@@ -38,4 +42,4 @@ if($cmtSS){
 
     ";
 }
-die(json_encode($output)) ;
+die(json_encode($output));

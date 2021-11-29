@@ -43,6 +43,10 @@ foreach ($feedList as $item) {
         $sql = "SELECT * FROM users WHERE unique_id = ?";
         $getUserCmt = pdo_get_one_row($sql, $unique_id);
 
+        $dmy = implode('-', array_reverse(explode('-', explode(" ", $cmt_time)[0])));
+        $hm = implode(':', array_slice(explode(":", explode(" ", $cmt_time)[1]), 0, 2));
+
+        $cmt_time = $hm . " " . $dmy;
 
         $allCmt .= "
         <div class='flex'>
@@ -58,7 +62,7 @@ foreach ($feedList as $item) {
             </div>
             <div class='text-sm flex items-center space-x-3 mt-2 ml-5'>
                 <a href='#' class='text-red-600'> <i class='uil-heart'></i> Love </a>
-                <a href='#'> Replay </a>
+                <a href='#'> Trả lời </a>
                 <span> {$cmt_time} </span>
             </div>
         </div>
@@ -111,12 +115,6 @@ foreach ($feedList as $item) {
                 <div class='bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700' uk-drop='mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small'>
 
                 <ul class='space-y-1'>
-
-                <li>
-                    <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                          <i class='fas fa-edit mr-1'></i> Chỉnh sửa
-                    </a>
-                </li>
                 <li>
                     <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                           <i class='fas fa-share-alt mr-1'></i> Chia sẻ
@@ -126,6 +124,11 @@ foreach ($feedList as $item) {
 
         if ($unique_id === $_SESSION['unique_id']) {
             $output['data'] .= "
+                <li>
+                    <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                        <i class='fas fa-edit mr-1'></i> Chỉnh sửa
+                    </a>
+                </li>
                 <li>
                     <hr class='-mx-2 my-2 dark:border-gray-800'>
                 </li>
@@ -243,11 +246,6 @@ foreach ($feedList as $item) {
             <ul class='space-y-1'>
             $saveImg
             <li>
-                    <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
-                          <i class='fas fa-edit mr-1'></i> Chỉnh sửa
-                    </a>
-            </li>
-            <li>
                 <a href='#' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
                       <i class='fas fa-share-alt mr-1'></i> Chia sẻ
                 </a>
@@ -255,14 +253,20 @@ foreach ($feedList as $item) {
          ";
 
         if ($unique_id === $_SESSION['unique_id']) {
-            $output['data'] .= "  <li>
-                                    <hr class='-mx-2 my-2 dark:border-gray-800'>
-                                </li>
-                                <li post_id='$post_id' unique_id='$unique_id' listener='false' class='deleteBtn'>
-                                    <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
-                                        <i class='far fa-trash-alt mr-1'></i> Xóa bài viết
-                                    </a>
-                                </li>";
+            $output['data'] .= "
+            <li>
+                <a href='../edit/?post_id={$post_id}' class='flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800'>
+                    <i class='fas fa-edit mr-1'></i> Chỉnh sửa
+                </a>
+            </li>
+            <li>
+                <hr class='-mx-2 my-2 dark:border-gray-800'>
+            </li>
+            <li post_id='$post_id' unique_id='$unique_id' listener='false' class='deleteBtn'>
+                <a class='flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600'>
+                    <i class='far fa-trash-alt mr-1'></i> Xóa bài viết
+                </a>
+            </li>";
         }
 
         $output['data'] .= "</ul>
